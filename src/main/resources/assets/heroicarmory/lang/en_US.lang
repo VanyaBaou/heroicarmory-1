@@ -21,7 +21,7 @@ item.lozGoldenSword.name=Golden Sword
 item.lozFlameblade.name=Flameblade
 item.lozDarknutSwordTp.name=Darknut Sword
 item.lozGhirahimSword.name=Ghirahim Sword
-item.lozFierceDietySword.name=Fierce Diety's Sword
+item.lozFierceDeitySword.name=Fierce Deity's Sword
 item.lozZeldaSword.name=Zelda's Sword
 item.lozBokoStick.name=Boko Stick
 item.lozCaneofByrna.name=Cane of Byrna
@@ -192,7 +192,7 @@ item.khKeyblade.name=Keyblade
 #
 #bleach
 item.bleachZabimaru.name=Zabimaru
-item.bleachZangestsu.name=Zangestsu
+item.bleachZangetsu.name=Zangetsu
 #
 #ds
 item.dsGreatswordofArtorias.name=Greatsword of Artorias
