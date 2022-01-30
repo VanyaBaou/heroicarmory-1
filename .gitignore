@@ -3,6 +3,7 @@
 /build/
 gradlew
 gradlew.bat
+/gradle/
 
 # idea
 .idea
