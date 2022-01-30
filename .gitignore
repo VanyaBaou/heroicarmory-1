@@ -1,14 +1,8 @@
+#gradle
 .gradle
+/build/
+gradlew
+gradlew.bat
+
+# idea
 .idea
-build/classes
-build/dependency-cache
-build/resources
-build/retromapping
-build/sources
-build/sources
-build/taskLogs
-build/tmp
-gradle
-run
-itemInfo_backup.js
-node_modules
