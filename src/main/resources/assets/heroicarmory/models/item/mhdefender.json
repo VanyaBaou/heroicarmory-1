@@ -29,5 +29,13 @@
 			"translation": [ 0, 0, 0.75 ],
 			"scale": [ 1, 1, 1.00 ]
 		}
-	}
+	},
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "heroicarmory:item/mhdefender_blocking"
+        }
+    ]
 }

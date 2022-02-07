@@ -331,3 +331,38 @@ item.nhSilverSaber.name=Silver Saber
 #
 #abcm
 item.abcmExcalibur.name=Excalibur
+
+#
+#tooltips for spartan weaponry
+tooltip.heroicarmory:handandahalf=Hand and a Half
+tooltip.heroicarmory:handandahalf.desc=With both hands: +20%% Damage -10%% Speed. With one hand: -10%% Damage, +20%% Speed
+
+tooltip.heroicarmory:elven=Elven
+tooltip.heroicarmory:elven.desc=When held, reveals nearby trolls
+
+tooltip.heroicarmory:bonus_living=Living Damage Bonus
+tooltip.heroicarmory:bonus_living.desc=+75%% damage against non-Undead foes
+
+tooltip.heroicarmory:potion=%s %s
+tooltip.heroicarmory:potion.desc=Applies %s %s for %ss on hit
+
+tooltip.heroicarmory:randomrepair=Reforged
+tooltip.heroicarmory:randomrepair.desc=75%% chance to gain durability on hit
+
+tooltip.heroicarmory:repairundead=Evil's Bane
+tooltip.heroicarmory:repairundead.desc=Killing Undead restores 1-2 durability
+
+tooltip.heroicarmory:ignite=Igniting
+tooltip.heroicarmory:ignite.desc=Sets targets on fire. Bonus damage to Ice Dragons
+
+tooltip.heroicarmory:freeze=Freezing
+tooltip.heroicarmory:freeze.desc=Freezes targets. Bonus damage to Fire Dragons
+
+tooltip.heroicarmory:detonatedead=Detonate Dead
+tooltip.heroicarmory:detonatedead.desc=Undead explode when killed
+
+tooltip.heroicarmory:lifeflat=Life on Hit
+tooltip.heroicarmory:lifeflat.desc=Restores %s Health on hit
+
+tooltip.heroicarmory:bonus_dragon=Dragon Damage Bonus
+tooltip.heroicarmory:bonus_dragon.desc=+50%% damage against Dragons

@@ -36,6 +36,18 @@ public class HAConfig {
 	@RequiresWorldRestart
 	public static double lootChance = 0.75;
 
+	//DISABLE BY SERIES===================================================================================================
+
+	@Name("Repair Material")
+	@Comment("This is the oreDict used to repair items (Optional)")
+	@RequiresWorldRestart
+	public static String repairDict = "gemDiamond";
+
+	@Name("Spartan Weaponry Support")
+	@Comment("This allows weapons to have weapon properties from Spartan Weaponry, if loaded.")
+	@RequiresWorldRestart
+	public static boolean spartanWeaponrySupport = true;
+
     //DISABLE BY SERIES===================================================================================================
 
 	@Comment("Disable items by their source series")
@@ -4547,7 +4559,7 @@ public class HAConfig {
 				@Name("Durability")
 				public int durability = 1700;
 				@Name("Speed")
-				public double speed = 1.6;
+				public double speed = 20.0;
 				@Name("Enchantability")
 				public int enchantability = 16;
 				@Name("Rarity")

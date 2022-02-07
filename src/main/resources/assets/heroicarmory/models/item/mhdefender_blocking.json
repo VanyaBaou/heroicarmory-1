@@ -1,0 +1,25 @@
+{
+    "parent": "heroicarmory:item/mhdefender",
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 47, 125, 0 ],
+            "translation": [ -7.25, 14, 3.75 ],
+            "scale": [ 2.00, 2.00, 1.00 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 47, 125, -90 ],
+            "translation": [ -7.25, 14, 3.75 ],
+            "scale": [ 2.00, 2.00, 1.00 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ -7, -7, 101 ],
+            "translation": [ 4.5, 5.75, -2.25 ],
+            "scale": [ 2.00, 2.00, 1.00 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ -7, 173, -101 ],
+            "translation": [ 4.5, 5.75, -2.25 ],
+            "scale": [ 2.00, 2.00, 1.00 ]
+        }
+    }
+}

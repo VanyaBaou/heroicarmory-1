@@ -1,11 +1,19 @@
 package com.vanyabaou.heroicarmory.init;
 
+import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
+import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
+import com.oblivioussp.spartanweaponry.api.WeaponProperties;
+import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyExtraDamage;
 import com.vanyabaou.heroicarmory.HAConfig;
 import com.vanyabaou.heroicarmory.HeroicArmory;
+import com.vanyabaou.heroicarmory.integration.*;
+import com.vanyabaou.heroicarmory.integration.WeaponProperties.*;
 import com.vanyabaou.heroicarmory.items.HASword;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -23,10 +31,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.vanyabaou.heroicarmory.HeroicArmory.SupportSpartanWeaponry;
+
 @Mod.EventBusSubscriber(modid= HeroicArmory.MOD_ID)
 public class HAItemRegistry {
 
@@ -138,22 +150,15 @@ public class HAItemRegistry {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	static List<Item> ALL_ITEMS = new ArrayList<>();
+
+
 
 	//creative tab
 	public static final CreativeTabs tabHeroicArmory = new CreativeTabs("tabHeroicArmory") {
 		@Override
+		@Nonnull
+		@MethodsReturnNonnullByDefault
 		public ItemStack getTabIconItem() {
 			return new ItemStack(lotrNarsil);
 		}		
@@ -163,6 +168,11 @@ public class HAItemRegistry {
 	public static void registerItems(RegistryEvent.Register<Item> event){
 		System.out.println("registerItems start");
 		ToolMaterial dummyMaterial = EnumHelper.addToolMaterial("HeroicMaterial",0,1000,1f,0f,0);
+
+		Object dummyMaterialEx = null;
+		if (SupportSpartanWeaponry){
+			dummyMaterialEx = new ToolMaterialEx("HeroicMaterialEX", HAConfig.repairDict, HeroicArmory.MOD_ID, 0, 0, 0, 1000, 1, 0, 0);
+		}
 
 		//lotr
 		if (HAConfig.includeSeries.lotr) {
@@ -174,8 +184,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.rarity);
 				}};
-				lotrGimliBattleAxe = new HASword("lotrGimliBattleAxe", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrGimliBattleAxe);
+				if (!SupportSpartanWeaponry) {
+					lotrGimliBattleAxe = new HASword("lotrGimliBattleAxe", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrGimliBattleAxe);
+				}else{
+					lotrGimliBattleAxe = new ItemBattleaxeHW("lotrGimliBattleAxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrGimliBattleAxe, HeroicArmory.MOD_ID, "lotrGimliBattleAxe");
+					event.getRegistry().register(lotrGimliBattleAxe);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.GimliLongAxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -185,8 +201,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.rarity);
 				}};
-				lotrGimliLongAxe = new HASword("lotrGimliLongAxe", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrGimliLongAxe);
+				if (!SupportSpartanWeaponry) {
+					lotrGimliLongAxe = new HASword("lotrGimliLongAxe", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrGimliLongAxe);
+				}else {
+					lotrGimliLongAxe = new ItemBattleaxeHW("lotrGimliLongAxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrGimliLongAxe, HeroicArmory.MOD_ID, "lotrGimliLongAxe");
+					event.getRegistry().register(lotrGimliLongAxe);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.MorgulBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -196,8 +218,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.MorgulBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.MorgulBlade.rarity);
 				}};
-				lotrMorgulBlade = new HASword("lotrMorgulBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrMorgulBlade);
+				if (!SupportSpartanWeaponry) {
+					lotrMorgulBlade = new HASword("lotrMorgulBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrMorgulBlade);
+				}else {
+					lotrMorgulBlade = new ItemDaggerHW("lotrMorgulBlade", dummyMaterialEx, properties, new WeaponPropertyBonusLiving(), new WeaponPropertyPotion(MobEffects.WITHER.getName(), MobEffects.WITHER, 5, 3), WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrMorgulBlade, HeroicArmory.MOD_ID, "lotrMorgulBlade");
+					event.getRegistry().register(lotrMorgulBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.Sting.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -207,8 +235,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.Sting.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.Sting.rarity);
 				}};
-				lotrSting = new HASword("lotrSting", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrSting);
+				if (!SupportSpartanWeaponry) {
+					lotrSting = new HASword("lotrSting", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrSting);
+				}else {
+					lotrSting = new ItemDaggerHW("lotrSting", dummyMaterialEx, properties, new WeaponPropertyElven(), WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrSting, HeroicArmory.MOD_ID, "lotrSting");
+					event.getRegistry().register(lotrSting);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.Glamdring.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -218,8 +252,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.Glamdring.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.Glamdring.rarity);
 				}};
-				lotrGlamdring = new HASword("lotrGlamdring", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrGlamdring);
+				if (!SupportSpartanWeaponry) {
+					lotrGlamdring = new HASword("lotrGlamdring", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrGlamdring);
+				}else {
+					lotrGlamdring = new ItemLongswordHW("lotrGlamdring", dummyMaterialEx, properties, new WeaponPropertyElven(), new WeaponPropertyHandAndAHalf());
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrGlamdring, HeroicArmory.MOD_ID, "lotrGlamdring");
+					event.getRegistry().register(lotrGlamdring);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.Anduril.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -229,8 +269,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.Anduril.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.Anduril.rarity);
 				}};
-				lotrAnduril = new HASword("lotrAnduril", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrAnduril);
+				if (!SupportSpartanWeaponry) {
+					lotrAnduril = new HASword("lotrAnduril", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrAnduril);
+				}else {
+					lotrAnduril = new ItemLongswordHW("lotrAnduril", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 1.75F), new WeaponPropertyRandomRepair());
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrAnduril, HeroicArmory.MOD_ID, "lotrAnduril");
+					event.getRegistry().register(lotrAnduril);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.Narsil.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -240,8 +286,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.Narsil.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.Narsil.rarity);
 				}};
-				lotrNarsil = new HASword("lotrNarsil", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrNarsil);
+				if (!SupportSpartanWeaponry) {
+					lotrNarsil = new HASword("lotrNarsil", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrNarsil);
+				}else {
+					lotrNarsil = new ItemLongswordHW("lotrNarsil", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrNarsil, HeroicArmory.MOD_ID, "lotrNarsil");
+					event.getRegistry().register(lotrNarsil);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.SauronMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -251,8 +303,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.SauronMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.SauronMace.rarity);
 				}};
-				lotrSauronMace = new HASword("lotrSauronMace", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrSauronMace);
+				if (!SupportSpartanWeaponry) {
+					lotrSauronMace = new HASword("lotrSauronMace", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrSauronMace);
+				}else {
+					lotrSauronMace = new ItemGreatswordHW("lotrSauronMace", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50 , new WeaponPropertyPotion(MobEffects.NAUSEA.getName(), MobEffects.NAUSEA, 5, 1));
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrSauronMace, HeroicArmory.MOD_ID, "lotrSauronMace");
+					event.getRegistry().register(lotrSauronMace);
+				}
 			}
 			if (HAConfig.modifiedItems.lotrmodified.WitchKingSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -262,8 +320,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lotrmodified.WitchKingSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lotrmodified.WitchKingSword.rarity);
 				}};
-				lotrWitchKingSword = new HASword("lotrWitchKingSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lotrWitchKingSword);
+				if (!SupportSpartanWeaponry) {
+					lotrWitchKingSword = new HASword("lotrWitchKingSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lotrWitchKingSword);
+				}else {
+					lotrWitchKingSword = new ItemGreatswordHW("lotrWitchKingSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lotrWitchKingSword, HeroicArmory.MOD_ID, "lotrWitchKingSword");
+					event.getRegistry().register(lotrWitchKingSword);
+				}
 			}
 		}
 
@@ -277,8 +341,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSword.rarity);
 				}};
-				lozMasterSword = new HASword("lozMasterSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozMasterSword);
+				if (!SupportSpartanWeaponry) {
+					lozMasterSword = new HASword("lozMasterSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozMasterSword);
+				}else {
+					lozMasterSword = new ItemLongswordHW("lozMasterSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSword, HeroicArmory.MOD_ID, "lozMasterSword");
+					event.getRegistry().register(lozMasterSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.MasterSwordII.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -288,8 +358,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSwordII.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSwordII.rarity);
 				}};
-				lozMasterSwordII = new HASword("lozMasterSwordII", dummyMaterial, properties);
-				ALL_ITEMS.add(lozMasterSwordII);
+				if (!SupportSpartanWeaponry) {
+					lozMasterSwordII = new HASword("lozMasterSwordII", dummyMaterial, properties);
+					ALL_ITEMS.add(lozMasterSwordII);
+				}else {
+					lozMasterSwordII = new ItemLongswordHW("lozMasterSwordII", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSwordII, HeroicArmory.MOD_ID, "lozMasterSwordII");
+					event.getRegistry().register(lozMasterSwordII);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.TemperedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -299,8 +375,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.TemperedSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.TemperedSword.rarity);
 				}};
-				lozTemperedSword = new HASword("lozTemperedSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozTemperedSword);
+				if (!SupportSpartanWeaponry) {
+					lozTemperedSword = new HASword("lozTemperedSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozTemperedSword);
+				}else {
+					lozTemperedSword = new ItemLongswordHW("lozTemperedSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozTemperedSword, HeroicArmory.MOD_ID, "lozTemperedSword");
+					event.getRegistry().register(lozTemperedSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.MasterSwordIII.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -310,8 +392,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSwordIII.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSwordIII.rarity);
 				}};
-				lozMasterSwordIII = new HASword("lozMasterSwordIII", dummyMaterial, properties);
-				ALL_ITEMS.add(lozMasterSwordIII);
+				if (!SupportSpartanWeaponry) {
+					lozMasterSwordIII = new HASword("lozMasterSwordIII", dummyMaterial, properties);
+					ALL_ITEMS.add(lozMasterSwordIII);
+				}else {
+					lozMasterSwordIII = new ItemLongswordHW("lozMasterSwordIII", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSwordIII, HeroicArmory.MOD_ID, "lozMasterSwordIII");
+					event.getRegistry().register(lozMasterSwordIII);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.GoldenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -321,8 +409,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.GoldenSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.GoldenSword.rarity);
 				}};
-				lozGoldenSword = new HASword("lozGoldenSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozGoldenSword);
+				if (!SupportSpartanWeaponry) {
+					lozGoldenSword = new HASword("lozGoldenSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozGoldenSword);
+				}else {
+					lozGoldenSword = new ItemLongswordHW("lozGoldenSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozGoldenSword, HeroicArmory.MOD_ID, "lozGoldenSword");
+					event.getRegistry().register(lozGoldenSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.Flameblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -332,8 +426,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.Flameblade.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.Flameblade.rarity);
 				}};
-				lozFlameblade = new HASword("lozFlameblade", dummyMaterial, properties);
-				ALL_ITEMS.add(lozFlameblade);
+				if (!SupportSpartanWeaponry) {
+					lozFlameblade = new HASword("lozFlameblade", dummyMaterial, properties);
+					ALL_ITEMS.add(lozFlameblade);
+				}else {
+					lozFlameblade = new ItemLongswordHW("lozFlameblade", dummyMaterialEx, properties, new WeaponPropertyIgnite(4));
+					SpartanWeaponryAPI.addItemModelToRegistry(lozFlameblade, HeroicArmory.MOD_ID, "lozFlameblade");
+					event.getRegistry().register(lozFlameblade);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.DarknutSwordTp.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -343,8 +443,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.rarity);
 				}};
-				lozDarknutSwordTp = new HASword("lozDarknutSwordTp", dummyMaterial, properties);
-				ALL_ITEMS.add(lozDarknutSwordTp);
+				if (!SupportSpartanWeaponry) {
+					lozDarknutSwordTp = new HASword("lozDarknutSwordTp", dummyMaterial, properties);
+					ALL_ITEMS.add(lozDarknutSwordTp);
+				}else {
+					lozDarknutSwordTp = new ItemGreatswordHW("lozDarknutSwordTp", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozDarknutSwordTp, HeroicArmory.MOD_ID, "lozDarknutSwordTp");
+					event.getRegistry().register(lozDarknutSwordTp);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.GhirahimSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -354,8 +460,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.GhirahimSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.GhirahimSword.rarity);
 				}};
-				lozGhirahimSword = new HASword("lozGhirahimSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozGhirahimSword);
+				if (!SupportSpartanWeaponry) {
+					lozGhirahimSword = new HASword("lozGhirahimSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozGhirahimSword);
+				}else {
+					lozGhirahimSword = new ItemKatanaHW("lozGhirahimSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozGhirahimSword, HeroicArmory.MOD_ID, "lozGhirahimSword");
+					event.getRegistry().register(lozGhirahimSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.FierceDeitySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -365,8 +477,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.FierceDeitySword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.FierceDeitySword.rarity);
 				}};
-				lozFierceDeitySword = new HASword("lozFierceDeitySword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozFierceDeitySword);
+				if (!SupportSpartanWeaponry) {
+					lozFierceDeitySword = new HASword("lozFierceDeitySword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozFierceDeitySword);
+				}else {
+					lozFierceDeitySword = new ItemGreatswordHW("lozFierceDeitySword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(lozFierceDeitySword, HeroicArmory.MOD_ID, "lozFierceDeitySword");
+					event.getRegistry().register(lozFierceDeitySword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.ZeldaSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -409,8 +527,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.MegatonHammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.MegatonHammer.rarity);
 				}};
-				lozMegatonHammer = new HASword("lozMegatonHammer", dummyMaterial, properties);
-				ALL_ITEMS.add(lozMegatonHammer);
+				if (!SupportSpartanWeaponry) {
+					lozMegatonHammer = new HASword("lozMegatonHammer", dummyMaterial, properties);
+					ALL_ITEMS.add(lozMegatonHammer);
+				}else {
+					lozMegatonHammer = new ItemHammerHW("lozMegatonHammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozMegatonHammer, HeroicArmory.MOD_ID, "lozMegatonHammer");
+					event.getRegistry().register(lozMegatonHammer);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.KokiriSwordMm.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -442,8 +566,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.DemiseSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.DemiseSword.rarity);
 				}};
-				lozDemiseSword = new HASword("lozDemiseSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozDemiseSword);
+				if (!SupportSpartanWeaponry) {
+					lozDemiseSword = new HASword("lozDemiseSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozDemiseSword);
+				}else {
+					lozDemiseSword = new ItemGreatswordHW("lozDemiseSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozDemiseSword, HeroicArmory.MOD_ID, "lozDemiseSword");
+					event.getRegistry().register(lozDemiseSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.GiantKnife.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -453,8 +583,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.GiantKnife.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.GiantKnife.rarity);
 				}};
-				lozGiantKnife = new HASword("lozGiantKnife", dummyMaterial, properties);
-				ALL_ITEMS.add(lozGiantKnife);
+				if (!SupportSpartanWeaponry) {
+					lozGiantKnife = new HASword("lozGiantKnife", dummyMaterial, properties);
+					ALL_ITEMS.add(lozGiantKnife);
+				}else {
+					lozGiantKnife = new ItemGreatswordHW("lozGiantKnife", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozGiantKnife, HeroicArmory.MOD_ID, "lozGiantKnife");
+					event.getRegistry().register(lozGiantKnife);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.BiggoronSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -464,8 +600,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.BiggoronSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.BiggoronSword.rarity);
 				}};
-				lozBiggoronSword = new HASword("lozBiggoronSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozBiggoronSword);
+				if (!SupportSpartanWeaponry) {
+					lozBiggoronSword = new HASword("lozBiggoronSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozBiggoronSword);
+				}else {
+					lozBiggoronSword = new ItemGreatswordHW("lozBiggoronSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozBiggoronSword, HeroicArmory.MOD_ID, "lozBiggoronSword");
+					event.getRegistry().register(lozBiggoronSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.PhantomGanonSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -475,8 +617,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.rarity);
 				}};
-				lozPhantomGanonSword = new HASword("lozPhantomGanonSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozPhantomGanonSword);
+				if (!SupportSpartanWeaponry) {
+					lozPhantomGanonSword = new HASword("lozPhantomGanonSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozPhantomGanonSword);
+				}else {
+					lozPhantomGanonSword = new ItemGreatswordHW("lozPhantomGanonSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozPhantomGanonSword, HeroicArmory.MOD_ID, "lozPhantomGanonSword");
+					event.getRegistry().register(lozPhantomGanonSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.UltimateSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -574,8 +722,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.GreatFairySword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.GreatFairySword.rarity);
 				}};
-				lozGreatFairySword = new HASword("lozGreatFairySword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozGreatFairySword);
+				if (!SupportSpartanWeaponry) {
+					lozGreatFairySword = new HASword("lozGreatFairySword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozGreatFairySword);
+				}else {
+					lozGreatFairySword = new ItemGreatswordHW("lozGreatFairySword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozGreatFairySword, HeroicArmory.MOD_ID, "lozGreatFairySword");
+					event.getRegistry().register(lozGreatFairySword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -618,8 +772,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.rarity);
 				}};
-				lozSpikedBokoClub = new HASword("lozSpikedBokoClub", dummyMaterial, properties);
-				ALL_ITEMS.add(lozSpikedBokoClub);
+				if (!SupportSpartanWeaponry) {
+					lozSpikedBokoClub = new HASword("lozSpikedBokoClub", dummyMaterial, properties);
+					ALL_ITEMS.add(lozSpikedBokoClub);
+				}else {
+					lozSpikedBokoClub = new ItemClubHW("lozSpikedBokoClub", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozSpikedBokoClub, HeroicArmory.MOD_ID, "lozSpikedBokoClub");
+					event.getRegistry().register(lozSpikedBokoClub);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.BokoClub.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -629,8 +789,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.BokoClub.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.BokoClub.rarity);
 				}};
-				lozBokoClub = new HASword("lozBokoClub", dummyMaterial, properties);
-				ALL_ITEMS.add(lozBokoClub);
+				if (!SupportSpartanWeaponry) {
+					lozBokoClub = new HASword("lozBokoClub", dummyMaterial, properties);
+					ALL_ITEMS.add(lozBokoClub);
+				}else {
+					lozBokoClub = new ItemClubHW("lozBokoClub", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozBokoClub, HeroicArmory.MOD_ID, "lozBokoClub");
+					event.getRegistry().register(lozBokoClub);
+				}
 			}
 		}
 
@@ -644,8 +810,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.JakeSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.JakeSword.rarity);
 				}};
-				atJakeSword = new HASword("atJakeSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atJakeSword);
+				if (!SupportSpartanWeaponry) {
+					atJakeSword = new HASword("atJakeSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atJakeSword);
+				}else {
+					atJakeSword = new ItemLongswordHW("atJakeSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atJakeSword, HeroicArmory.MOD_ID, "atJakeSword");
+					event.getRegistry().register(atJakeSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.CrystalSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -655,8 +827,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.CrystalSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.CrystalSword.rarity);
 				}};
-				atCrystalSword = new HASword("atCrystalSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atCrystalSword);
+				if (!SupportSpartanWeaponry) {
+					atCrystalSword = new HASword("atCrystalSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atCrystalSword);
+				}else {
+					atCrystalSword = new ItemLongswordHW("atCrystalSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atCrystalSword, HeroicArmory.MOD_ID, "atCrystalSword");
+					event.getRegistry().register(atCrystalSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.Nothung.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -666,8 +844,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.Nothung.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.Nothung.rarity);
 				}};
-				atNothung = new HASword("atNothung", dummyMaterial, properties);
-				ALL_ITEMS.add(atNothung);
+				if (!SupportSpartanWeaponry) {
+					atNothung = new HASword("atNothung", dummyMaterial, properties);
+					ALL_ITEMS.add(atNothung);
+				}else {
+					atNothung = new ItemLongswordHW("atNothung", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atNothung, HeroicArmory.MOD_ID, "atNothung");
+					event.getRegistry().register(atNothung);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.FinnSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -677,8 +861,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.FinnSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.FinnSword.rarity);
 				}};
-				atFinnSword = new HASword("atFinnSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atFinnSword);
+				if (!SupportSpartanWeaponry) {
+					atFinnSword = new HASword("atFinnSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atFinnSword);
+				}else {
+					atFinnSword = new ItemLongswordHW("atFinnSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atFinnSword, HeroicArmory.MOD_ID, "atFinnSword");
+					event.getRegistry().register(atFinnSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.SwordoftheDead.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -688,8 +878,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.SwordoftheDead.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.SwordoftheDead.rarity);
 				}};
-				atSwordoftheDead = new HASword("atSwordoftheDead", dummyMaterial, properties);
-				ALL_ITEMS.add(atSwordoftheDead);
+				if (!SupportSpartanWeaponry) {
+					atSwordoftheDead = new HASword("atSwordoftheDead", dummyMaterial, properties);
+					ALL_ITEMS.add(atSwordoftheDead);
+				}else {
+					atSwordoftheDead = new ItemLongswordHW("atSwordoftheDead", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atSwordoftheDead, HeroicArmory.MOD_ID, "atSwordoftheDead");
+					event.getRegistry().register(atSwordoftheDead);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.WishStarSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -699,8 +895,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.WishStarSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.WishStarSword.rarity);
 				}};
-				atWishStarSword = new HASword("atWishStarSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atWishStarSword);
+				if (!SupportSpartanWeaponry) {
+					atWishStarSword = new HASword("atWishStarSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atWishStarSword);
+				}else {
+					atWishStarSword = new ItemLongswordHW("atWishStarSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(atWishStarSword, HeroicArmory.MOD_ID, "atWishStarSword");
+					event.getRegistry().register(atWishStarSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.FightKingSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -710,8 +912,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.FightKingSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.FightKingSword.rarity);
 				}};
-				atFightKingSword = new HASword("atFightKingSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atFightKingSword);
+				if (!SupportSpartanWeaponry) {
+					atFightKingSword = new HASword("atFightKingSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atFightKingSword);
+				}else {
+					atFightKingSword = new ItemGreatswordHW("atFightKingSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.THROWABLE);
+					SpartanWeaponryAPI.addItemModelToRegistry(atFightKingSword, HeroicArmory.MOD_ID, "atFightKingSword");
+					event.getRegistry().register(atFightKingSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.RootSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -754,8 +962,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.DemonBloodSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.DemonBloodSword.rarity);
 				}};
-				atDemonBloodSword = new HASword("atDemonBloodSword", dummyMaterial, properties);
-				ALL_ITEMS.add(atDemonBloodSword);
+				if (!SupportSpartanWeaponry) {
+					atDemonBloodSword = new HASword("atDemonBloodSword", dummyMaterial, properties);
+					ALL_ITEMS.add(atDemonBloodSword);
+				}else {
+					atDemonBloodSword = new ItemGreatswordHW("atDemonBloodSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(atDemonBloodSword, HeroicArmory.MOD_ID, "atDemonBloodSword");
+					event.getRegistry().register(atDemonBloodSword);
+				}
 			}
 			if (HAConfig.modifiedItems.atmodified.AxeBass.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -765,8 +979,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.atmodified.AxeBass.enchantability);
 					put("rarity", HAConfig.modifiedItems.atmodified.AxeBass.rarity);
 				}};
-				atAxeBass = new HASword("atAxeBass", dummyMaterial, properties);
-				ALL_ITEMS.add(atAxeBass);
+				if (!SupportSpartanWeaponry) {
+					atAxeBass = new HASword("atAxeBass", dummyMaterial, properties);
+					ALL_ITEMS.add(atAxeBass);
+				}else {
+					atAxeBass = new ItemBattleaxeHW("atAxeBass", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(atAxeBass, HeroicArmory.MOD_ID, "atAxeBass");
+					event.getRegistry().register(atAxeBass);
+				}
 			}
 		}
 
@@ -780,8 +1000,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.ffmodified.TheMasamune.enchantability);
 					put("rarity", HAConfig.modifiedItems.ffmodified.TheMasamune.rarity);
 				}};
-				ffTheMasamune = new HASword("ffTheMasamune", dummyMaterial, properties);
-				ALL_ITEMS.add(ffTheMasamune);
+				if (!SupportSpartanWeaponry) {
+					ffTheMasamune = new HASword("ffTheMasamune", dummyMaterial, properties);
+					ALL_ITEMS.add(ffTheMasamune);
+				}else {
+					ffTheMasamune = new ItemKatanaHW("ffTheMasamune", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL , WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(ffTheMasamune, HeroicArmory.MOD_ID, "ffTheMasamune");
+					event.getRegistry().register(ffTheMasamune);
+				}
 			}
 			if (HAConfig.modifiedItems.ffmodified.BusterSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -791,8 +1017,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.ffmodified.BusterSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.ffmodified.BusterSword.rarity);
 				}};
-				ffBusterSword = new HASword("ffBusterSword", dummyMaterial, properties);
-				ALL_ITEMS.add(ffBusterSword);
+				if (!SupportSpartanWeaponry) {
+					ffBusterSword = new HASword("ffBusterSword", dummyMaterial, properties);
+					ALL_ITEMS.add(ffBusterSword);
+				}else {
+					ffBusterSword = new ItemGreatswordHW("ffBusterSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(ffBusterSword, HeroicArmory.MOD_ID, "ffBusterSword");
+					event.getRegistry().register(ffBusterSword);
+				}
 			}
 			if (HAConfig.modifiedItems.ffmodified.Caladbolg.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -802,8 +1034,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.ffmodified.Caladbolg.enchantability);
 					put("rarity", HAConfig.modifiedItems.ffmodified.Caladbolg.rarity);
 				}};
-				ffCaladbolg = new HASword("ffCaladbolg", dummyMaterial, properties);
-				ALL_ITEMS.add(ffCaladbolg);
+				if (!SupportSpartanWeaponry) {
+					ffCaladbolg = new HASword("ffCaladbolg", dummyMaterial, properties);
+					ALL_ITEMS.add(ffCaladbolg);
+				}else {
+					ffCaladbolg = new ItemGreatswordHW("ffCaladbolg", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(ffCaladbolg, HeroicArmory.MOD_ID, "ffCaladbolg");
+					event.getRegistry().register(ffCaladbolg);
+				}
 			}
 		}
 
@@ -817,8 +1055,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.enchantability);
 					put("rarity", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.rarity);
 				}};
-				rotmgSwordoftheColossus = new HASword("rotmgSwordoftheColossus", dummyMaterial, properties);
-				ALL_ITEMS.add(rotmgSwordoftheColossus);
+				if (!SupportSpartanWeaponry) {
+					rotmgSwordoftheColossus = new HASword("rotmgSwordoftheColossus", dummyMaterial, properties);
+					ALL_ITEMS.add(rotmgSwordoftheColossus);
+				}else {
+					rotmgSwordoftheColossus = new ItemGreatswordHW("rotmgSwordoftheColossus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rotmgSwordoftheColossus, HeroicArmory.MOD_ID, "rotmgSwordoftheColossus");
+					event.getRegistry().register(rotmgSwordoftheColossus);
+				}
 			}
 			if (HAConfig.modifiedItems.rotmgmodified.CrystalSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -828,8 +1072,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rotmgmodified.CrystalSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rotmgmodified.CrystalSword.rarity);
 				}};
-				rotmgCrystalSword = new HASword("rotmgCrystalSword", dummyMaterial, properties);
-				ALL_ITEMS.add(rotmgCrystalSword);
+				if (!SupportSpartanWeaponry) {
+					rotmgCrystalSword = new HASword("rotmgCrystalSword", dummyMaterial, properties);
+					ALL_ITEMS.add(rotmgCrystalSword);
+				}else {
+					rotmgCrystalSword = new ItemLongswordHW("rotmgCrystalSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(rotmgCrystalSword, HeroicArmory.MOD_ID, "rotmgCrystalSword");
+					event.getRegistry().register(rotmgCrystalSword);
+				}
 			}
 			if (HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -861,8 +1111,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rotmgmodified.DemonBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.rotmgmodified.DemonBlade.rarity);
 				}};
-				rotmgDemonBlade = new HASword("rotmgDemonBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(rotmgDemonBlade);
+				if (!SupportSpartanWeaponry) {
+					rotmgDemonBlade = new HASword("rotmgDemonBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(rotmgDemonBlade);
+				}else {
+					rotmgDemonBlade = new ItemGreatswordHW("rotmgDemonBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rotmgDemonBlade, HeroicArmory.MOD_ID, "rotmgDemonBlade");
+					event.getRegistry().register(rotmgDemonBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -894,8 +1150,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.enchantability);
 					put("rarity", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.rarity);
 				}};
-				rotmgPirateKingCutlass = new HASword("rotmgPirateKingCutlass", dummyMaterial, properties);
-				ALL_ITEMS.add(rotmgPirateKingCutlass);
+				if (!SupportSpartanWeaponry) {
+					rotmgPirateKingCutlass = new HASword("rotmgPirateKingCutlass", dummyMaterial, properties);
+					ALL_ITEMS.add(rotmgPirateKingCutlass);
+				}else {
+					rotmgPirateKingCutlass = new ItemSaberHW("rotmgPirateKingCutlass", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rotmgPirateKingCutlass, HeroicArmory.MOD_ID, "rotmgPirateKingCutlass");
+					event.getRegistry().register(rotmgPirateKingCutlass);
+				}
 			}
 			if (HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -938,8 +1200,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.rarity);
 				}};
-				rotmgAncientStoneSword = new HASword("rotmgAncientStoneSword", dummyMaterial, properties);
-				ALL_ITEMS.add(rotmgAncientStoneSword);
+				if (!SupportSpartanWeaponry) {
+					rotmgAncientStoneSword = new HASword("rotmgAncientStoneSword", dummyMaterial, properties);
+					ALL_ITEMS.add(rotmgAncientStoneSword);
+				}else {
+					rotmgAncientStoneSword = new ItemGreatswordHW("rotmgAncientStoneSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rotmgAncientStoneSword, HeroicArmory.MOD_ID, "rotmgAncientStoneSword");
+					event.getRegistry().register(rotmgAncientStoneSword);
+				}
 			}
 			if (HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -975,8 +1243,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Firangi.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Firangi.rarity);
 				}};
-				scFirangi = new HASword("scFirangi", dummyMaterial, properties);
-				ALL_ITEMS.add(scFirangi);
+				if (!SupportSpartanWeaponry) {
+					scFirangi = new HASword("scFirangi", dummyMaterial, properties);
+					ALL_ITEMS.add(scFirangi);
+				}else {
+					scFirangi = new ItemLongswordHW("scFirangi", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scFirangi, HeroicArmory.MOD_ID, "scFirangi");
+					event.getRegistry().register(scFirangi);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Cocytus.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -986,8 +1260,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Cocytus.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Cocytus.rarity);
 				}};
-				scCocytus = new HASword("scCocytus", dummyMaterial, properties);
-				ALL_ITEMS.add(scCocytus);
+				if (!SupportSpartanWeaponry) {
+					scCocytus = new HASword("scCocytus", dummyMaterial, properties);
+					ALL_ITEMS.add(scCocytus);
+				}else {
+					scCocytus = new ItemLongswordHW("scCocytus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scCocytus, HeroicArmory.MOD_ID, "scCocytus");
+					event.getRegistry().register(scCocytus);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.ErlangBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -997,8 +1277,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.ErlangBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.ErlangBlade.rarity);
 				}};
-				scErlangBlade = new HASword("scErlangBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(scErlangBlade);
+				if (!SupportSpartanWeaponry) {
+					scErlangBlade = new HASword("scErlangBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(scErlangBlade);
+				}else {
+					scErlangBlade = new ItemLongswordHW("scErlangBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scErlangBlade, HeroicArmory.MOD_ID, "scErlangBlade");
+					event.getRegistry().register(scErlangBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1008,8 +1294,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.rarity);
 				}};
-				scSoulEdgeNightmare = new HASword("scSoulEdgeNightmare", dummyMaterial, properties);
-				ALL_ITEMS.add(scSoulEdgeNightmare);
+				if (!SupportSpartanWeaponry) {
+					scSoulEdgeNightmare = new HASword("scSoulEdgeNightmare", dummyMaterial, properties);
+					ALL_ITEMS.add(scSoulEdgeNightmare);
+				}else {
+					scSoulEdgeNightmare = new ItemGreatswordHW("scSoulEdgeNightmare", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scSoulEdgeNightmare, HeroicArmory.MOD_ID, "scSoulEdgeNightmare");
+					event.getRegistry().register(scSoulEdgeNightmare);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Phlegathon.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1019,8 +1311,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Phlegathon.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Phlegathon.rarity);
 				}};
-				scPhlegathon = new HASword("scPhlegathon", dummyMaterial, properties);
-				ALL_ITEMS.add(scPhlegathon);
+				if (!SupportSpartanWeaponry) {
+					scPhlegathon = new HASword("scPhlegathon", dummyMaterial, properties);
+					ALL_ITEMS.add(scPhlegathon);
+				}else {
+					scPhlegathon = new ItemLongswordHW("scPhlegathon", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scPhlegathon, HeroicArmory.MOD_ID, "scPhlegathon");
+					event.getRegistry().register(scPhlegathon);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Acheron.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1030,8 +1328,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Acheron.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Acheron.rarity);
 				}};
-				scAcheron = new HASword("scAcheron", dummyMaterial, properties);
-				ALL_ITEMS.add(scAcheron);
+				if (!SupportSpartanWeaponry) {
+					scAcheron = new HASword("scAcheron", dummyMaterial, properties);
+					ALL_ITEMS.add(scAcheron);
+				}else {
+					scAcheron = new ItemLongswordHW("scAcheron", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scAcheron, HeroicArmory.MOD_ID, "scAcheron");
+					event.getRegistry().register(scAcheron);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Lethe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1041,8 +1345,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Lethe.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Lethe.rarity);
 				}};
-				scLethe = new HASword("scLethe", dummyMaterial, properties);
-				ALL_ITEMS.add(scLethe);
+				if (!SupportSpartanWeaponry) {
+					scLethe = new HASword("scLethe", dummyMaterial, properties);
+					ALL_ITEMS.add(scLethe);
+				}else {
+					scLethe = new ItemLongswordHW("scLethe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(scLethe, HeroicArmory.MOD_ID, "scLethe");
+					event.getRegistry().register(scLethe);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.QueenGuard.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1052,8 +1362,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.QueenGuard.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.QueenGuard.rarity);
 				}};
-				scQueenGuard = new HASword("scQueenGuard", dummyMaterial, properties);
-				ALL_ITEMS.add(scQueenGuard);
+				if (!SupportSpartanWeaponry) {
+					scQueenGuard = new HASword("scQueenGuard", dummyMaterial, properties);
+					ALL_ITEMS.add(scQueenGuard);
+				}else {
+					scQueenGuard = new ItemRapierHW("scQueenGuard", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scQueenGuard, HeroicArmory.MOD_ID, "scQueenGuard");
+					event.getRegistry().register(scQueenGuard);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.HolyAntler.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1063,8 +1379,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.HolyAntler.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.HolyAntler.rarity);
 				}};
-				scHolyAntler = new HASword("scHolyAntler", dummyMaterial, properties);
-				ALL_ITEMS.add(scHolyAntler);
+				if (!SupportSpartanWeaponry) {
+					scHolyAntler = new HASword("scHolyAntler", dummyMaterial, properties);
+					ALL_ITEMS.add(scHolyAntler);
+				}else {
+					scHolyAntler = new ItemRapierHW("scHolyAntler", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scHolyAntler, HeroicArmory.MOD_ID, "scHolyAntler");
+					event.getRegistry().register(scHolyAntler);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Epee.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1074,8 +1396,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Epee.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Epee.rarity);
 				}};
-				scEpee = new HASword("scEpee", dummyMaterial, properties);
-				ALL_ITEMS.add(scEpee);
+				if (!SupportSpartanWeaponry) {
+					scEpee = new HASword("scEpee", dummyMaterial, properties);
+					ALL_ITEMS.add(scEpee);
+				}else {
+					scEpee = new ItemRapierHW("scEpee", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scEpee, HeroicArmory.MOD_ID, "scEpee");
+					event.getRegistry().register(scEpee);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.WarHammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1085,8 +1413,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.WarHammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.WarHammer.rarity);
 				}};
-				scWarHammer = new HASword("scWarHammer", dummyMaterial, properties);
-				ALL_ITEMS.add(scWarHammer);
+				if (!SupportSpartanWeaponry) {
+					scWarHammer = new HASword("scWarHammer", dummyMaterial, properties);
+					ALL_ITEMS.add(scWarHammer);
+				}else {
+					scWarHammer = new ItemWarhammerHW("scWarHammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(scWarHammer, HeroicArmory.MOD_ID, "scWarHammer");
+					event.getRegistry().register(scWarHammer);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Kalutues.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1096,8 +1430,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Kalutues.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Kalutues.rarity);
 				}};
-				scKalutues = new HASword("scKalutues", dummyMaterial, properties);
-				ALL_ITEMS.add(scKalutues);
+				if (!SupportSpartanWeaponry) {
+					scKalutues = new HASword("scKalutues", dummyMaterial, properties);
+					ALL_ITEMS.add(scKalutues);
+				}else {
+					scKalutues = new ItemHalberdHW("scKalutues", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(scKalutues, HeroicArmory.MOD_ID, "scKalutues");
+					event.getRegistry().register(scKalutues);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Estoc.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1107,8 +1447,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Estoc.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Estoc.rarity);
 				}};
-				scEstoc = new HASword("scEstoc", dummyMaterial, properties);
-				ALL_ITEMS.add(scEstoc);
+				if (!SupportSpartanWeaponry) {
+					scEstoc = new HASword("scEstoc", dummyMaterial, properties);
+					ALL_ITEMS.add(scEstoc);
+				}else {
+					scEstoc = new ItemRapierHW("scEstoc", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scEstoc, HeroicArmory.MOD_ID, "scEstoc");
+					event.getRegistry().register(scEstoc);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Flambert2P.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1118,8 +1464,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Flambert2P.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Flambert2P.rarity);
 				}};
-				scFlambert2P = new HASword("scFlambert2P", dummyMaterial, properties);
-				ALL_ITEMS.add(scFlambert2P);
+				if (!SupportSpartanWeaponry) {
+					scFlambert2P = new HASword("scFlambert2P", dummyMaterial, properties);
+					ALL_ITEMS.add(scFlambert2P);
+				}else {
+					scFlambert2P = new ItemRapierHW("scFlambert2P", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scFlambert2P, HeroicArmory.MOD_ID, "scFlambert2P");
+					event.getRegistry().register(scFlambert2P);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Reiterpallasch.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1129,8 +1481,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Reiterpallasch.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Reiterpallasch.rarity);
 				}};
-				scReiterpallasch = new HASword("scReiterpallasch", dummyMaterial, properties);
-				ALL_ITEMS.add(scReiterpallasch);
+				if (!SupportSpartanWeaponry) {
+					scReiterpallasch = new HASword("scReiterpallasch", dummyMaterial, properties);
+					ALL_ITEMS.add(scReiterpallasch);
+				}else {
+					scReiterpallasch = new ItemRapierHW("scReiterpallasch", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scReiterpallasch, HeroicArmory.MOD_ID, "scReiterpallasch");
+					event.getRegistry().register(scReiterpallasch);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Flambert.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1140,8 +1498,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Flambert.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Flambert.rarity);
 				}};
-				scFlambert = new HASword("scFlambert", dummyMaterial, properties);
-				ALL_ITEMS.add(scFlambert);
+				if (!SupportSpartanWeaponry) {
+					scFlambert = new HASword("scFlambert", dummyMaterial, properties);
+					ALL_ITEMS.add(scFlambert);
+				}else {
+					scFlambert = new ItemRapierHW("scFlambert", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scFlambert, HeroicArmory.MOD_ID, "scFlambert");
+					event.getRegistry().register(scFlambert);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.BlueCrystalRod.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1217,8 +1581,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Stiletto.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Stiletto.rarity);
 				}};
-				scStiletto = new HASword("scStiletto", dummyMaterial, properties);
-				ALL_ITEMS.add(scStiletto);
+				if (!SupportSpartanWeaponry){
+					scStiletto = new HASword("scStiletto", dummyMaterial, properties);
+					ALL_ITEMS.add(scStiletto);
+				}else {
+					scStiletto = new ItemRapierHW("scStiletto", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(scStiletto, HeroicArmory.MOD_ID, "scStiletto");
+					event.getRegistry().register(scStiletto);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Requiem.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1228,8 +1598,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Requiem.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Requiem.rarity);
 				}};
-				scRequiem = new HASword("scRequiem", dummyMaterial, properties);
-				ALL_ITEMS.add(scRequiem);
+				if (!SupportSpartanWeaponry){
+					scRequiem = new HASword("scRequiem", dummyMaterial, properties);
+					ALL_ITEMS.add(scRequiem);
+				}else {
+					scRequiem = new ItemGreatswordHW("scRequiem", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scRequiem, HeroicArmory.MOD_ID, "scRequiem");
+					event.getRegistry().register(scRequiem);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Faust.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1239,8 +1615,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Faust.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Faust.rarity);
 				}};
-				scFaust = new HASword("scFaust", dummyMaterial, properties);
-				ALL_ITEMS.add(scFaust);
+				if (!SupportSpartanWeaponry){
+					scFaust = new HASword("scFaust", dummyMaterial, properties);
+					ALL_ITEMS.add(scFaust);
+				}else {
+					scFaust = new ItemGreatswordHW("scFaust", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scFaust, HeroicArmory.MOD_ID, "scFaust");
+					event.getRegistry().register(scFaust);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Flamberge.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1250,8 +1632,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Flamberge.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Flamberge.rarity);
 				}};
-				scFlamberge = new HASword("scFlamberge", dummyMaterial, properties);
-				ALL_ITEMS.add(scFlamberge);
+				if (!SupportSpartanWeaponry){
+					scFlamberge = new HASword("scFlamberge", dummyMaterial, properties);
+					ALL_ITEMS.add(scFlamberge);
+				}else {
+					scFlamberge = new ItemGreatswordHW("scFlamberge", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scFlamberge, HeroicArmory.MOD_ID, "scFlamberge");
+					event.getRegistry().register(scFlamberge);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.SteelPaddle.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1261,8 +1649,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.SteelPaddle.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.SteelPaddle.rarity);
 				}};
-				scSteelPaddle = new HASword("scSteelPaddle", dummyMaterial, properties);
-				ALL_ITEMS.add(scSteelPaddle);
+				if (!SupportSpartanWeaponry){
+					scSteelPaddle = new HASword("scSteelPaddle", dummyMaterial, properties);
+					ALL_ITEMS.add(scSteelPaddle);
+				}else {
+					scSteelPaddle = new ItemGreatswordHW("scSteelPaddle", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scSteelPaddle, HeroicArmory.MOD_ID, "scSteelPaddle");
+					event.getRegistry().register(scSteelPaddle);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Glam.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1272,8 +1666,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.Glam.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.Glam.rarity);
 				}};
-				scGlam = new HASword("scGlam", dummyMaterial, properties);
-				ALL_ITEMS.add(scGlam);
+				if (!SupportSpartanWeaponry){
+					scGlam = new HASword("scGlam", dummyMaterial, properties);
+					ALL_ITEMS.add(scGlam);
+				}else {
+					scGlam = new ItemGreatswordHW("scGlam", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scGlam, HeroicArmory.MOD_ID, "scGlam");
+					event.getRegistry().register(scGlam);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.GreatBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1283,8 +1683,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.GreatBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.GreatBlade.rarity);
 				}};
-				scGreatBlade = new HASword("scGreatBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(scGreatBlade);
+				if (!SupportSpartanWeaponry){
+					scGreatBlade = new HASword("scGreatBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(scGreatBlade);
+				}else {
+					scGreatBlade = new ItemGreatswordHW("scGreatBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(scGreatBlade, HeroicArmory.MOD_ID, "scGreatBlade");
+					event.getRegistry().register(scGreatBlade);
+				}
 			}
 		}
 
@@ -1397,8 +1803,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.rarity);
 				}};
-				rsBronzeBattleaxe = new HASword("rsBronzeBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBronzeBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsBronzeBattleaxe = new HASword("rsBronzeBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBronzeBattleaxe);
+				}else {
+					rsBronzeBattleaxe = new ItemBattleaxeHW("rsBronzeBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeBattleaxe, HeroicArmory.MOD_ID, "rsBronzeBattleaxe");
+					event.getRegistry().register(rsBronzeBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.IronBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1408,8 +1820,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.IronBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.IronBattleaxe.rarity);
 				}};
-				rsIronBattleaxe = new HASword("rsIronBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsIronBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsIronBattleaxe = new HASword("rsIronBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsIronBattleaxe);
+				}else {
+					rsIronBattleaxe = new ItemBattleaxeHW("rsIronBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsIronBattleaxe, HeroicArmory.MOD_ID, "rsIronBattleaxe");
+					event.getRegistry().register(rsIronBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.SteelBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1419,8 +1837,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.rarity);
 				}};
-				rsSteelBattleaxe = new HASword("rsSteelBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsSteelBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsSteelBattleaxe = new HASword("rsSteelBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsSteelBattleaxe);
+				}else {
+					rsSteelBattleaxe = new ItemBattleaxeHW("rsSteelBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelBattleaxe, HeroicArmory.MOD_ID, "rsSteelBattleaxe");
+					event.getRegistry().register(rsSteelBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BlackBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1430,8 +1854,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.rarity);
 				}};
-				rsBlackBattleaxe = new HASword("rsBlackBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBlackBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsBlackBattleaxe = new HASword("rsBlackBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBlackBattleaxe);
+				}else {
+					rsBlackBattleaxe = new ItemBattleaxeHW("rsBlackBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackBattleaxe, HeroicArmory.MOD_ID, "rsBlackBattleaxe");
+					event.getRegistry().register(rsBlackBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1441,8 +1871,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.rarity);
 				}};
-				rsWhiteBattleaxe = new HASword("rsWhiteBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsWhiteBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsWhiteBattleaxe = new HASword("rsWhiteBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsWhiteBattleaxe);
+				}else {
+					rsWhiteBattleaxe = new ItemBattleaxeHW("rsWhiteBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteBattleaxe, HeroicArmory.MOD_ID, "rsWhiteBattleaxe");
+					event.getRegistry().register(rsWhiteBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1452,8 +1888,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.rarity);
 				}};
-				rsMithrilBattleaxe = new HASword("rsMithrilBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsMithrilBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsMithrilBattleaxe = new HASword("rsMithrilBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsMithrilBattleaxe);
+				}else {
+					rsMithrilBattleaxe = new ItemBattleaxeHW("rsMithrilBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilBattleaxe, HeroicArmory.MOD_ID, "rsMithrilBattleaxe");
+					event.getRegistry().register(rsMithrilBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1463,8 +1905,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.rarity);
 				}};
-				rsAdamantBattleaxe = new HASword("rsAdamantBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsAdamantBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsAdamantBattleaxe = new HASword("rsAdamantBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsAdamantBattleaxe);
+				}else {
+					rsAdamantBattleaxe = new ItemBattleaxeHW("rsAdamantBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantBattleaxe, HeroicArmory.MOD_ID, "rsAdamantBattleaxe");
+					event.getRegistry().register(rsAdamantBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.RuneBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1474,8 +1922,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.rarity);
 				}};
-				rsRuneBattleaxe = new HASword("rsRuneBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsRuneBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsRuneBattleaxe = new HASword("rsRuneBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsRuneBattleaxe);
+				}else {
+					rsRuneBattleaxe = new ItemBattleaxeHW("rsRuneBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneBattleaxe, HeroicArmory.MOD_ID, "rsRuneBattleaxe");
+					event.getRegistry().register(rsRuneBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.DragonBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1485,8 +1939,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.rarity);
 				}};
-				rsDragonBattleaxe = new HASword("rsDragonBattleaxe", dummyMaterial, properties);
-				ALL_ITEMS.add(rsDragonBattleaxe);
+				if (!SupportSpartanWeaponry){
+					rsDragonBattleaxe = new HASword("rsDragonBattleaxe", dummyMaterial, properties);
+					ALL_ITEMS.add(rsDragonBattleaxe);
+				}else {
+					rsDragonBattleaxe = new ItemBattleaxeHW("rsDragonBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsDragonBattleaxe, HeroicArmory.MOD_ID, "rsDragonBattleaxe");
+					event.getRegistry().register(rsDragonBattleaxe);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BronzeScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1496,8 +1956,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeScimitar.rarity);
 				}};
-				rsBronzeScimitar = new HASword("rsBronzeScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBronzeScimitar);
+				if (!SupportSpartanWeaponry){
+					rsBronzeScimitar = new HASword("rsBronzeScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBronzeScimitar);
+				}else {
+					rsBronzeScimitar = new ItemSaberHW("rsBronzeScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeScimitar, HeroicArmory.MOD_ID, "rsBronzeScimitar");
+					event.getRegistry().register(rsBronzeScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.IronScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1507,8 +1973,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.IronScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.IronScimitar.rarity);
 				}};
-				rsIronScimitar = new HASword("rsIronScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsIronScimitar);
+				if (!SupportSpartanWeaponry){
+					rsIronScimitar = new HASword("rsIronScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsIronScimitar);
+				}else {
+					rsIronScimitar = new ItemSaberHW("rsIronScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsIronScimitar, HeroicArmory.MOD_ID, "rsIronScimitar");
+					event.getRegistry().register(rsIronScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BlackScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1518,8 +1990,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BlackScimitar.rarity);
 				}};
-				rsBlackScimitar = new HASword("rsBlackScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBlackScimitar);
+				if (!SupportSpartanWeaponry){
+					rsBlackScimitar = new HASword("rsBlackScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBlackScimitar);
+				}else {
+					rsBlackScimitar = new ItemSaberHW("rsBlackScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackScimitar, HeroicArmory.MOD_ID, "rsBlackScimitar");
+					event.getRegistry().register(rsBlackScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.WhiteScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1529,8 +2007,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteScimitar.rarity);
 				}};
-				rsWhiteScimitar = new HASword("rsWhiteScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsWhiteScimitar);
+				if (!SupportSpartanWeaponry){
+					rsWhiteScimitar = new HASword("rsWhiteScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsWhiteScimitar);
+				}else {
+					rsWhiteScimitar = new ItemSaberHW("rsWhiteScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteScimitar, HeroicArmory.MOD_ID, "rsWhiteScimitar");
+					event.getRegistry().register(rsWhiteScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.SteelScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1540,8 +2024,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.SteelScimitar.rarity);
 				}};
-				rsSteelScimitar = new HASword("rsSteelScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsSteelScimitar);
+				if (!SupportSpartanWeaponry){
+					rsSteelScimitar = new HASword("rsSteelScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsSteelScimitar);
+				}else {
+					rsSteelScimitar = new ItemSaberHW("rsSteelScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelScimitar, HeroicArmory.MOD_ID, "rsSteelScimitar");
+					event.getRegistry().register(rsSteelScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.MithrilScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1551,8 +2041,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilScimitar.rarity);
 				}};
-				rsMithrilScimitar = new HASword("rsMithrilScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsMithrilScimitar);
+				if (!SupportSpartanWeaponry){
+					rsMithrilScimitar = new HASword("rsMithrilScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsMithrilScimitar);
+				}else {
+					rsMithrilScimitar = new ItemSaberHW("rsMithrilScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilScimitar, HeroicArmory.MOD_ID, "rsMithrilScimitar");
+					event.getRegistry().register(rsMithrilScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.AdamantScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1562,8 +2058,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantScimitar.rarity);
 				}};
-				rsAdamantScimitar = new HASword("rsAdamantScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsAdamantScimitar);
+				if (!SupportSpartanWeaponry){
+					rsAdamantScimitar = new HASword("rsAdamantScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsAdamantScimitar);
+				}else {
+					rsAdamantScimitar = new ItemSaberHW("rsAdamantScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantScimitar, HeroicArmory.MOD_ID, "rsAdamantScimitar");
+					event.getRegistry().register(rsAdamantScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.RuneScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1573,8 +2075,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.RuneScimitar.rarity);
 				}};
-				rsRuneScimitar = new HASword("rsRuneScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsRuneScimitar);
+				if (!SupportSpartanWeaponry){
+					rsRuneScimitar = new HASword("rsRuneScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsRuneScimitar);
+				}else {
+					rsRuneScimitar = new ItemSaberHW("rsRuneScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneScimitar, HeroicArmory.MOD_ID, "rsRuneScimitar");
+					event.getRegistry().register(rsRuneScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.DragonScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1584,8 +2092,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.DragonScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.DragonScimitar.rarity);
 				}};
-				rsDragonScimitar = new HASword("rsDragonScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(rsDragonScimitar);
+				if (!SupportSpartanWeaponry){
+					rsDragonScimitar = new HASword("rsDragonScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(rsDragonScimitar);
+				}else {
+					rsDragonScimitar = new ItemSaberHW("rsDragonScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsDragonScimitar, HeroicArmory.MOD_ID, "rsDragonScimitar");
+					event.getRegistry().register(rsDragonScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BronzeWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1595,8 +2109,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.rarity);
 				}};
-				rsBronzeWarhammer = new HASword("rsBronzeWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBronzeWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsBronzeWarhammer = new HASword("rsBronzeWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBronzeWarhammer);
+				}else {
+					rsBronzeWarhammer = new ItemHammerHW("rsBronzeWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeWarhammer, HeroicArmory.MOD_ID, "rsBronzeWarhammer");
+					event.getRegistry().register(rsBronzeWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.IronWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1606,8 +2126,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.IronWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.IronWarhammer.rarity);
 				}};
-				rsIronWarhammer = new HASword("rsIronWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsIronWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsIronWarhammer = new HASword("rsIronWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsIronWarhammer);
+				}else {
+					rsIronWarhammer = new ItemHammerHW("rsIronWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsIronWarhammer, HeroicArmory.MOD_ID, "rsIronWarhammer");
+					event.getRegistry().register(rsIronWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.SteelWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1617,8 +2143,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.SteelWarhammer.rarity);
 				}};
-				rsSteelWarhammer = new HASword("rsSteelWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsSteelWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsSteelWarhammer = new HASword("rsSteelWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsSteelWarhammer);
+				}else {
+					rsSteelWarhammer = new ItemHammerHW("rsSteelWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelWarhammer, HeroicArmory.MOD_ID, "rsSteelWarhammer");
+					event.getRegistry().register(rsSteelWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BlackWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1628,8 +2160,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BlackWarhammer.rarity);
 				}};
-				rsBlackWarhammer = new HASword("rsBlackWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBlackWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsBlackWarhammer = new HASword("rsBlackWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBlackWarhammer);
+				}else {
+					rsBlackWarhammer = new ItemHammerHW("rsBlackWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackWarhammer, HeroicArmory.MOD_ID, "rsBlackWarhammer");
+					event.getRegistry().register(rsBlackWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.WhiteWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1639,8 +2177,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.rarity);
 				}};
-				rsWhiteWarhammer = new HASword("rsWhiteWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsWhiteWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsWhiteWarhammer = new HASword("rsWhiteWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsWhiteWarhammer);
+				}else {
+					rsWhiteWarhammer = new ItemHammerHW("rsWhiteWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteWarhammer, HeroicArmory.MOD_ID, "rsWhiteWarhammer");
+					event.getRegistry().register(rsWhiteWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.MithrilWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1650,8 +2194,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.rarity);
 				}};
-				rsMithrilWarhammer = new HASword("rsMithrilWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsMithrilWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsMithrilWarhammer = new HASword("rsMithrilWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsMithrilWarhammer);
+				}else {
+					rsMithrilWarhammer = new ItemHammerHW("rsMithrilWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilWarhammer, HeroicArmory.MOD_ID, "rsMithrilWarhammer");
+					event.getRegistry().register(rsMithrilWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.AdamantWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1661,8 +2211,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.rarity);
 				}};
-				rsAdamantWarhammer = new HASword("rsAdamantWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsAdamantWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsAdamantWarhammer = new HASword("rsAdamantWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsAdamantWarhammer);
+				}else {
+					rsAdamantWarhammer = new ItemHammerHW("rsAdamantWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantWarhammer, HeroicArmory.MOD_ID, "rsAdamantWarhammer");
+					event.getRegistry().register(rsAdamantWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.RuneWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1672,8 +2228,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.RuneWarhammer.rarity);
 				}};
-				rsRuneWarhammer = new HASword("rsRuneWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsRuneWarhammer);
+				if (!SupportSpartanWeaponry){
+					rsRuneWarhammer = new HASword("rsRuneWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsRuneWarhammer);
+				}else {
+					rsRuneWarhammer = new ItemHammerHW("rsRuneWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneWarhammer, HeroicArmory.MOD_ID, "rsRuneWarhammer");
+					event.getRegistry().register(rsRuneWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BronzeMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1683,8 +2245,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeMace.rarity);
 				}};
-				rsBronzeMace = new HASword("rsBronzeMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBronzeMace);
+				if (!SupportSpartanWeaponry){
+					rsBronzeMace = new HASword("rsBronzeMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBronzeMace);
+				}else {
+					rsBronzeMace = new ItemMaceHW("rsBronzeMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeMace, HeroicArmory.MOD_ID, "rsBronzeMace");
+					event.getRegistry().register(rsBronzeMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.IronMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1694,8 +2262,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.IronMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.IronMace.rarity);
 				}};
-				rsIronMace = new HASword("rsIronMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsIronMace);
+				if (!SupportSpartanWeaponry){
+					rsIronMace = new HASword("rsIronMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsIronMace);
+				}else {
+					rsIronMace = new ItemMaceHW("rsIronMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsIronMace, HeroicArmory.MOD_ID, "rsIronMace");
+					event.getRegistry().register(rsIronMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.SteelMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1705,8 +2279,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.SteelMace.rarity);
 				}};
-				rsSteelMace = new HASword("rsSteelMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsSteelMace);
+				if (!SupportSpartanWeaponry){
+					rsSteelMace = new HASword("rsSteelMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsSteelMace);
+				}else {
+					rsSteelMace = new ItemMaceHW("rsSteelMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelMace, HeroicArmory.MOD_ID, "rsSteelMace");
+					event.getRegistry().register(rsSteelMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BlackMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1716,8 +2296,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BlackMace.rarity);
 				}};
-				rsBlackMace = new HASword("rsBlackMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBlackMace);
+				if (!SupportSpartanWeaponry){
+					rsBlackMace = new HASword("rsBlackMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBlackMace);
+				}else {
+					rsBlackMace = new ItemMaceHW("rsBlackMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackMace, HeroicArmory.MOD_ID, "rsBlackMace");
+					event.getRegistry().register(rsBlackMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.WhiteMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1727,8 +2313,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteMace.rarity);
 				}};
-				rsWhiteMace = new HASword("rsWhiteMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsWhiteMace);
+				if (!SupportSpartanWeaponry){
+					rsWhiteMace = new HASword("rsWhiteMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsWhiteMace);
+				}else {
+					rsWhiteMace = new ItemMaceHW("rsWhiteMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteMace, HeroicArmory.MOD_ID, "rsWhiteMace");
+					event.getRegistry().register(rsWhiteMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.MithrilMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1738,8 +2330,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilMace.rarity);
 				}};
-				rsMithrilMace = new HASword("rsMithrilMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsMithrilMace);
+				if (!SupportSpartanWeaponry){
+					rsMithrilMace = new HASword("rsMithrilMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsMithrilMace);
+				}else {
+					rsMithrilMace = new ItemMaceHW("rsMithrilMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilMace, HeroicArmory.MOD_ID, "rsMithrilMace");
+					event.getRegistry().register(rsMithrilMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.AdamantMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1749,8 +2347,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantMace.rarity);
 				}};
-				rsAdamantMace = new HASword("rsAdamantMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsAdamantMace);
+				if (!SupportSpartanWeaponry){
+					rsAdamantMace = new HASword("rsAdamantMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsAdamantMace);
+				}else {
+					rsAdamantMace = new ItemMaceHW("rsAdamantMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantMace, HeroicArmory.MOD_ID, "rsAdamantMace");
+					event.getRegistry().register(rsAdamantMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.RuneMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1760,8 +2364,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneMace.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.RuneMace.rarity);
 				}};
-				rsRuneMace = new HASword("rsRuneMace", dummyMaterial, properties);
-				ALL_ITEMS.add(rsRuneMace);
+				if (!SupportSpartanWeaponry){
+					rsRuneMace = new HASword("rsRuneMace", dummyMaterial, properties);
+					ALL_ITEMS.add(rsRuneMace);
+				}else {
+					rsRuneMace = new ItemMaceHW("rsRuneMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneMace, HeroicArmory.MOD_ID, "rsRuneMace");
+					event.getRegistry().register(rsRuneMace);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.GraniteLongsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1771,8 +2381,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteLongsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteLongsword.rarity);
 				}};
-				rsGraniteLongsword = new HASword("rsGraniteLongsword", dummyMaterial, properties);
-				ALL_ITEMS.add(rsGraniteLongsword);
+				if (!SupportSpartanWeaponry){
+					rsGraniteLongsword = new HASword("rsGraniteLongsword", dummyMaterial, properties);
+					ALL_ITEMS.add(rsGraniteLongsword);
+				}else {
+					rsGraniteLongsword = new ItemLongswordHW("rsGraniteLongsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteLongsword, HeroicArmory.MOD_ID, "rsGraniteLongsword");
+					event.getRegistry().register(rsGraniteLongsword);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.GraniteHammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1782,8 +2398,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteHammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteHammer.rarity);
 				}};
-				rsGraniteHammer = new HASword("rsGraniteHammer", dummyMaterial, properties);
-				ALL_ITEMS.add(rsGraniteHammer);
+				if (!SupportSpartanWeaponry){
+					rsGraniteHammer = new HASword("rsGraniteHammer", dummyMaterial, properties);
+					ALL_ITEMS.add(rsGraniteHammer);
+				}else {
+					rsGraniteHammer = new ItemHammerHW("rsGraniteHammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteHammer, HeroicArmory.MOD_ID, "rsGraniteHammer");
+					event.getRegistry().register(rsGraniteHammer);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.GraniteMaul.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1793,8 +2415,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteMaul.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteMaul.rarity);
 				}};
-				rsGraniteMaul = new HASword("rsGraniteMaul", dummyMaterial, properties);
-				ALL_ITEMS.add(rsGraniteMaul);
+				if (!SupportSpartanWeaponry){
+					rsGraniteMaul = new HASword("rsGraniteMaul", dummyMaterial, properties);
+					ALL_ITEMS.add(rsGraniteMaul);
+				}else {
+					rsGraniteMaul = new ItemWarhammerHW("rsGraniteMaul", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteMaul, HeroicArmory.MOD_ID, "rsGraniteMaul");
+					event.getRegistry().register(rsGraniteMaul);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.ElderMaul.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1804,8 +2432,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.ElderMaul.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.ElderMaul.rarity);
 				}};
-				rsElderMaul = new HASword("rsElderMaul", dummyMaterial, properties);
-				ALL_ITEMS.add(rsElderMaul);
+				if (!SupportSpartanWeaponry){
+					rsElderMaul = new HASword("rsElderMaul", dummyMaterial, properties);
+					ALL_ITEMS.add(rsElderMaul);
+				}else {
+					rsElderMaul = new ItemWarhammerHW("rsElderMaul", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsElderMaul, HeroicArmory.MOD_ID, "rsElderMaul");
+					event.getRegistry().register(rsElderMaul);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.Toktzxilak.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1826,8 +2460,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.Wolfsbane.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.Wolfsbane.rarity);
 				}};
-				rsWolfsbane = new HASword("rsWolfsbane", dummyMaterial, properties);
-				ALL_ITEMS.add(rsWolfsbane);
+				if (!SupportSpartanWeaponry){
+					rsWolfsbane = new HASword("rsWolfsbane", dummyMaterial, properties);
+					ALL_ITEMS.add(rsWolfsbane);
+				}else {
+					rsWolfsbane = new ItemDaggerHW("rsWolfsbane", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsWolfsbane, HeroicArmory.MOD_ID, "rsWolfsbane");
+					event.getRegistry().register(rsWolfsbane);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.ZamorakGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1837,8 +2477,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.rarity);
 				}};
-				rsZamorakGodsword = new HASword("rsZamorakGodsword", dummyMaterial, properties);
-				ALL_ITEMS.add(rsZamorakGodsword);
+				if (!SupportSpartanWeaponry){
+					rsZamorakGodsword = new HASword("rsZamorakGodsword", dummyMaterial, properties);
+					ALL_ITEMS.add(rsZamorakGodsword);
+				}else {
+					rsZamorakGodsword = new ItemGreatswordHW("rsZamorakGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsZamorakGodsword, HeroicArmory.MOD_ID, "rsZamorakGodsword");
+					event.getRegistry().register(rsZamorakGodsword);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BandosGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1848,8 +2494,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BandosGodsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BandosGodsword.rarity);
 				}};
-				rsBandosGodsword = new HASword("rsBandosGodsword", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBandosGodsword);
+				if (!SupportSpartanWeaponry){
+					rsBandosGodsword = new HASword("rsBandosGodsword", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBandosGodsword);
+				}else {
+					rsBandosGodsword = new ItemGreatswordHW("rsBandosGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBandosGodsword, HeroicArmory.MOD_ID, "rsBandosGodsword");
+					event.getRegistry().register(rsBandosGodsword);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.ArmadylGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1859,8 +2511,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.rarity);
 				}};
-				rsArmadylGodsword = new HASword("rsArmadylGodsword", dummyMaterial, properties);
-				ALL_ITEMS.add(rsArmadylGodsword);
+				if (!SupportSpartanWeaponry){
+					rsArmadylGodsword = new HASword("rsArmadylGodsword", dummyMaterial, properties);
+					ALL_ITEMS.add(rsArmadylGodsword);
+				}else {
+					rsArmadylGodsword = new ItemGreatswordHW("rsArmadylGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsArmadylGodsword, HeroicArmory.MOD_ID, "rsArmadylGodsword");
+					event.getRegistry().register(rsArmadylGodsword);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.SaradominGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1870,8 +2528,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.SaradominGodsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.SaradominGodsword.rarity);
 				}};
-				rsSaradominGodsword = new HASword("rsSaradominGodsword", dummyMaterial, properties);
-				ALL_ITEMS.add(rsSaradominGodsword);
+				if (!SupportSpartanWeaponry){
+					rsSaradominGodsword = new HASword("rsSaradominGodsword", dummyMaterial, properties);
+					ALL_ITEMS.add(rsSaradominGodsword);
+				}else {
+					rsSaradominGodsword = new ItemGreatswordHW("rsSaradominGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsSaradominGodsword, HeroicArmory.MOD_ID, "rsSaradominGodsword");
+					event.getRegistry().register(rsSaradominGodsword);
+				}
 			}
 			if (HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1881,8 +2545,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.enchantability);
 					put("rarity", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.rarity);
 				}};
-				rsBarrelchestAnchor = new HASword("rsBarrelchestAnchor", dummyMaterial, properties);
-				ALL_ITEMS.add(rsBarrelchestAnchor);
+				if (!SupportSpartanWeaponry){
+					rsBarrelchestAnchor = new HASword("rsBarrelchestAnchor", dummyMaterial, properties);
+					ALL_ITEMS.add(rsBarrelchestAnchor);
+				}else {
+					rsBarrelchestAnchor = new ItemClubHW("rsBarrelchestAnchor", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(rsBarrelchestAnchor, HeroicArmory.MOD_ID, "rsBarrelchestAnchor");
+					event.getRegistry().register(rsBarrelchestAnchor);
+				}
 			}
 		}
 
@@ -1896,8 +2566,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dmcmodified.RedQueen.enchantability);
 					put("rarity", HAConfig.modifiedItems.dmcmodified.RedQueen.rarity);
 				}};
-				dmcRedQueen = new HASword("dmcRedQueen", dummyMaterial, properties);
-				ALL_ITEMS.add(dmcRedQueen);
+				if (!SupportSpartanWeaponry){
+					dmcRedQueen = new HASword("dmcRedQueen", dummyMaterial, properties);
+					ALL_ITEMS.add(dmcRedQueen);
+				}else {
+					dmcRedQueen = new ItemSaberHW("dmcRedQueen", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(dmcRedQueen, HeroicArmory.MOD_ID, "dmcRedQueen");
+					event.getRegistry().register(dmcRedQueen);
+				}
 			}
 			if (HAConfig.modifiedItems.dmcmodified.Rebellion.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1907,8 +2583,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dmcmodified.Rebellion.enchantability);
 					put("rarity", HAConfig.modifiedItems.dmcmodified.Rebellion.rarity);
 				}};
-				dmcRebellion = new HASword("dmcRebellion", dummyMaterial, properties);
-				ALL_ITEMS.add(dmcRebellion);
+				if (!SupportSpartanWeaponry){
+					dmcRebellion = new HASword("dmcRebellion", dummyMaterial, properties);
+					ALL_ITEMS.add(dmcRebellion);
+				}else {
+					dmcRebellion = new ItemGreatswordHW("dmcRebellion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dmcRebellion, HeroicArmory.MOD_ID, "dmcRebellion");
+					event.getRegistry().register(dmcRebellion);
+				}
 			}
 			if (HAConfig.modifiedItems.dmcmodified.Yamato.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1918,8 +2600,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dmcmodified.Yamato.enchantability);
 					put("rarity", HAConfig.modifiedItems.dmcmodified.Yamato.rarity);
 				}};
-				dmcYamato = new HASword("dmcYamato", dummyMaterial, properties);
-				ALL_ITEMS.add(dmcYamato);
+				if (!SupportSpartanWeaponry){
+					dmcYamato = new HASword("dmcYamato", dummyMaterial, properties);
+					ALL_ITEMS.add(dmcYamato);
+				}else {
+					dmcYamato = new ItemKatanaHW("dmcYamato", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(dmcYamato, HeroicArmory.MOD_ID, "dmcYamato");
+					event.getRegistry().register(dmcYamato);
+				}
 			}
 		}
 
@@ -1981,8 +2669,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.kirbymodified.KirbySword.enchantability);
 					put("rarity", HAConfig.modifiedItems.kirbymodified.KirbySword.rarity);
 				}};
-				kirbyKirbySword = new HASword("kirbyKirbySword", dummyMaterial, properties);
-				ALL_ITEMS.add(kirbyKirbySword);
+				if (!SupportSpartanWeaponry){
+					kirbyKirbySword = new HASword("kirbyKirbySword", dummyMaterial, properties);
+					ALL_ITEMS.add(kirbyKirbySword);
+				}else {
+					kirbyKirbySword = new ItemDaggerHW("kirbyKirbySword", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(kirbyKirbySword, HeroicArmory.MOD_ID, "kirbyKirbySword");
+					event.getRegistry().register(kirbyKirbySword);
+				}
 			}
 		}
 
@@ -1996,8 +2690,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.femodified.ChromFalchion.enchantability);
 					put("rarity", HAConfig.modifiedItems.femodified.ChromFalchion.rarity);
 				}};
-				feChromFalchion = new HASword("feChromFalchion", dummyMaterial, properties);
-				ALL_ITEMS.add(feChromFalchion);
+				if (!SupportSpartanWeaponry){
+					feChromFalchion = new HASword("feChromFalchion", dummyMaterial, properties);
+					ALL_ITEMS.add(feChromFalchion);
+				}else {
+					feChromFalchion = new ItemLongswordHW("feChromFalchion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(feChromFalchion, HeroicArmory.MOD_ID, "feChromFalchion");
+					event.getRegistry().register(feChromFalchion);
+				}
 			}
 			if (HAConfig.modifiedItems.femodified.Falchion.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2007,8 +2707,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.femodified.Falchion.enchantability);
 					put("rarity", HAConfig.modifiedItems.femodified.Falchion.rarity);
 				}};
-				feFalchion = new HASword("feFalchion", dummyMaterial, properties);
-				ALL_ITEMS.add(feFalchion);
+				if (!SupportSpartanWeaponry){
+					feFalchion = new HASword("feFalchion", dummyMaterial, properties);
+					ALL_ITEMS.add(feFalchion);
+				}else {
+					feFalchion = new ItemLongswordHW("feFalchion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(feFalchion, HeroicArmory.MOD_ID, "feFalchion");
+					event.getRegistry().register(feFalchion);
+				}
 			}
 		}
 
@@ -2022,8 +2728,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.khmodified.Keyblade.enchantability);
 					put("rarity", HAConfig.modifiedItems.khmodified.Keyblade.rarity);
 				}};
-				khKeyblade = new HASword("khKeyblade", dummyMaterial, properties);
-				ALL_ITEMS.add(khKeyblade);
+				if (!SupportSpartanWeaponry){
+					khKeyblade = new HASword("khKeyblade", dummyMaterial, properties);
+					ALL_ITEMS.add(khKeyblade);
+				}else {
+					khKeyblade = new ItemLongswordHW("khKeyblade", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					SpartanWeaponryAPI.addItemModelToRegistry(khKeyblade, HeroicArmory.MOD_ID, "khKeyblade");
+					event.getRegistry().register(khKeyblade);
+				}
 			}
 		}
 
@@ -2037,8 +2749,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.bleachmodified.Zabimaru.enchantability);
 					put("rarity", HAConfig.modifiedItems.bleachmodified.Zabimaru.rarity);
 				}};
-				bleachZabimaru = new HASword("bleachZabimaru", dummyMaterial, properties);
-				ALL_ITEMS.add(bleachZabimaru);
+				if (!SupportSpartanWeaponry){
+					bleachZabimaru = new HASword("bleachZabimaru", dummyMaterial, properties);
+					ALL_ITEMS.add(bleachZabimaru);
+				}else {
+					bleachZabimaru = new ItemGreatswordHW("bleachZabimaru", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(bleachZabimaru, HeroicArmory.MOD_ID, "bleachZabimaru");
+					event.getRegistry().register(bleachZabimaru);
+				}
 			}
 			if (HAConfig.modifiedItems.bleachmodified.Zangetsu.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2048,8 +2766,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.bleachmodified.Zangetsu.enchantability);
 					put("rarity", HAConfig.modifiedItems.bleachmodified.Zangetsu.rarity);
 				}};
-				bleachZangetsu = new HASword("bleachZangetsu", dummyMaterial, properties);
-				ALL_ITEMS.add(bleachZangetsu);
+				if (!SupportSpartanWeaponry){
+					bleachZangetsu = new HASword("bleachZangetsu", dummyMaterial, properties);
+					ALL_ITEMS.add(bleachZangetsu);
+				}else {
+					bleachZangetsu = new ItemGreatswordHW("bleachZangetsu", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(bleachZangetsu, HeroicArmory.MOD_ID, "bleachZangetsu");
+					event.getRegistry().register(bleachZangetsu);
+				}
 			}
 		}
 
@@ -2063,8 +2787,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.enchantability);
 					put("rarity", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.rarity);
 				}};
-				dsGreatswordofArtorias = new HASword("dsGreatswordofArtorias", dummyMaterial, properties);
-				ALL_ITEMS.add(dsGreatswordofArtorias);
+				if (!SupportSpartanWeaponry){
+					dsGreatswordofArtorias = new HASword("dsGreatswordofArtorias", dummyMaterial, properties);
+					ALL_ITEMS.add(dsGreatswordofArtorias);
+				}else {
+					dsGreatswordofArtorias = new ItemGreatswordHW("dsGreatswordofArtorias", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dsGreatswordofArtorias, HeroicArmory.MOD_ID, "dsGreatswordofArtorias");
+					event.getRegistry().register(dsGreatswordofArtorias);
+				}
 			}
 			if (HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2074,8 +2804,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.rarity);
 				}};
-				dsGreatLordGreatsword = new HASword("dsGreatLordGreatsword", dummyMaterial, properties);
-				ALL_ITEMS.add(dsGreatLordGreatsword);
+				if (!SupportSpartanWeaponry){
+					dsGreatLordGreatsword = new HASword("dsGreatLordGreatsword", dummyMaterial, properties);
+					ALL_ITEMS.add(dsGreatLordGreatsword);
+				}else {
+					dsGreatLordGreatsword = new ItemGreatswordHW("dsGreatLordGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dsGreatLordGreatsword, HeroicArmory.MOD_ID, "dsGreatLordGreatsword");
+					event.getRegistry().register(dsGreatLordGreatsword);
+				}
 			}
 			if (HAConfig.modifiedItems.dsmodified.AstoraGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2085,8 +2821,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.rarity);
 				}};
-				dsAstoraGreatsword = new HASword("dsAstoraGreatsword", dummyMaterial, properties);
-				ALL_ITEMS.add(dsAstoraGreatsword);
+				if (!SupportSpartanWeaponry){
+					dsAstoraGreatsword = new HASword("dsAstoraGreatsword", dummyMaterial, properties);
+					ALL_ITEMS.add(dsAstoraGreatsword);
+				}else {
+					dsAstoraGreatsword = new ItemGreatswordHW("dsAstoraGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dsAstoraGreatsword, HeroicArmory.MOD_ID, "dsAstoraGreatsword");
+					event.getRegistry().register(dsAstoraGreatsword);
+				}
 			}
 			if (HAConfig.modifiedItems.dsmodified.Zweilhander.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2096,8 +2838,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.dsmodified.Zweilhander.enchantability);
 					put("rarity", HAConfig.modifiedItems.dsmodified.Zweilhander.rarity);
 				}};
-				dsZweilhander = new HASword("dsZweilhander", dummyMaterial, properties);
-				ALL_ITEMS.add(dsZweilhander);
+				if (!SupportSpartanWeaponry){
+					dsZweilhander = new HASword("dsZweilhander", dummyMaterial, properties);
+					ALL_ITEMS.add(dsZweilhander);
+				}else {
+					dsZweilhander = new ItemGreatswordHW("dsZweilhander", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dsZweilhander, HeroicArmory.MOD_ID, "dsZweilhander");
+					event.getRegistry().register(dsZweilhander);
+				}
 			}
 		}
 
@@ -2111,8 +2859,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mythmodified.DeathScythe.enchantability);
 					put("rarity", HAConfig.modifiedItems.mythmodified.DeathScythe.rarity);
 				}};
-				mythDeathScythe = new HASword("mythDeathScythe", dummyMaterial, properties);
-				ALL_ITEMS.add(mythDeathScythe);
+				if (!SupportSpartanWeaponry){
+					mythDeathScythe = new HASword("mythDeathScythe", dummyMaterial, properties);
+					ALL_ITEMS.add(mythDeathScythe);
+				}else {
+					mythDeathScythe = new ItemHalberdHW("mythDeathScythe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SHIELD_BREACH);
+					SpartanWeaponryAPI.addItemModelToRegistry(mythDeathScythe, HeroicArmory.MOD_ID, "mythDeathScythe");
+					event.getRegistry().register(mythDeathScythe);
+				}
 			}
 			if (HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2122,8 +2876,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.enchantability);
 					put("rarity", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.rarity);
 				}};
-				mythTheDevilPitchfork = new HASword("mythTheDevilPitchfork", dummyMaterial, properties);
-				ALL_ITEMS.add(mythTheDevilPitchfork);
+				if (!SupportSpartanWeaponry){
+					mythTheDevilPitchfork = new HASword("mythTheDevilPitchfork", dummyMaterial, properties);
+					ALL_ITEMS.add(mythTheDevilPitchfork);
+				}else {
+					mythTheDevilPitchfork = new ItemSpearHW("mythTheDevilPitchfork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(mythTheDevilPitchfork, HeroicArmory.MOD_ID, "mythTheDevilPitchfork");
+					event.getRegistry().register(mythTheDevilPitchfork);
+				}
 			}
 		}
 
@@ -2137,8 +2897,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.bayonettamodified.Shuraba.enchantability);
 					put("rarity", HAConfig.modifiedItems.bayonettamodified.Shuraba.rarity);
 				}};
-				bayonettaShuraba = new HASword("bayonettaShuraba", dummyMaterial, properties);
-				ALL_ITEMS.add(bayonettaShuraba);
+				if (!SupportSpartanWeaponry){
+					bayonettaShuraba = new HASword("bayonettaShuraba", dummyMaterial, properties);
+					ALL_ITEMS.add(bayonettaShuraba);
+				}else {
+					bayonettaShuraba = new ItemKatanaHW("bayonettaShuraba", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(bayonettaShuraba, HeroicArmory.MOD_ID, "bayonettaShuraba");
+					event.getRegistry().register(bayonettaShuraba);
+				}
 			}
 			if (HAConfig.modifiedItems.bayonettamodified.AngelSlayer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2148,8 +2914,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.enchantability);
 					put("rarity", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.rarity);
 				}};
-				bayonettaAngelSlayer = new HASword("bayonettaAngelSlayer", dummyMaterial, properties);
-				ALL_ITEMS.add(bayonettaAngelSlayer);
+				if (!SupportSpartanWeaponry){
+					bayonettaAngelSlayer = new HASword("bayonettaAngelSlayer", dummyMaterial, properties);
+					ALL_ITEMS.add(bayonettaAngelSlayer);
+				}else {
+					bayonettaAngelSlayer = new ItemSaberHW("bayonettaAngelSlayer", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(bayonettaAngelSlayer, HeroicArmory.MOD_ID, "bayonettaAngelSlayer");
+					event.getRegistry().register(bayonettaAngelSlayer);
+				}
 			}
 		}
 
@@ -2163,8 +2935,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.enchantability);
 					put("rarity", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.rarity);
 				}};
-				gowLeviathanUpgraded = new HASword("gowLeviathanUpgraded", dummyMaterial, properties);
-				ALL_ITEMS.add(gowLeviathanUpgraded);
+				if (!SupportSpartanWeaponry){
+					gowLeviathanUpgraded = new HASword("gowLeviathanUpgraded", dummyMaterial, properties);
+					ALL_ITEMS.add(gowLeviathanUpgraded);
+				}else {
+					gowLeviathanUpgraded = new ItemBattleaxeHW("gowLeviathanUpgraded", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.SHIELD_BREACH, new WeaponPropertyFreeze(8));
+					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathanUpgraded, HeroicArmory.MOD_ID, "gowLeviathanUpgraded");
+					event.getRegistry().register(gowLeviathanUpgraded);
+				}
 			}
 			if (HAConfig.modifiedItems.gowmodified.Leviathan.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2174,8 +2952,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.gowmodified.Leviathan.enchantability);
 					put("rarity", HAConfig.modifiedItems.gowmodified.Leviathan.rarity);
 				}};
-				gowLeviathan = new HASword("gowLeviathan", dummyMaterial, properties);
-				ALL_ITEMS.add(gowLeviathan);
+				if (!SupportSpartanWeaponry){
+					gowLeviathan = new HASword("gowLeviathan", dummyMaterial, properties);
+					ALL_ITEMS.add(gowLeviathan);
+				}else {
+					gowLeviathan = new ItemBattleaxeHW("gowLeviathan", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathan, HeroicArmory.MOD_ID, "gowLeviathan");
+					event.getRegistry().register(gowLeviathan);
+				}
 			}
 			if (HAConfig.modifiedItems.gowmodified.BladeofOlympus.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2185,8 +2969,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.gowmodified.BladeofOlympus.enchantability);
 					put("rarity", HAConfig.modifiedItems.gowmodified.BladeofOlympus.rarity);
 				}};
-				gowBladeofOlympus = new HASword("gowBladeofOlympus", dummyMaterial, properties);
-				ALL_ITEMS.add(gowBladeofOlympus);
+				if (!SupportSpartanWeaponry){
+					gowBladeofOlympus = new HASword("gowBladeofOlympus", dummyMaterial, properties);
+					ALL_ITEMS.add(gowBladeofOlympus);
+				}else {
+					gowBladeofOlympus = new ItemGreatswordHW("gowBladeofOlympus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(gowBladeofOlympus, HeroicArmory.MOD_ID, "gowBladeofOlympus");
+					event.getRegistry().register(gowBladeofOlympus);
+				}
 			}
 			if (HAConfig.modifiedItems.gowmodified.BladeofChaos.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2196,8 +2986,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.gowmodified.BladeofChaos.enchantability);
 					put("rarity", HAConfig.modifiedItems.gowmodified.BladeofChaos.rarity);
 				}};
-				gowBladeofChaos = new HASword("gowBladeofChaos", dummyMaterial, properties);
-				ALL_ITEMS.add(gowBladeofChaos);
+				if (!SupportSpartanWeaponry){
+					gowBladeofChaos = new HASword("gowBladeofChaos", dummyMaterial, properties);
+					ALL_ITEMS.add(gowBladeofChaos);
+				}else {
+					gowBladeofChaos = new ItemThrowingKnifeHW("gowBladeofChaos", dummyMaterialEx, properties, 2, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(gowBladeofChaos, HeroicArmory.MOD_ID, "gowBladeofChaos");
+					event.getRegistry().register(gowBladeofChaos);
+				}
 			}
 		}
 
@@ -2222,8 +3018,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.rarity);
 				}};
-				skyrimIronWarhammer = new HASword("skyrimIronWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimIronWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimIronWarhammer = new HASword("skyrimIronWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimIronWarhammer);
+				}else {
+					skyrimIronWarhammer = new ItemWarhammerHW("skyrimIronWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimIronWarhammer, HeroicArmory.MOD_ID, "skyrimIronWarhammer");
+					event.getRegistry().register(skyrimIronWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.SteelSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2244,8 +3046,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.rarity);
 				}};
-				skyrimSteelWarhammer = new HASword("skyrimSteelWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimSteelWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimSteelWarhammer = new HASword("skyrimSteelWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimSteelWarhammer);
+				}else {
+					skyrimSteelWarhammer = new ItemWarhammerHW("skyrimSteelWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimSteelWarhammer, HeroicArmory.MOD_ID, "skyrimSteelWarhammer");
+					event.getRegistry().register(skyrimSteelWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.OrcishSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2266,8 +3074,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.rarity);
 				}};
-				skyrimOrcishWarhammer = new HASword("skyrimOrcishWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimOrcishWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimOrcishWarhammer = new HASword("skyrimOrcishWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimOrcishWarhammer);
+				}else {
+					skyrimOrcishWarhammer = new ItemWarhammerHW("skyrimOrcishWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimOrcishWarhammer, HeroicArmory.MOD_ID, "skyrimOrcishWarhammer");
+					event.getRegistry().register(skyrimOrcishWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.DwarvenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2288,8 +3102,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.rarity);
 				}};
-				skyrimDwarvenWarhammer = new HASword("skyrimDwarvenWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimDwarvenWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimDwarvenWarhammer = new HASword("skyrimDwarvenWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimDwarvenWarhammer);
+				}else {
+					skyrimDwarvenWarhammer = new ItemWarhammerHW("skyrimDwarvenWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDwarvenWarhammer, HeroicArmory.MOD_ID, "skyrimDwarvenWarhammer");
+					event.getRegistry().register(skyrimDwarvenWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.ElvenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2310,8 +3130,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.rarity);
 				}};
-				skyrimElvenWarhammer = new HASword("skyrimElvenWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimElvenWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimElvenWarhammer = new HASword("skyrimElvenWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimElvenWarhammer);
+				}else {
+					skyrimElvenWarhammer = new ItemWarhammerHW("skyrimElvenWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimElvenWarhammer, HeroicArmory.MOD_ID, "skyrimElvenWarhammer");
+					event.getRegistry().register(skyrimElvenWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.GlassSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2332,8 +3158,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.rarity);
 				}};
-				skyrimGlassWarhammer = new HASword("skyrimGlassWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimGlassWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimGlassWarhammer = new HASword("skyrimGlassWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimGlassWarhammer);
+				}else {
+					skyrimGlassWarhammer = new ItemWarhammerHW("skyrimGlassWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimGlassWarhammer, HeroicArmory.MOD_ID, "skyrimGlassWarhammer");
+					event.getRegistry().register(skyrimGlassWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.EbonySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2354,8 +3186,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.rarity);
 				}};
-				skyrimEbonyWarhammer = new HASword("skyrimEbonyWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimEbonyWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimEbonyWarhammer = new HASword("skyrimEbonyWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimEbonyWarhammer);
+				}else {
+					skyrimEbonyWarhammer = new ItemWarhammerHW("skyrimEbonyWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimEbonyWarhammer, HeroicArmory.MOD_ID, "skyrimEbonyWarhammer");
+					event.getRegistry().register(skyrimEbonyWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.DaedricSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2376,8 +3214,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.rarity);
 				}};
-				skyrimDaedricWarhammer = new HASword("skyrimDaedricWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimDaedricWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimDaedricWarhammer = new HASword("skyrimDaedricWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimDaedricWarhammer);
+				}else {
+					skyrimDaedricWarhammer = new ItemWarhammerHW("skyrimDaedricWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDaedricWarhammer, HeroicArmory.MOD_ID, "skyrimDaedricWarhammer");
+					event.getRegistry().register(skyrimDaedricWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.DragonboneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2398,8 +3242,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.rarity);
 				}};
-				skyrimDragonboneWarhammer = new HASword("skyrimDragonboneWarhammer", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimDragonboneWarhammer);
+				if (!SupportSpartanWeaponry){
+					skyrimDragonboneWarhammer = new HASword("skyrimDragonboneWarhammer", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimDragonboneWarhammer);
+				}else {
+					skyrimDragonboneWarhammer = new ItemWarhammerHW("skyrimDragonboneWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDragonboneWarhammer, HeroicArmory.MOD_ID, "skyrimDragonboneWarhammer");
+					event.getRegistry().register(skyrimDragonboneWarhammer);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.ImperialSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2420,8 +3270,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.rarity);
 				}};
-				skyrimDawnbreaker = new HASword("skyrimDawnbreaker", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimDawnbreaker);
+				if (!SupportSpartanWeaponry){
+					skyrimDawnbreaker = new HASword("skyrimDawnbreaker", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimDawnbreaker);
+				}else {
+					skyrimDawnbreaker = new ItemLongswordHW("skyrimDawnbreaker", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyDetonateDead());
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDawnbreaker, HeroicArmory.MOD_ID, "skyrimDawnbreaker");
+					event.getRegistry().register(skyrimDawnbreaker);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.AncientNordSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2442,8 +3298,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.Chillrend.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.Chillrend.rarity);
 				}};
-				skyrimChillrend = new HASword("skyrimChillrend", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimChillrend);
+				if (!SupportSpartanWeaponry){
+					skyrimChillrend = new HASword("skyrimChillrend", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimChillrend);
+				}else {
+					skyrimChillrend = new ItemLongswordHW("skyrimChillrend", dummyMaterialEx, properties, new WeaponPropertyFreeze(4));
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimChillrend, HeroicArmory.MOD_ID, "skyrimChillrend");
+					event.getRegistry().register(skyrimChillrend);
+				}
 			}
 			if (HAConfig.modifiedItems.skyrimmodified.EbonyBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2453,8 +3315,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.rarity);
 				}};
-				skyrimEbonyBlade = new HASword("skyrimEbonyBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(skyrimEbonyBlade);
+				if (!SupportSpartanWeaponry){
+					skyrimEbonyBlade = new HASword("skyrimEbonyBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(skyrimEbonyBlade);
+				}else {
+					skyrimEbonyBlade = new ItemLongswordHW("skyrimEbonyBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST, new WeaponPropertyLifeFlat(2));
+					SpartanWeaponryAPI.addItemModelToRegistry(skyrimEbonyBlade, HeroicArmory.MOD_ID, "skyrimEbonyBlade");
+					event.getRegistry().register(skyrimEbonyBlade);
+				}
 			}
 		}
 
@@ -2468,8 +3336,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.rarity);
 				}};
-				mhChickenDecapitator = new HASword("mhChickenDecapitator", dummyMaterial, properties);
-				ALL_ITEMS.add(mhChickenDecapitator);
+				if (!SupportSpartanWeaponry){
+					mhChickenDecapitator = new HASword("mhChickenDecapitator", dummyMaterial, properties);
+					ALL_ITEMS.add(mhChickenDecapitator);
+				}else {
+					mhChickenDecapitator = new ItemGreatswordHW("mhChickenDecapitator", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(4));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhChickenDecapitator, HeroicArmory.MOD_ID, "mhChickenDecapitator");
+					event.getRegistry().register(mhChickenDecapitator);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.GolemBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2479,8 +3353,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.GolemBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.GolemBlade.rarity);
 				}};
-				mhGolemBlade = new HASword("mhGolemBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(mhGolemBlade);
+				if (!SupportSpartanWeaponry){
+					mhGolemBlade = new HASword("mhGolemBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(mhGolemBlade);
+				}else {
+					mhGolemBlade = new ItemGreatswordHW("mhGolemBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhGolemBlade, HeroicArmory.MOD_ID, "mhGolemBlade");
+					event.getRegistry().register(mhGolemBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.Defender.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2490,8 +3370,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.Defender.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.Defender.rarity);
 				}};
-				mhDefender = new HASword("mhDefender", dummyMaterial, properties);
-				ALL_ITEMS.add(mhDefender);
+				if (!SupportSpartanWeaponry){
+					mhDefender = new HASword("mhDefender", dummyMaterial, properties);
+					ALL_ITEMS.add(mhDefender);
+				}else {
+					mhDefender = new ItemParryingDaggerHW("mhDefender", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_HALF);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhDefender, HeroicArmory.MOD_ID, "mhDefender");
+					event.getRegistry().register(mhDefender);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.BlackBeltBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2501,8 +3387,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.rarity);
 				}};
-				mhBlackBeltBlade = new HASword("mhBlackBeltBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(mhBlackBeltBlade);
+				if (!SupportSpartanWeaponry){
+					mhBlackBeltBlade = new HASword("mhBlackBeltBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(mhBlackBeltBlade);
+				}else {
+					mhBlackBeltBlade = new ItemGreatswordHW("mhBlackBeltBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhBlackBeltBlade, HeroicArmory.MOD_ID, "mhBlackBeltBlade");
+					event.getRegistry().register(mhBlackBeltBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WailingCleaver.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2512,8 +3404,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WailingCleaver.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WailingCleaver.rarity);
 				}};
-				mhWailingCleaver = new HASword("mhWailingCleaver", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWailingCleaver);
+				if (!SupportSpartanWeaponry){
+					mhWailingCleaver = new HASword("mhWailingCleaver", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWailingCleaver);
+				}else {
+					mhWailingCleaver = new ItemLongswordHW("mhWailingCleaver", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWailingCleaver, HeroicArmory.MOD_ID, "mhWailingCleaver");
+					event.getRegistry().register(mhWailingCleaver);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.GaelicFlame.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2523,8 +3421,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.GaelicFlame.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.GaelicFlame.rarity);
 				}};
-				mhGaelicFlame = new HASword("mhGaelicFlame", dummyMaterial, properties);
-				ALL_ITEMS.add(mhGaelicFlame);
+				if (!SupportSpartanWeaponry){
+					mhGaelicFlame = new HASword("mhGaelicFlame", dummyMaterial, properties);
+					ALL_ITEMS.add(mhGaelicFlame);
+				}else {
+					mhGaelicFlame = new ItemLongswordHW("mhGaelicFlame", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhGaelicFlame, HeroicArmory.MOD_ID, "mhGaelicFlame");
+					event.getRegistry().register(mhGaelicFlame);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.BoneKatana.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2534,8 +3438,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.BoneKatana.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.BoneKatana.rarity);
 				}};
-				mhBoneKatana = new HASword("mhBoneKatana", dummyMaterial, properties);
-				ALL_ITEMS.add(mhBoneKatana);
+				if (!SupportSpartanWeaponry){
+					mhBoneKatana = new HASword("mhBoneKatana", dummyMaterial, properties);
+					ALL_ITEMS.add(mhBoneKatana);
+				}else {
+					mhBoneKatana = new ItemLongswordHW("mhBoneKatana", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhBoneKatana, HeroicArmory.MOD_ID, "mhBoneKatana");
+					event.getRegistry().register(mhBoneKatana);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.HellishSlasher.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2545,8 +3455,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.HellishSlasher.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.HellishSlasher.rarity);
 				}};
-				mhHellishSlasher = new HASword("mhHellishSlasher", dummyMaterial, properties);
-				ALL_ITEMS.add(mhHellishSlasher);
+				if (!SupportSpartanWeaponry){
+					mhHellishSlasher = new HASword("mhHellishSlasher", dummyMaterial, properties);
+					ALL_ITEMS.add(mhHellishSlasher);
+				}else {
+					mhHellishSlasher = new ItemLongswordHW("mhHellishSlasher", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyBonusDragon());
+					SpartanWeaponryAPI.addItemModelToRegistry(mhHellishSlasher, HeroicArmory.MOD_ID, "mhHellishSlasher");
+					event.getRegistry().register(mhHellishSlasher);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.CentenarianDagger.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2556,8 +3472,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.CentenarianDagger.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.CentenarianDagger.rarity);
 				}};
-				mhCentenarianDagger = new HASword("mhCentenarianDagger", dummyMaterial, properties);
-				ALL_ITEMS.add(mhCentenarianDagger);
+				if (!SupportSpartanWeaponry){
+					mhCentenarianDagger = new HASword("mhCentenarianDagger", dummyMaterial, properties);
+					ALL_ITEMS.add(mhCentenarianDagger);
+				}else {
+					mhCentenarianDagger = new ItemLongswordHW("mhCentenarianDagger", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(mhCentenarianDagger, HeroicArmory.MOD_ID, "mhCentenarianDagger");
+					event.getRegistry().register(mhCentenarianDagger);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2567,8 +3489,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.rarity);
 				}};
-				mhWyvernBladeBlood = new HASword("mhWyvernBladeBlood", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWyvernBladeBlood);
+				if (!SupportSpartanWeaponry){
+					mhWyvernBladeBlood = new HASword("mhWyvernBladeBlood", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeBlood);
+				}else {
+					mhWyvernBladeBlood = new ItemLongswordHW("mhWyvernBladeBlood", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 4, 1));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeBlood, HeroicArmory.MOD_ID, "mhWyvernBladeBlood");
+					event.getRegistry().register(mhWyvernBladeBlood);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2578,8 +3506,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.rarity);
 				}};
-				mhWyvernBladeHolly = new HASword("mhWyvernBladeHolly", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWyvernBladeHolly);
+				if (!SupportSpartanWeaponry){
+					mhWyvernBladeHolly = new HASword("mhWyvernBladeHolly", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeHolly);
+				}else {
+					mhWyvernBladeHolly = new ItemLongswordHW("mhWyvernBladeHolly", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 8, 3));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeHolly, HeroicArmory.MOD_ID, "mhWyvernBladeHolly");
+					event.getRegistry().register(mhWyvernBladeHolly);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladePale.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2589,8 +3523,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladePale.rarity);
 				}};
-				mhWyvernBladePale = new HASword("mhWyvernBladePale", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWyvernBladePale);
+				if (!SupportSpartanWeaponry){
+					mhWyvernBladePale = new HASword("mhWyvernBladePale", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladePale);
+				}else {
+					mhWyvernBladePale = new ItemLongswordHW("mhWyvernBladePale", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 10, 4));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladePale, HeroicArmory.MOD_ID, "mhWyvernBladePale");
+					event.getRegistry().register(mhWyvernBladePale);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2600,8 +3540,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.rarity);
 				}};
-				mhWyvernBladeAzure = new HASword("mhWyvernBladeAzure", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWyvernBladeAzure);
+				if (!SupportSpartanWeaponry){
+					mhWyvernBladeAzure = new HASword("mhWyvernBladeAzure", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeAzure);
+				}else {
+					mhWyvernBladeAzure = new ItemLongswordHW("mhWyvernBladeAzure", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 6, 2));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeAzure, HeroicArmory.MOD_ID, "mhWyvernBladeAzure");
+					event.getRegistry().register(mhWyvernBladeAzure);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2611,8 +3557,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.rarity);
 				}};
-				mhWyvernBladeLeaf = new HASword("mhWyvernBladeLeaf", dummyMaterial, properties);
-				ALL_ITEMS.add(mhWyvernBladeLeaf);
+				if (!SupportSpartanWeaponry){
+					mhWyvernBladeLeaf = new HASword("mhWyvernBladeLeaf", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeLeaf);
+				}else {
+					mhWyvernBladeLeaf = new ItemLongswordHW("mhWyvernBladeLeaf", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 3, 0));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeLeaf, HeroicArmory.MOD_ID, "mhWyvernBladeLeaf");
+					event.getRegistry().register(mhWyvernBladeLeaf);
+				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.RathalosFlamesword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2622,8 +3574,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.enchantability);
 					put("rarity", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.rarity);
 				}};
-				mhRathalosFlamesword = new HASword("mhRathalosFlamesword", dummyMaterial, properties);
-				ALL_ITEMS.add(mhRathalosFlamesword);
+				if (!SupportSpartanWeaponry){
+					mhRathalosFlamesword = new HASword("mhRathalosFlamesword", dummyMaterial, properties);
+					ALL_ITEMS.add(mhRathalosFlamesword);
+				}else {
+					mhRathalosFlamesword = new ItemGreatswordHW("mhRathalosFlamesword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(8));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhRathalosFlamesword, HeroicArmory.MOD_ID, "mhRathalosFlamesword");
+					event.getRegistry().register(mhRathalosFlamesword);
+				}
 			}
 		}
 
@@ -2692,8 +3650,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.rarity);
 				}};
-				terrariaCopperBroadsword = new HASword("terrariaCopperBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaCopperBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaCopperBroadsword = new HASword("terrariaCopperBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaCopperBroadsword);
+				}else {
+					terrariaCopperBroadsword = new ItemGreatswordHW("terrariaCopperBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaCopperBroadsword, HeroicArmory.MOD_ID, "terrariaCopperBroadsword");
+					event.getRegistry().register(terrariaCopperBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.TinShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2714,8 +3678,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.TinBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.TinBroadsword.rarity);
 				}};
-				terrariaTinBroadsword = new HASword("terrariaTinBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaTinBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaTinBroadsword = new HASword("terrariaTinBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaTinBroadsword);
+				}else {
+					terrariaTinBroadsword = new ItemGreatswordHW("terrariaTinBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTinBroadsword, HeroicArmory.MOD_ID, "terrariaTinBroadsword");
+					event.getRegistry().register(terrariaTinBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.LeadShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2736,8 +3706,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.rarity);
 				}};
-				terrariaLeadBroadsword = new HASword("terrariaLeadBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaLeadBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaLeadBroadsword = new HASword("terrariaLeadBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaLeadBroadsword);
+				}else {
+					terrariaLeadBroadsword = new ItemGreatswordHW("terrariaLeadBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaLeadBroadsword, HeroicArmory.MOD_ID, "terrariaLeadBroadsword");
+					event.getRegistry().register(terrariaLeadBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.Spear.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2747,8 +3723,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Spear.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Spear.rarity);
 				}};
-				terrariaSpear = new HASword("terrariaSpear", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaSpear);
+				if (!SupportSpartanWeaponry){
+					terrariaSpear = new HASword("terrariaSpear", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaSpear);
+				}else {
+					terrariaSpear = new ItemSpearHW("terrariaSpear", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSpear, HeroicArmory.MOD_ID, "terrariaSpear");
+					event.getRegistry().register(terrariaSpear);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.IronShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2769,8 +3751,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.IronBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.IronBroadsword.rarity);
 				}};
-				terrariaIronBroadsword = new HASword("terrariaIronBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaIronBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaIronBroadsword = new HASword("terrariaIronBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaIronBroadsword);
+				}else {
+					terrariaIronBroadsword = new ItemGreatswordHW("terrariaIronBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaIronBroadsword, HeroicArmory.MOD_ID, "terrariaIronBroadsword");
+					event.getRegistry().register(terrariaIronBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.SilverBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2780,8 +3768,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.rarity);
 				}};
-				terrariaSilverBroadsword = new HASword("terrariaSilverBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaSilverBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaSilverBroadsword = new HASword("terrariaSilverBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaSilverBroadsword);
+				}else {
+					terrariaSilverBroadsword = new ItemGreatswordHW("terrariaSilverBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSilverBroadsword, HeroicArmory.MOD_ID, "terrariaSilverBroadsword");
+					event.getRegistry().register(terrariaSilverBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.SilverShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2813,8 +3807,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.rarity);
 				}};
-				terrariaGoldBroadsword = new HASword("terrariaGoldBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaGoldBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaGoldBroadsword = new HASword("terrariaGoldBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaGoldBroadsword);
+				}else {
+					terrariaGoldBroadsword = new ItemGreatswordHW("terrariaGoldBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaGoldBroadsword, HeroicArmory.MOD_ID, "terrariaGoldBroadsword");
+					event.getRegistry().register(terrariaGoldBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2824,8 +3824,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.rarity);
 				}};
-				terrariaTungstenBroadsword = new HASword("terrariaTungstenBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaTungstenBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaTungstenBroadsword = new HASword("terrariaTungstenBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaTungstenBroadsword);
+				}else {
+					terrariaTungstenBroadsword = new ItemGreatswordHW("terrariaTungstenBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTungstenBroadsword, HeroicArmory.MOD_ID, "terrariaTungstenBroadsword");
+					event.getRegistry().register(terrariaTungstenBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.TungstenShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2857,8 +3863,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.rarity);
 				}};
-				terrariaPlatinumBroadsword = new HASword("terrariaPlatinumBroadsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaPlatinumBroadsword);
+				if (!SupportSpartanWeaponry){
+					terrariaPlatinumBroadsword = new HASword("terrariaPlatinumBroadsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaPlatinumBroadsword);
+				}else {
+					terrariaPlatinumBroadsword = new ItemGreatswordHW("terrariaPlatinumBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaPlatinumBroadsword, HeroicArmory.MOD_ID, "terrariaPlatinumBroadsword");
+					event.getRegistry().register(terrariaPlatinumBroadsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.MandibleBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2879,8 +3891,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Katana.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Katana.rarity);
 				}};
-				terrariaKatana = new HASword("terrariaKatana", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaKatana);
+				if (!SupportSpartanWeaponry){
+					terrariaKatana = new HASword("terrariaKatana", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaKatana);
+				}else {
+					terrariaKatana = new ItemKatanaHW("terrariaKatana", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaKatana, HeroicArmory.MOD_ID, "terrariaKatana");
+					event.getRegistry().register(terrariaKatana);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.ExoticScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2890,8 +3908,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.rarity);
 				}};
-				terrariaExoticScimitar = new HASword("terrariaExoticScimitar", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaExoticScimitar);
+				if (!SupportSpartanWeaponry){
+					terrariaExoticScimitar = new HASword("terrariaExoticScimitar", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaExoticScimitar);
+				}else {
+					terrariaExoticScimitar = new ItemSaberHW("terrariaExoticScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaExoticScimitar, HeroicArmory.MOD_ID, "terrariaExoticScimitar");
+					event.getRegistry().register(terrariaExoticScimitar);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.Muramasa.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2901,8 +3925,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Muramasa.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Muramasa.rarity);
 				}};
-				terrariaMuramasa = new HASword("terrariaMuramasa", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaMuramasa);
+				if (!SupportSpartanWeaponry){
+					terrariaMuramasa = new HASword("terrariaMuramasa", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaMuramasa);
+				}else {
+					terrariaMuramasa = new ItemKatanaHW("terrariaMuramasa", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaMuramasa, HeroicArmory.MOD_ID, "terrariaMuramasa");
+					event.getRegistry().register(terrariaMuramasa);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.FalconBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2923,8 +3953,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.BladeofGrass.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.BladeofGrass.rarity);
 				}};
-				terrariaBladeofGrass = new HASword("terrariaBladeofGrass", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaBladeofGrass);
+				if (!SupportSpartanWeaponry){
+					terrariaBladeofGrass = new HASword("terrariaBladeofGrass", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaBladeofGrass);
+				}else {
+					terrariaBladeofGrass = new ItemLongswordHW("terrariaBladeofGrass", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBladeofGrass, HeroicArmory.MOD_ID, "terrariaBladeofGrass");
+					event.getRegistry().register(terrariaBladeofGrass);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.FieryGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2934,8 +3970,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.rarity);
 				}};
-				terrariaFieryGreatsword = new HASword("terrariaFieryGreatsword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaFieryGreatsword);
+				if (!SupportSpartanWeaponry){
+					terrariaFieryGreatsword = new HASword("terrariaFieryGreatsword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaFieryGreatsword);
+				}else {
+					terrariaFieryGreatsword = new ItemGreatswordHW("terrariaFieryGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(8));
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaFieryGreatsword, HeroicArmory.MOD_ID, "terrariaFieryGreatsword");
+					event.getRegistry().register(terrariaFieryGreatsword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.BoneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2945,8 +3987,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.BoneSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.BoneSword.rarity);
 				}};
-				terrariaBoneSword = new HASword("terrariaBoneSword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaBoneSword);
+				if (!SupportSpartanWeaponry){
+					terrariaBoneSword = new HASword("terrariaBoneSword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaBoneSword);
+				}else {
+					terrariaBoneSword = new ItemLongswordHW("terrariaBoneSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBoneSword, HeroicArmory.MOD_ID, "terrariaBoneSword");
+					event.getRegistry().register(terrariaBoneSword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.BloodButcherer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2956,8 +4004,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.BloodButcherer.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.BloodButcherer.rarity);
 				}};
-				terrariaBloodButcherer = new HASword("terrariaBloodButcherer", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaBloodButcherer);
+				if (!SupportSpartanWeaponry){
+					terrariaBloodButcherer = new HASword("terrariaBloodButcherer", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaBloodButcherer);
+				}else {
+					terrariaBloodButcherer = new ItemGreatswordHW("terrariaBloodButcherer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBloodButcherer, HeroicArmory.MOD_ID, "terrariaBloodButcherer");
+					event.getRegistry().register(terrariaBloodButcherer);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.EnchantedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3011,8 +4065,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.NightEdge.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.NightEdge.rarity);
 				}};
-				terrariaNightEdge = new HASword("terrariaNightEdge", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaNightEdge);
+				if (!SupportSpartanWeaponry){
+					terrariaNightEdge = new HASword("terrariaNightEdge", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaNightEdge);
+				}else {
+					terrariaNightEdge = new ItemGreatswordHW("terrariaNightEdge", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaNightEdge, HeroicArmory.MOD_ID, "terrariaNightEdge");
+					event.getRegistry().register(terrariaNightEdge);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.Arkhalis.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3022,8 +4082,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Arkhalis.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Arkhalis.rarity);
 				}};
-				terrariaArkhalis = new HASword("terrariaArkhalis", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaArkhalis);
+				if (!SupportSpartanWeaponry){
+					terrariaArkhalis = new HASword("terrariaArkhalis", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaArkhalis);
+				}else {
+					terrariaArkhalis = new ItemParryingDaggerHW("terrariaArkhalis", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.QUICK_STRIKE, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaArkhalis, HeroicArmory.MOD_ID, "terrariaArkhalis");
+					event.getRegistry().register(terrariaArkhalis);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.Trident.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3033,8 +4099,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Trident.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Trident.rarity);
 				}};
-				terrariaTrident = new HASword("terrariaTrident", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaTrident);
+				if (!SupportSpartanWeaponry){
+					terrariaTrident = new HASword("terrariaTrident", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaTrident);
+				}else {
+					terrariaTrident = new ItemSpearHW("terrariaTrident", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTrident, HeroicArmory.MOD_ID, "terrariaTrident");
+					event.getRegistry().register(terrariaTrident);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.TheRottedFork.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3044,8 +4116,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.TheRottedFork.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.TheRottedFork.rarity);
 				}};
-				terrariaTheRottedFork = new HASword("terrariaTheRottedFork", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaTheRottedFork);
+				if (!SupportSpartanWeaponry){
+					terrariaTheRottedFork = new HASword("terrariaTheRottedFork", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaTheRottedFork);
+				}else {
+					terrariaTheRottedFork = new ItemSpearHW("terrariaTheRottedFork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTheRottedFork, HeroicArmory.MOD_ID, "terrariaTheRottedFork");
+					event.getRegistry().register(terrariaTheRottedFork);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3132,8 +4210,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.DarkLance.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.DarkLance.rarity);
 				}};
-				terrariaDarkLance = new HASword("terrariaDarkLance", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaDarkLance);
+				if (!SupportSpartanWeaponry){
+					terrariaDarkLance = new HASword("terrariaDarkLance", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaDarkLance);
+				}else {
+					terrariaDarkLance = new ItemSpearHW("terrariaDarkLance", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaDarkLance, HeroicArmory.MOD_ID, "terrariaDarkLance");
+					event.getRegistry().register(terrariaDarkLance);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3143,8 +4227,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.rarity);
 				}};
-				terrariaPurpleClubberfish = new HASword("terrariaPurpleClubberfish", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaPurpleClubberfish);
+				if (!SupportSpartanWeaponry){
+					terrariaPurpleClubberfish = new HASword("terrariaPurpleClubberfish", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaPurpleClubberfish);
+				}else {
+					terrariaPurpleClubberfish = new ItemClubHW("terrariaPurpleClubberfish", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaPurpleClubberfish, HeroicArmory.MOD_ID, "terrariaPurpleClubberfish");
+					event.getRegistry().register(terrariaPurpleClubberfish);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.CactusSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3154,8 +4244,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.CactusSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.CactusSword.rarity);
 				}};
-				terrariaCactusSword = new HASword("terrariaCactusSword", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaCactusSword);
+				if (!SupportSpartanWeaponry){
+					terrariaCactusSword = new HASword("terrariaCactusSword", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaCactusSword);
+				}else {
+					terrariaCactusSword = new ItemGreatswordHW("terrariaCactusSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaCactusSword, HeroicArmory.MOD_ID, "terrariaCactusSword");
+					event.getRegistry().register(terrariaCactusSword);
+				}
 			}
 			if (HAConfig.modifiedItems.terrariamodified.Swordfish.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3165,8 +4261,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.terrariamodified.Swordfish.enchantability);
 					put("rarity", HAConfig.modifiedItems.terrariamodified.Swordfish.rarity);
 				}};
-				terrariaSwordfish = new HASword("terrariaSwordfish", dummyMaterial, properties);
-				ALL_ITEMS.add(terrariaSwordfish);
+				if (!SupportSpartanWeaponry){
+					terrariaSwordfish = new HASword("terrariaSwordfish", dummyMaterial, properties);
+					ALL_ITEMS.add(terrariaSwordfish);
+				}else {
+					terrariaSwordfish = new ItemSpearHW("terrariaSwordfish", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSwordfish, HeroicArmory.MOD_ID, "terrariaSwordfish");
+					event.getRegistry().register(terrariaSwordfish);
+				}
 			}
 		}
 
@@ -3305,8 +4407,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.enchantability);
 					put("rarity", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.rarity);
 				}};
-				internetDemonoidPitchfork = new HASword("internetDemonoidPitchfork", dummyMaterial, properties);
-				ALL_ITEMS.add(internetDemonoidPitchfork);
+				if (!SupportSpartanWeaponry){
+					internetDemonoidPitchfork = new HASword("internetDemonoidPitchfork", dummyMaterial, properties);
+					ALL_ITEMS.add(internetDemonoidPitchfork);
+				}else {
+					internetDemonoidPitchfork = new ItemSpearHW("internetDemonoidPitchfork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
+					SpartanWeaponryAPI.addItemModelToRegistry(internetDemonoidPitchfork, HeroicArmory.MOD_ID, "internetDemonoidPitchfork");
+					event.getRegistry().register(internetDemonoidPitchfork);
+				}
 			}
 		}
 
@@ -3320,8 +4428,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.nhmodified.Magicbane.enchantability);
 					put("rarity", HAConfig.modifiedItems.nhmodified.Magicbane.rarity);
 				}};
-				nhMagicbane = new HASword("nhMagicbane", dummyMaterial, properties);
-				ALL_ITEMS.add(nhMagicbane);
+				if (!SupportSpartanWeaponry){
+					nhMagicbane = new HASword("nhMagicbane", dummyMaterial, properties);
+					ALL_ITEMS.add(nhMagicbane);
+				}else {
+					nhMagicbane = new ItemDaggerHW("nhMagicbane", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(nhMagicbane, HeroicArmory.MOD_ID, "nhMagicbane");
+					event.getRegistry().register(nhMagicbane);
+				}
 			}
 			if (HAConfig.modifiedItems.nhmodified.Athame.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3331,8 +4445,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.nhmodified.Athame.enchantability);
 					put("rarity", HAConfig.modifiedItems.nhmodified.Athame.rarity);
 				}};
-				nhAthame = new HASword("nhAthame", dummyMaterial, properties);
-				ALL_ITEMS.add(nhAthame);
+				if (!SupportSpartanWeaponry){
+					nhAthame = new HASword("nhAthame", dummyMaterial, properties);
+					ALL_ITEMS.add(nhAthame);
+				}else {
+					nhAthame = new ItemDaggerHW("nhAthame", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
+					SpartanWeaponryAPI.addItemModelToRegistry(nhAthame, HeroicArmory.MOD_ID, "nhAthame");
+					event.getRegistry().register(nhAthame);
+				}
 			}
 			if (HAConfig.modifiedItems.nhmodified.Grayswandir.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3342,8 +4462,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.nhmodified.Grayswandir.enchantability);
 					put("rarity", HAConfig.modifiedItems.nhmodified.Grayswandir.rarity);
 				}};
-				nhGrayswandir = new HASword("nhGrayswandir", dummyMaterial, properties);
-				ALL_ITEMS.add(nhGrayswandir);
+				if (!SupportSpartanWeaponry){
+					nhGrayswandir = new HASword("nhGrayswandir", dummyMaterial, properties);
+					ALL_ITEMS.add(nhGrayswandir);
+				}else {
+					nhGrayswandir = new ItemSaberHW("nhGrayswandir", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(nhGrayswandir, HeroicArmory.MOD_ID, "nhGrayswandir");
+					event.getRegistry().register(nhGrayswandir);
+				}
 			}
 			if (HAConfig.modifiedItems.nhmodified.SilverSaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -3353,8 +4479,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.nhmodified.SilverSaber.enchantability);
 					put("rarity", HAConfig.modifiedItems.nhmodified.SilverSaber.rarity);
 				}};
-				nhSilverSaber = new HASword("nhSilverSaber", dummyMaterial, properties);
-				ALL_ITEMS.add(nhSilverSaber);
+				if (!SupportSpartanWeaponry){
+					nhSilverSaber = new HASword("nhSilverSaber", dummyMaterial, properties);
+					ALL_ITEMS.add(nhSilverSaber);
+				}else {
+					nhSilverSaber = new ItemSaberHW("nhSilverSaber", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					SpartanWeaponryAPI.addItemModelToRegistry(nhSilverSaber, HeroicArmory.MOD_ID, "nhSilverSaber");
+					event.getRegistry().register(nhSilverSaber);
+				}
 			}
 		}
 
@@ -3368,8 +4500,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.abcmmodified.Excalibur.enchantability);
 					put("rarity", HAConfig.modifiedItems.abcmmodified.Excalibur.rarity);
 				}};
-				abcmExcalibur = new HASword("abcmExcalibur", dummyMaterial, properties);
-				ALL_ITEMS.add(abcmExcalibur);
+				if (!SupportSpartanWeaponry){
+					abcmExcalibur = new HASword("abcmExcalibur", dummyMaterial, properties);
+					ALL_ITEMS.add(abcmExcalibur);
+				}else {
+					abcmExcalibur = new ItemGreatswordHW("abcmExcalibur", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 1.75F), new WeaponPropertyRepairUndead());
+					SpartanWeaponryAPI.addItemModelToRegistry(abcmExcalibur, HeroicArmory.MOD_ID, "abcmExcalibur");
+					event.getRegistry().register(abcmExcalibur);
+				}
 			}
 		}
 
@@ -3421,7 +4559,7 @@ public class HAItemRegistry {
 
 				System.out.println("added loot to loot table '" + name + "'");
 
-				ArrayList<LootEntryItem> entries = new ArrayList<LootEntryItem>();
+				ArrayList<LootEntryItem> entries = new ArrayList<>();
 
 				if (ALL_ITEMS != null) {
 					Iterator<Item> itemList = ALL_ITEMS.listIterator();
