@@ -68,34 +68,29 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
         ItemStack heldMain = attacker.getHeldItemMainhand();
         if (NBTHelper.getBoolean(heldMain,"charged")){
 //            System.out.println("is charged");
-            int randy = attacker.getRNG().nextInt(4);
-            System.out.println("randy: " + randy);
-            //0 123 / 25%
-            if (randy > 0){
-                System.out.println("striking enemy with lightning");
-                BlockPos pos = victim.getPosition();
-                victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
-                List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
-                for (Entity near : hitList){
-                    if (near instanceof EntityLivingBase){
-                        near.hurtResistantTime = 0;
-                        source.damageType = DamageSource.LIGHTNING_BOLT.getDamageType();
-                        near.attackEntityFrom(DamageSource.LIGHTNING_BOLT, baseDamage / 2f);
-                        ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,10*20,1,true,false));
-                        ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,10*20,2,true,false));
-                        ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.NAUSEA,10*20,2,true,false));
-                        ((EntityLivingBase) near).knockBack(victim, 1f, victim.posX - near.posX, victim.posZ - near.posZ);
-                    }
+            System.out.println("striking enemy with lightning");
+            BlockPos pos = victim.getPosition();
+            victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
+            List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
+            for (Entity near : hitList){
+                if (near instanceof EntityLivingBase){
+                    near.hurtResistantTime = 0;
+                    source.damageType = DamageSource.LIGHTNING_BOLT.getDamageType();
+                    near.attackEntityFrom(source, baseDamage / 2f);
+                    ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,10*20,1,true,false));
+                    ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,10*20,2,true,false));
+                    ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.NAUSEA,10*20,2,true,false));
+                    ((EntityLivingBase) near).knockBack(attacker, 1f, victim.posX - near.posX, victim.posZ - near.posZ);
                 }
-                randy = attacker.getRNG().nextInt(2);
-                //coin flip if discharge happens
-                if (randy == 0){
-                    System.out.println("discharging");
-                    NBTHelper.setBoolean(heldMain,"charged",false);
-                }
-                System.out.println("damage increased from " + baseDamage + " to " + (baseDamage * 2f));
-                return baseDamage * 2f;
             }
+            int randy = attacker.getRNG().nextInt(4);
+            //25% for discharge
+            if (randy == 3){
+                System.out.println("discharging");
+                NBTHelper.setBoolean(heldMain,"charged",false);
+            }
+            System.out.println("damage increased from " + baseDamage + " to " + (baseDamage * 2f));
+            return baseDamage * 2f;
         }
         return baseDamage;
     }
