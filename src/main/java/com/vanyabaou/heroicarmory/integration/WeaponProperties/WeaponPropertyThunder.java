@@ -21,6 +21,7 @@ import java.util.List;
 public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
 
     protected final ResourceLocation propertykey = new ResourceLocation("charged");
+    protected int hits = 0;
 
     public WeaponPropertyThunder() {
         super("thunder", HeroicArmory.MOD_ID);
@@ -58,6 +59,7 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     public float modifyDamageDealt(ToolMaterialEx material, float baseDamage, float initialDamage, DamageSource source, EntityLivingBase attacker, EntityLivingBase victim) {
         ItemStack heldMain = attacker.getHeldItemMainhand();
         if (NBTHelper.getBoolean(heldMain,"charged")){
+            this.hits++;
             BlockPos pos = victim.getPosition();
             victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
             List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
@@ -72,7 +74,8 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
                     ((EntityLivingBase) near).knockBack(attacker, 1f, victim.posX - near.posX, victim.posZ - near.posZ);
                 }
             }
-            if (attacker.getRNG().nextInt(4) == 3){
+            if (attacker.getRNG().nextInt(3) == 1 || this.hits > 2){
+                this.hits = 0;
                 NBTHelper.setBoolean(heldMain,"charged",false);
             }
             return baseDamage * 2f;
