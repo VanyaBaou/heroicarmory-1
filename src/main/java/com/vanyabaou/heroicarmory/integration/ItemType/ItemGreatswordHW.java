@@ -1,28 +1,37 @@
-package com.vanyabaou.heroicarmory.integration;
+package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.item.ItemLongsword;
-import com.oblivioussp.spartanweaponry.item.ItemMace;
+import com.oblivioussp.spartanweaponry.item.ItemDagger;
+import com.oblivioussp.spartanweaponry.item.ItemGreatsword;
+import com.oblivioussp.spartanweaponry.util.NBTHelper;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemMaceHW extends ItemMace {
+public class ItemGreatswordHW extends ItemGreatsword {
 
     protected int enchantability;
     protected int lootRarity;
 
-    public ItemMaceHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
+    public ItemGreatswordHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
         super(unlocName, HeroicArmory.MOD_ID, (ToolMaterialEx)material);
         this.setCreativeTab(tabHeroicArmory);
         this.modId = HeroicArmory.MOD_ID;
@@ -37,6 +46,13 @@ public class ItemMaceHW extends ItemMace {
 
         this.properties = new ArrayList();
         this.properties.addAll(Arrays.asList(weaponProperties));
+
+//        if (this.getFirstWeaponPropertyWithType("thunder") != null){
+//            System.out.println("Adding property for thunder");
+//            this.addPropertyOverride(new ResourceLocation("charged"), (stack, worldIn, entityIn) -> NBTHelper.getBoolean(stack,"charged") ? 1f : 0f);
+//        }
+
+
     }
 
     @Override

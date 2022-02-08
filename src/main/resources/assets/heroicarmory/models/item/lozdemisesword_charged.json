@@ -1,0 +1,7 @@
+{
+    "parent": "heroicarmory:item/lozdemisesword",
+    "textures": {
+        "layer0": "heroicarmory:items/loz/demise_sword",
+        "layer1": "heroicarmory:items/loz/demise_sword_lightning"
+    }
+}

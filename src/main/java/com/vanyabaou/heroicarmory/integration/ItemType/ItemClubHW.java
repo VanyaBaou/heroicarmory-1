@@ -1,9 +1,9 @@
-package com.vanyabaou.heroicarmory.integration;
+package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.item.ItemSaber;
-import com.oblivioussp.spartanweaponry.item.ItemSpear;
+import com.oblivioussp.spartanweaponry.item.ItemClub;
+import com.oblivioussp.spartanweaponry.item.ItemDagger;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
 import net.minecraft.client.resources.I18n;
@@ -17,13 +17,13 @@ import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemSpearHW extends ItemSpear {
+public class ItemClubHW extends ItemClub {
 
     protected int enchantability;
     protected int lootRarity;
 
-    public ItemSpearHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
-        super(unlocName, HeroicArmory.MOD_ID, (ToolMaterialEx)material);
+    public ItemClubHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
+        super(unlocName, (ToolMaterialEx)material, (int)properties.getOrDefault("durability",1000));
         this.setCreativeTab(tabHeroicArmory);
         this.modId = HeroicArmory.MOD_ID;
 

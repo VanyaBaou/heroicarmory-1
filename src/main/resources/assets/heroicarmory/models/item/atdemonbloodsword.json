@@ -1,6 +1,42 @@
 {
-    "parent": "item/handheld",
-    "textures": {
+	"parent": "item/handheld",
+	"textures": {
         "layer0": "heroicarmory:items/at/demon_blood_sword"
-    }
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 90, 45],
+			"translation": [0, 13, 0],
+			"scale": [1.6, 1.6, 0.85]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -90, -45],
+			"translation": [0, 13, 0],
+			"scale": [1.6, 1.6, 0.85]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 90, 60],
+			"translation": [1.2, 8.5, 0.75],
+			"scale": [1.5, 1.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -90, -60],
+			"translation": [1.2, 8.5, 0.75],
+			"scale": [1.5, 1.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.9, 0.9, 1]
+		},
+		"gui": {
+			"rotation": [-180, 0, -90],
+			"translation": [2.5, 2.5, 0],
+			"scale": [0.95, 0.95, 1]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"translation": [-3.75, 3.75, 0],
+			"scale": [1.15, 1.15, 1]
+		}
+	}
 }

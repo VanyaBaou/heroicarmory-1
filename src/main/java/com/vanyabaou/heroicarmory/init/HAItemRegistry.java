@@ -6,7 +6,7 @@ import com.oblivioussp.spartanweaponry.api.WeaponProperties;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyExtraDamage;
 import com.vanyabaou.heroicarmory.HAConfig;
 import com.vanyabaou.heroicarmory.HeroicArmory;
-import com.vanyabaou.heroicarmory.integration.*;
+import com.vanyabaou.heroicarmory.integration.ItemType.*;
 import com.vanyabaou.heroicarmory.integration.WeaponProperties.*;
 import com.vanyabaou.heroicarmory.items.HASword;
 import mcp.MethodsReturnNonnullByDefault;
@@ -494,8 +494,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.lozmodified.ZeldaSword.enchantability);
 					put("rarity", HAConfig.modifiedItems.lozmodified.ZeldaSword.rarity);
 				}};
-				lozZeldaSword = new HASword("lozZeldaSword", dummyMaterial, properties);
-				ALL_ITEMS.add(lozZeldaSword);
+				if (!SupportSpartanWeaponry) {
+					lozZeldaSword = new HASword("lozZeldaSword", dummyMaterial, properties);
+					ALL_ITEMS.add(lozZeldaSword);
+				}else {
+					lozZeldaSword = new ItemRapierHW("lozZeldaSword", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					SpartanWeaponryAPI.addItemModelToRegistry(lozZeldaSword, HeroicArmory.MOD_ID, "lozZeldaSword");
+					event.getRegistry().register(lozZeldaSword);
+				}
 			}
 			if (HAConfig.modifiedItems.lozmodified.BokoStick.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -570,7 +576,7 @@ public class HAItemRegistry {
 					lozDemiseSword = new HASword("lozDemiseSword", dummyMaterial, properties);
 					ALL_ITEMS.add(lozDemiseSword);
 				}else {
-					lozDemiseSword = new ItemGreatswordHW("lozDemiseSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					lozDemiseSword = new ItemParryingDaggerHW("lozDemiseSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.BLOCK_MELEE, new WeaponPropertyThunder());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozDemiseSword, HeroicArmory.MOD_ID, "lozDemiseSword");
 					event.getRegistry().register(lozDemiseSword);
 				}
@@ -2549,7 +2555,7 @@ public class HAItemRegistry {
 					rsBarrelchestAnchor = new HASword("rsBarrelchestAnchor", dummyMaterial, properties);
 					ALL_ITEMS.add(rsBarrelchestAnchor);
 				}else {
-					rsBarrelchestAnchor = new ItemClubHW("rsBarrelchestAnchor", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
+					rsBarrelchestAnchor = new ItemClubHW("rsBarrelchestAnchor", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.SWEEP_DAMAGE_FULL , WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBarrelchestAnchor, HeroicArmory.MOD_ID, "rsBarrelchestAnchor");
 					event.getRegistry().register(rsBarrelchestAnchor);
 				}

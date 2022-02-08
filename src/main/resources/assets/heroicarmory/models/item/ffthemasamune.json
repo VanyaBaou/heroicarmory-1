@@ -1,28 +1,40 @@
 {
-    "parent": "item/handheld",
-    "textures": {
+	"parent": "item/handheld",
+	"textures": {
         "layer0": "heroicarmory:items/ff/the_masamune"
-    },
+	},
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [ 18, 90, 0 ],
-			"translation": [ 0.00, 14.50, -7.00 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [0, 90, 45],
+			"translation": [0, 20.75, 0],
+			"scale": [2.3, 2.3, 0.5]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [ 18, 270, 358 ],
-			"translation": [ 0.00, 14.50, -7.00 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [0, -90, -45],
+			"translation": [0, 20.75, 0],
+			"scale": [2.3, 2.3, 0.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [ 148, 70, 226 ],
-			"translation": [ 4.75, 12.75, -6.75 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [15, 105, 0],
+			"translation": [3.5, 7.5, -5.5],
+			"scale": [1.1, 1.1, 0.5]
 		},
 		"firstperson_lefthand": {
-			"rotation": [ 246, 282, 238 ],
-			"translation": [ 3.50, 13.50, -4.25 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [15, -75, 0],
+			"translation": [3.5, 7.5, -5.5],
+			"scale": [1.1, 1.1, 0.5]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.9, 0.9, 1]
+		},
+		"gui": {
+			"translation": [1.75, 1.5, 0]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"translation": [-2.125, 1.875, 0],
+			"scale": [1.25, 1.25, 1]
 		}
 	}
 }

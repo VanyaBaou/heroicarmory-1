@@ -1,0 +1,25 @@
+{
+    "parent": "heroicarmory:item/lozdemisesword",
+    "display": {
+		"thirdperson_righthand": {
+			"rotation": [20, -30, 45],
+			"translation": [0, 14.75, 6],
+			"scale": [2, 2, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [20, 120, -45],
+			"translation": [0, 14.75, 6],
+			"scale": [2, 2, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [-5, 150, 5],
+			"translation": [-2.75, 8.5, -6.75],
+			"scale": [2, 2, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-5, -30, -5],
+			"translation": [-2.75, 8.5, -6.75],
+			"scale": [2, 2, 1]
+		}
+    }
+}

@@ -1,15 +1,13 @@
-package com.vanyabaou.heroicarmory.integration;
+package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.init.EnchantmentRegistrySW;
-import com.oblivioussp.spartanweaponry.item.ItemThrowingAxe;
-import com.oblivioussp.spartanweaponry.item.ItemThrowingKnife;
+import com.oblivioussp.spartanweaponry.item.ItemBattleaxe;
+import com.oblivioussp.spartanweaponry.item.ItemDagger;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -19,12 +17,12 @@ import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemThrowingKnifeHW extends ItemThrowingKnife {
+public class ItemDaggerHW extends ItemDagger {
 
     protected int enchantability;
     protected int lootRarity;
 
-    public ItemThrowingKnifeHW(String unlocName, Object material, HashMap<String,Object> properties, int maxAmmo, WeaponProperty... weaponProperties) {
+    public ItemDaggerHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
         super(unlocName, HeroicArmory.MOD_ID, (ToolMaterialEx)material);
         this.setCreativeTab(tabHeroicArmory);
         this.modId = HeroicArmory.MOD_ID;
@@ -37,7 +35,6 @@ public class ItemThrowingKnifeHW extends ItemThrowingKnife {
         this.enchantability = (int)properties.getOrDefault("enchantability", 0);
         this.lootRarity = (int)properties.getOrDefault("rarity",0);
 
-        this.maxAmmo = maxAmmo;
         this.properties = new ArrayList();
         this.properties.addAll(Arrays.asList(weaponProperties));
     }
@@ -68,14 +65,6 @@ public class ItemThrowingKnifeHW extends ItemThrowingKnife {
     @Override
     public String getUnlocalizedName() {
         return StringHelper.getItemUnlocalizedName(super.getUnlocalizedName());
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (this.maxAmmo == 2 && enchantment == EnchantmentRegistrySW.THROWING_AMMO){
-            return false;
-        }
-        return super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
 }

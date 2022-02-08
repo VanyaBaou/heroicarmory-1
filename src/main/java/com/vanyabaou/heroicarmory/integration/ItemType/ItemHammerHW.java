@@ -1,4 +1,4 @@
-package com.vanyabaou.heroicarmory.integration;
+package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;

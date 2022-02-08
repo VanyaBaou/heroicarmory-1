@@ -5,29 +5,43 @@
     },
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [ 18, 90, 0 ],
-			"translation": [ 0.00, 15.00, -7.25 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [0, -90, 45],
+			"translation": [0, 14.25, 0],
+			"scale": [2, 2, 1]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [ -340, -90, 0 ],
-			"translation": [ 0.00, 15.00, -7.25 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [0, 90, -45],
+			"translation": [0, 14.25, 0],
+			"scale": [2, 2, 1]
 		},
 		"firstperson_righthand": {
-			"rotation": [ 148, 70, 226 ],
-			"translation": [ 4.75, 12.75, -6.75 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [148, 70, -134],
+			"translation": [4.75, 12.75, -6.75],
+			"scale": [2, 2, 1]
 		},
 		"firstperson_lefthand": {
-			"rotation": [ 246, 282, 238 ],
-			"translation": [ 3.50, 13.50, -4.25 ],
-			"scale": [ 2.00, 2.00, 1.00 ]
+			"rotation": [-114, -78, -122],
+			"translation": [4.75, 12.75, -6.75],
+			"scale": [2, 2, 1]
+		},
+		"ground": {
+			"translation": [0, 2, 0],
+			"scale": [0.9, 0.9, 1]
 		},
 		"gui": {
-			"rotation": [ 0, 0, 0 ],
-			"translation": [ 0.5333333333333332, 0.5333333333333332, 0.75 ],
-			"scale": [ 1.0666666666666667, 1.0666666666666667, 1.00 ]
+			"rotation": [-180, 0, -90],
+			"translation": [0.625, 0.625, 0],
+			"scale": [0.95, 0.95, 1]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"translation": [-1, 1, 0],
+			"scale": [1.15, 1.15, 1]
 		}
-	}
+	},
+    "overrides": [
+		{"predicate": { "charged": 1, "blocking": 0}, "model": "heroicarmory:item/lozdemisesword_charged"},
+		{"predicate": { "charged": 0, "blocking": 1}, "model": "heroicarmory:item/lozdemisesword_blocking"},
+		{"predicate": { "charged": 1, "blocking": 1}, "model": "heroicarmory:item/lozdemisesword_blocking_charged"}
+    ]
 }

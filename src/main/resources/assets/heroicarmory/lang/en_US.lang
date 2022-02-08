@@ -366,3 +366,6 @@ tooltip.heroicarmory:lifeflat.desc=Restores %s Health on hit
 
 tooltip.heroicarmory:bonus_dragon=Dragon Damage Bonus
 tooltip.heroicarmory:bonus_dragon.desc=+50%% damage against Dragons
+
+tooltip.heroicarmory:thunder=Thundering
+tooltip.heroicarmory:thunder.desc=When charged, chance to summon lightning on hit. Raise during thunderstorm to charge.

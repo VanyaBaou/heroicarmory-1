@@ -1,9 +1,9 @@
-package com.vanyabaou.heroicarmory.integration;
+package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.item.ItemHammer;
 import com.oblivioussp.spartanweaponry.item.ItemKatana;
+import com.oblivioussp.spartanweaponry.item.ItemLongsword;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
 import net.minecraft.client.resources.I18n;
@@ -17,12 +17,12 @@ import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemKatanaHW extends ItemKatana {
+public class ItemLongswordHW extends ItemLongsword {
 
     protected int enchantability;
     protected int lootRarity;
 
-    public ItemKatanaHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
+    public ItemLongswordHW(String unlocName, Object material, HashMap<String,Object> properties, WeaponProperty... weaponProperties) {
         super(unlocName, HeroicArmory.MOD_ID, (ToolMaterialEx)material);
         this.setCreativeTab(tabHeroicArmory);
         this.modId = HeroicArmory.MOD_ID;
