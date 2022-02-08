@@ -2,6 +2,7 @@ package com.vanyabaou.heroicarmory.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.vanyabaou.heroicarmory.IHeroicItem;
 import com.vanyabaou.heroicarmory.init.HAItemRegistry;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemSword;
 
 import java.util.HashMap;
 
-public class HASword extends ItemSword {
+public class HASword extends ItemSword implements IHeroicItem {
 
 	private final float attackDamage;
 	private final double attackSpeed;
@@ -29,6 +30,7 @@ public class HASword extends ItemSword {
 		this.lootRarity = (int)properties.getOrDefault("rarity",0);
 	}
 
+	@Override
 	public int getLootRarity(){
 		return this.lootRarity;
 	}

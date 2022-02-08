@@ -6,6 +6,7 @@ import com.oblivioussp.spartanweaponry.api.WeaponProperties;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyExtraDamage;
 import com.vanyabaou.heroicarmory.HAConfig;
 import com.vanyabaou.heroicarmory.HeroicArmory;
+import com.vanyabaou.heroicarmory.IHeroicItem;
 import com.vanyabaou.heroicarmory.integration.ItemType.*;
 import com.vanyabaou.heroicarmory.integration.WeaponProperties.*;
 import com.vanyabaou.heroicarmory.items.HASword;
@@ -166,7 +167,6 @@ public class HAItemRegistry {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event){
-		System.out.println("registerItems start");
 		ToolMaterial dummyMaterial = EnumHelper.addToolMaterial("HeroicMaterial",0,1000,1f,0f,0);
 
 		Object dummyMaterialEx = null;
@@ -4522,7 +4522,6 @@ public class HAItemRegistry {
 			Item item;
 			while (itemList.hasNext()) {
 				item = itemList.next();
-				System.out.println("Registering HW item: " + item.getUnlocalizedName());
 				event.getRegistry().register(item);
 			}
 		}
@@ -4540,7 +4539,6 @@ public class HAItemRegistry {
 			while (itemList.hasNext()) {
 				item = itemList.next();
 				if (item.getRegistryName() != null) {
-					System.out.println("Registering model for: " + item.getUnlocalizedName() + " / " + item.getRegistryName());
 					ModelLoader.setCustomModelResourceLocation(item, 0,
 							new ModelResourceLocation(item.getRegistryName(), "inventory"));
 				}
@@ -4567,13 +4565,13 @@ public class HAItemRegistry {
 
 				ArrayList<LootEntryItem> entries = new ArrayList<>();
 
-				if (ALL_ITEMS != null) {
+				if (ALL_ITEMS != null && HAConfig.lootChance != 0) {
 					Iterator<Item> itemList = ALL_ITEMS.listIterator();
 					Item item;
 					while (itemList.hasNext()) {
 						item = itemList.next();
 						System.out.println("Adding " + item.getRegistryName() + " to loot tables");
-						entries.add(new LootEntryItem(item, (int) Math.ceil(Math.pow(((HASword) item).getLootRarity(), HAConfig.rarityScale)), 60, new LootFunction[0], new LootCondition[0], "heroicarmory:" + item.getRegistryName()));
+						entries.add(new LootEntryItem(item, (int) Math.ceil(Math.pow(((IHeroicItem) item).getLootRarity(), HAConfig.rarityScale)), 60, new LootFunction[0], new LootCondition[0], "heroicarmory:" + item.getRegistryName()));
 					}
 				}
 

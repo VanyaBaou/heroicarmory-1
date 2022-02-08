@@ -30,9 +30,7 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     public void onCreateItem(ToolMaterialEx material, ItemStack created) {
         IWeaponPropertyContainer<?> container = (IWeaponPropertyContainer<?>) created.getItem();
         if (created.getItem().getPropertyGetter(propertykey) == null) {
-            System.out.println("propertykey not yet created for " + created.getItem().getRegistryName());
             if (container.getFirstWeaponPropertyWithType("thunder") != null) {
-                System.out.println("Adding propertykey for thunder");
                 created.getItem().addPropertyOverride(propertykey, (stack, worldIn, entityIn) -> NBTHelper.getBoolean(stack, "charged") ? 1f : 0f);
             }
         }
@@ -42,23 +40,16 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     public void onItemUpdate(ToolMaterialEx material, ItemStack stack, World world, EntityLivingBase entity, int itemSlot, boolean isSelected) {
         if (entity != null && !world.isRemote && isSelected){
             if (!NBTHelper.getBoolean(stack, "charged") && entity.isHandActive() && entity.getActiveItemStack() == stack) {
-//            System.out.println("selected");
                 BlockPos pos = entity.getPosition();
                 if (world.getWorldInfo().isRaining() && world.isRainingAt(pos)) {
-                    System.out.println("raining");
                     if (world.getWorldInfo().isThundering()) {
-                        System.out.println("thundering");
                         int randy = world.rand.nextInt(50);
-                        System.out.println("random: (" + (randy == 0) + ")" + randy);
                         if (randy == 0 && world.provider.canDoLightning(world.getChunkFromBlockCoords(pos))) {
-                            System.out.println("charging, summoning lightning");
                             world.addWeatherEffect(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true));
                             NBTHelper.setBoolean(stack, "charged", true);
                         }
                     }
                 }
-            }else if (NBTHelper.getBoolean(stack, "charged")){
-
             }
         }
     }
@@ -67,8 +58,6 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     public float modifyDamageDealt(ToolMaterialEx material, float baseDamage, float initialDamage, DamageSource source, EntityLivingBase attacker, EntityLivingBase victim) {
         ItemStack heldMain = attacker.getHeldItemMainhand();
         if (NBTHelper.getBoolean(heldMain,"charged")){
-//            System.out.println("is charged");
-            System.out.println("striking enemy with lightning");
             BlockPos pos = victim.getPosition();
             victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
             List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
@@ -83,13 +72,9 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
                     ((EntityLivingBase) near).knockBack(attacker, 1f, victim.posX - near.posX, victim.posZ - near.posZ);
                 }
             }
-            int randy = attacker.getRNG().nextInt(4);
-            //25% for discharge
-            if (randy == 3){
-                System.out.println("discharging");
+            if (attacker.getRNG().nextInt(4) == 3){
                 NBTHelper.setBoolean(heldMain,"charged",false);
             }
-            System.out.println("damage increased from " + baseDamage + " to " + (baseDamage * 2f));
             return baseDamage * 2f;
         }
         return baseDamage;

@@ -2,22 +2,21 @@ package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.item.ItemThrowingKnife;
 import com.oblivioussp.spartanweaponry.item.ItemWarhammer;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
+import com.vanyabaou.heroicarmory.IHeroicItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemWarhammerHW extends ItemWarhammer {
+public class ItemWarhammerHW extends ItemWarhammer implements IHeroicItem {
 
     protected int enchantability;
     protected int lootRarity;
@@ -35,8 +34,12 @@ public class ItemWarhammerHW extends ItemWarhammer {
         this.enchantability = (int)properties.getOrDefault("enchantability", 0);
         this.lootRarity = (int)properties.getOrDefault("rarity",0);
 
-        this.properties = new ArrayList();
-        this.properties.addAll(Arrays.asList(weaponProperties));
+        this.properties = Arrays.asList(weaponProperties);
+    }
+
+    @Override
+    public int getLootRarity(){
+        return this.lootRarity;
     }
 
     @Override

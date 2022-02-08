@@ -1,5 +1,6 @@
 package com.vanyabaou.heroicarmory.integration.WeaponProperties;
 
+import com.github.alexthe666.iceandfire.entity.EntityTroll;
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyWithCallback;
 import com.vanyabaou.heroicarmory.EventHandler;
@@ -18,17 +19,15 @@ public class WeaponPropertyElven extends WeaponPropertyWithCallback {
 
     @Override
     public void onItemUpdate(ToolMaterialEx material, ItemStack stack, World world, EntityLivingBase entity, int itemSlot, boolean isSelected) {
-        if (HeroicArmory.SupportIceAndFire) {
-            if (isSelected) {
-                if (EventHandler.getTickCounter(20) == 0) {
-                    int range = 32;
-                    AxisAlignedBB region = new AxisAlignedBB(entity.posX - range, entity.posY - range, entity.posZ - range, entity.posX + range, entity.posY + range, entity.posZ + range);
-                    world.getEntitiesWithinAABBExcludingEntity(entity, region).forEach((entitylist) -> {
-                        if (entitylist.getName().toLowerCase().contains("troll")) {
-                            ((EntityLivingBase) entitylist).addPotionEffect(new PotionEffect(MobEffects.GLOWING, 10, 0));
-                        }
-                    });
-                }
+        if (isSelected) {
+            if (EventHandler.getTickCounter() == 0) {
+                int range = 32;
+                AxisAlignedBB region = new AxisAlignedBB(entity.posX - range, entity.posY - range, entity.posZ - range, entity.posX + range, entity.posY + range, entity.posZ + range);
+                world.getEntitiesWithinAABBExcludingEntity(entity, region).forEach((entitylist) -> {
+                    if (entitylist.getName().toLowerCase().contains("troll") || (HeroicArmory.SupportIceAndFire && (entitylist instanceof EntityTroll))) {
+                        ((EntityLivingBase) entitylist).addPotionEffect(new PotionEffect(MobEffects.GLOWING, 10, 0));
+                    }
+                });
             }
         }
     }

@@ -4,7 +4,6 @@ import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponPropertyWithCallback;
 import com.vanyabaou.heroicarmory.HeroicArmory;
-import com.vanyabaou.heroicarmory.NumbersHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,10 +18,10 @@ import java.util.List;
 
 public class WeaponPropertyPotion extends WeaponPropertyWithCallback {
 
-    protected String potionName = "potion";
+    protected String potionName;
     protected Potion potionType;
-    protected double potionDuration = 20;
-    protected int potionStrength = 0;
+    protected double potionDuration;
+    protected int potionStrength;
 
     public WeaponPropertyPotion(String type, Potion potion, double duration, int strength) {
         super("potion", HeroicArmory.MOD_ID, strength + 1);

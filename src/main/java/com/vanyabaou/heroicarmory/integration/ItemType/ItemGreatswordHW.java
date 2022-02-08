@@ -2,31 +2,21 @@ package com.vanyabaou.heroicarmory.integration.ItemType;
 
 import com.oblivioussp.spartanweaponry.api.ToolMaterialEx;
 import com.oblivioussp.spartanweaponry.api.weaponproperty.WeaponProperty;
-import com.oblivioussp.spartanweaponry.item.ItemDagger;
 import com.oblivioussp.spartanweaponry.item.ItemGreatsword;
-import com.oblivioussp.spartanweaponry.util.NBTHelper;
 import com.oblivioussp.spartanweaponry.util.StringHelper;
 import com.vanyabaou.heroicarmory.HeroicArmory;
+import com.vanyabaou.heroicarmory.IHeroicItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.vanyabaou.heroicarmory.init.HAItemRegistry.tabHeroicArmory;
 
-public class ItemGreatswordHW extends ItemGreatsword {
+public class ItemGreatswordHW extends ItemGreatsword implements IHeroicItem {
 
     protected int enchantability;
     protected int lootRarity;
@@ -44,15 +34,12 @@ public class ItemGreatswordHW extends ItemGreatsword {
         this.enchantability = (int)properties.getOrDefault("enchantability", 0);
         this.lootRarity = (int)properties.getOrDefault("rarity",0);
 
-        this.properties = new ArrayList();
-        this.properties.addAll(Arrays.asList(weaponProperties));
+        this.properties = Arrays.asList(weaponProperties);
+    }
 
-//        if (this.getFirstWeaponPropertyWithType("thunder") != null){
-//            System.out.println("Adding property for thunder");
-//            this.addPropertyOverride(new ResourceLocation("charged"), (stack, worldIn, entityIn) -> NBTHelper.getBoolean(stack,"charged") ? 1f : 0f);
-//        }
-
-
+    @Override
+    public int getLootRarity(){
+        return this.lootRarity;
     }
 
     @Override

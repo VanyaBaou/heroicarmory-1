@@ -22,13 +22,12 @@ public class WeaponPropertyFreeze extends WeaponPropertyWithCallback {
 
     @Override
     public void onHitEntity(ToolMaterialEx material, ItemStack stack, EntityLivingBase target, EntityLivingBase attacker, Entity projectile) {
-        if (HeroicArmory.SupportIceAndFire) {
-            if (target instanceof EntityFireDragon || target instanceof EntityBlaze || target instanceof EntityMagmaCube) {
-                System.out.println("Freeze bonus for " + (2f * this.level) + " / " + target.getClass().toString());
-                target.attackEntityFrom(DamageSource.IN_FIRE, 2f * this.level);
+        if ((HeroicArmory.SupportIceAndFire && target instanceof EntityFireDragon) || target instanceof EntityBlaze || target instanceof EntityMagmaCube) {
+            target.attackEntityFrom(DamageSource.IN_FIRE, 2f * this.level);
+            if (HeroicArmory.SupportIceAndFire){
+                FrozenEntityProperties frozenProps = EntityPropertiesHandler.INSTANCE.getProperties(target, FrozenEntityProperties.class);
+                frozenProps.setFrozenFor(300);
             }
-            FrozenEntityProperties frozenProps = EntityPropertiesHandler.INSTANCE.getProperties(target, FrozenEntityProperties.class);
-            frozenProps.setFrozenFor(300);
         }
         target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 300, 1));
         target.knockBack(target, 1F, attacker.posX - target.posX, attacker.posZ - target.posZ);
