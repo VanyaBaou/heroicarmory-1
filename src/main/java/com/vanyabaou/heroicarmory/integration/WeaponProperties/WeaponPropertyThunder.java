@@ -21,7 +21,6 @@ import java.util.List;
 public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
 
     protected final ResourceLocation propertykey = new ResourceLocation("charged");
-    protected int hits = 0;
 
     public WeaponPropertyThunder() {
         super("thunder", HeroicArmory.MOD_ID);
@@ -32,7 +31,7 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
         IWeaponPropertyContainer<?> container = (IWeaponPropertyContainer<?>) created.getItem();
         if (created.getItem().getPropertyGetter(propertykey) == null) {
             if (container.getFirstWeaponPropertyWithType("thunder") != null) {
-                created.getItem().addPropertyOverride(propertykey, (stack, worldIn, entityIn) -> NBTHelper.getBoolean(stack, "charged") ? 1f : 0f);
+                created.getItem().addPropertyOverride(propertykey, (stack, worldIn, entityIn) -> NBTHelper.getBoolean(stack, "ha.charged") ? 1f : 0f);
             }
         }
     }
@@ -40,14 +39,13 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     @Override
     public void onItemUpdate(ToolMaterialEx material, ItemStack stack, World world, EntityLivingBase entity, int itemSlot, boolean isSelected) {
         if (entity != null && !world.isRemote && isSelected){
-            if (!NBTHelper.getBoolean(stack, "charged") && entity.isHandActive() && entity.getActiveItemStack() == stack) {
+            if (!NBTHelper.getBoolean(stack, "ha.charged") && entity.isHandActive() && entity.getActiveItemStack() == stack) {
                 BlockPos pos = entity.getPosition();
                 if (world.getWorldInfo().isRaining() && world.isRainingAt(pos)) {
                     if (world.getWorldInfo().isThundering()) {
-                        int randy = world.rand.nextInt(50);
-                        if (randy == 0 && world.provider.canDoLightning(world.getChunkFromBlockCoords(pos))) {
+                        if (world.rand.nextInt(50) == 0 && world.provider.canDoLightning(world.getChunkFromBlockCoords(pos))) {
                             world.addWeatherEffect(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), true));
-                            NBTHelper.setBoolean(stack, "charged", true);
+                            NBTHelper.setBoolean(stack, "ha.charged", true);
                         }
                     }
                 }
@@ -58,8 +56,8 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
     @Override
     public float modifyDamageDealt(ToolMaterialEx material, float baseDamage, float initialDamage, DamageSource source, EntityLivingBase attacker, EntityLivingBase victim) {
         ItemStack heldMain = attacker.getHeldItemMainhand();
-        if (NBTHelper.getBoolean(heldMain,"charged")){
-            this.hits++;
+        if (NBTHelper.getBoolean(heldMain,"ha.charged")){
+            NBTHelper.setInteger(heldMain,"ha.hits", NBTHelper.getInteger(heldMain, "ha.hits") + 1);
             BlockPos pos = victim.getPosition();
             victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
             List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
@@ -67,16 +65,15 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
                 if (near instanceof EntityLivingBase){
                     near.hurtResistantTime = 0;
                     source.damageType = DamageSource.LIGHTNING_BOLT.getDamageType();
-                    near.attackEntityFrom(source, baseDamage / 2f);
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,10*20,1,true,false));
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,10*20,2,true,false));
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.NAUSEA,10*20,2,true,false));
                     ((EntityLivingBase) near).knockBack(attacker, 1f, victim.posX - near.posX, victim.posZ - near.posZ);
                 }
             }
-            if (attacker.getRNG().nextInt(3) == 1 || this.hits > 2){
-                this.hits = 0;
-                NBTHelper.setBoolean(heldMain,"charged",false);
+            if (attacker.getRNG().nextInt(3) == 1 || NBTHelper.getInteger(heldMain,"ha.hits") > 2){
+                NBTHelper.setInteger(heldMain,"ha.hits", 0);
+                NBTHelper.setBoolean(heldMain,"ha.charged",false);
             }
             return baseDamage * 2f;
         }
