@@ -2,13 +2,18 @@ package com.vanyabaou.heroicarmory.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.vanyabaou.heroicarmory.HAConfig;
 import com.vanyabaou.heroicarmory.IHeroicItem;
 import com.vanyabaou.heroicarmory.init.HAItemRegistry;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 
 public class HASword extends ItemSword implements IHeroicItem {
@@ -51,4 +56,32 @@ public class HASword extends ItemSword implements IHeroicItem {
 		}
 		return multimap;
 	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+		if (!toRepair.isEmpty() && !repair.isEmpty()) {
+			return doesOreDictMatch(repair) || super.getIsRepairable(toRepair, repair);
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean doesOreDictMatch(ItemStack stack)
+	{
+		if (!OreDictionary.doesOreNameExist(HAConfig.repairDict)) {
+			System.out.println("Config repairDict does not exist!");
+			return false;
+		}
+		NonNullList<ItemStack> ores = OreDictionary.getOres(HAConfig.repairDict, false);
+		for(ItemStack ore : ores)
+		{
+			if(OreDictionary.itemMatches(ore, stack, false))
+				System.out.println("Found match for " + stack.getItem().getRegistryName() + " repairDict: " + ore.getItem().getRegistryName());
+				return true;
+		}
+		System.out.println("repairItem does not match repairDict!");
+		return false;
+	}
+
 }
