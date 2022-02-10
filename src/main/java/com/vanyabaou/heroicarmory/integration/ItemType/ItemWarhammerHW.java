@@ -28,7 +28,7 @@ public class ItemWarhammerHW extends ItemWarhammer implements IHeroicItem {
 
         this.displayName = unlocName;
 
-        this.attackDamage = (float)properties.getOrDefault("attack", 9f);
+        this.attackDamage = (float)properties.getOrDefault("attack", 9f) - 1;
         this.attackSpeed = (double)properties.getOrDefault("speed", 1.6f);
         this.setMaxDamage((int)properties.getOrDefault("durability", 1000));
         this.enchantability = (int)properties.getOrDefault("enchantability", 0);

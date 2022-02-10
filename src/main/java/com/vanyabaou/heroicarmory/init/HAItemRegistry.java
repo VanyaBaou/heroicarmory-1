@@ -68,8 +68,8 @@ public class HAItemRegistry {
 	rotmgArchonSword, rotmgAncientStoneSword, rotmgDragonsoulSword, rotmgRavenheartSword;
 
 	//soul calibur
-	public static Item scFirangi, scCocytus, scErlangBlade, scSoulEdgeNightmare, scPhlegathon, scAcheron, scLethe, scQueenGuard,
-		scHolyAntler, scEpee, scWarHammer, scKalutues, scEstoc, scFlambert2P, scReiterpallasch, scFlambert, scBlueCrystalRod,
+	public static Item scFirangi, scCocytus, scErlangBlade, scSoulEdgeNightmare, scPhlegethon, scAcheron, scLethe, scQueenGuard,
+		scHolyAntler, scEpee, scWarHammer, scKulutues, scEstoc, scFlambert2P, scReiterpallasch, scFlambert, scBlueCrystalRod,
 		scFireBlade, scXiSword, scOmegaSword2P, scOmegaSword, scOrichalcum, scStiletto, scRequiem, scFaust, scFlamberge,
 		scSteelPaddle, scGlam, scGreatBlade;
 
@@ -102,7 +102,7 @@ public class HAItemRegistry {
 	public static Item bleachZabimaru, bleachZangetsu;
 
 	//dark souls
-	public static Item dsGreatswordofArtorias, dsGreatLordGreatsword, dsAstoraGreatsword, dsZweilhander;
+	public static Item dsGreatswordofArtorias, dsGreatLordGreatsword, dsAstoraGreatsword, dsZweihander;
 
 	//mythology
 	public static Item mythDeathScythe, mythTheDevilPitchfork;
@@ -307,7 +307,7 @@ public class HAItemRegistry {
 					lotrSauronMace = new HASword("lotrSauronMace", dummyMaterial, properties);
 					ALL_ITEMS.add(lotrSauronMace);
 				}else {
-					lotrSauronMace = new ItemGreatswordHW("lotrSauronMace", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50 , new WeaponPropertyPotion(MobEffects.NAUSEA.getName(), MobEffects.NAUSEA, 5, 1));
+					lotrSauronMace = new ItemGreatswordHW("lotrSauronMace", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.NAUSEA.getName(), MobEffects.NAUSEA, 5, 1));
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrSauronMace, HeroicArmory.MOD_ID, "lotrSauronMace");
 					event.getRegistry().register(lotrSauronMace);
 				}
@@ -1044,7 +1044,7 @@ public class HAItemRegistry {
 					ffCaladbolg = new HASword("ffCaladbolg", dummyMaterial, properties);
 					ALL_ITEMS.add(ffCaladbolg);
 				}else {
-					ffCaladbolg = new ItemGreatswordHW("ffCaladbolg", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					ffCaladbolg = new ItemGreatswordHW("ffCaladbolg", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyCelestial());
 					SpartanWeaponryAPI.addItemModelToRegistry(ffCaladbolg, HeroicArmory.MOD_ID, "ffCaladbolg");
 					event.getRegistry().register(ffCaladbolg);
 				}
@@ -1253,7 +1253,7 @@ public class HAItemRegistry {
 					scFirangi = new HASword("scFirangi", dummyMaterial, properties);
 					ALL_ITEMS.add(scFirangi);
 				}else {
-					scFirangi = new ItemLongswordHW("scFirangi", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					scFirangi = new ItemGreatswordHW("scFirangi", dummyMaterialEx, properties, new WeaponPropertySelfPotion(MobEffects.REGENERATION.getName(), MobEffects.REGENERATION, 0.1D, 0));
 					SpartanWeaponryAPI.addItemModelToRegistry(scFirangi, HeroicArmory.MOD_ID, "scFirangi");
 					event.getRegistry().register(scFirangi);
 				}
@@ -1270,7 +1270,7 @@ public class HAItemRegistry {
 					scCocytus = new HASword("scCocytus", dummyMaterial, properties);
 					ALL_ITEMS.add(scCocytus);
 				}else {
-					scCocytus = new ItemLongswordHW("scCocytus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					scCocytus = new ItemGreatswordHW("scCocytus", dummyMaterialEx, properties, new WeaponPropertyLifePercent(-30));
 					SpartanWeaponryAPI.addItemModelToRegistry(scCocytus, HeroicArmory.MOD_ID, "scCocytus");
 					event.getRegistry().register(scCocytus);
 				}
@@ -1283,14 +1283,8 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.ErlangBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.ErlangBlade.rarity);
 				}};
-				if (!SupportSpartanWeaponry) {
-					scErlangBlade = new HASword("scErlangBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(scErlangBlade);
-				}else {
-					scErlangBlade = new ItemLongswordHW("scErlangBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
-					SpartanWeaponryAPI.addItemModelToRegistry(scErlangBlade, HeroicArmory.MOD_ID, "scErlangBlade");
-					event.getRegistry().register(scErlangBlade);
-				}
+				scErlangBlade = new HASword("scErlangBlade", dummyMaterial, properties);
+				ALL_ITEMS.add(scErlangBlade);
 			}
 			if (HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -1309,21 +1303,21 @@ public class HAItemRegistry {
 					event.getRegistry().register(scSoulEdgeNightmare);
 				}
 			}
-			if (HAConfig.modifiedItems.scmodified.Phlegathon.enabled) {
+			if (HAConfig.modifiedItems.scmodified.Phlegethon.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Phlegathon.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Phlegathon.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Phlegathon.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Phlegathon.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Phlegathon.rarity);
+					put("attack", HAConfig.modifiedItems.scmodified.Phlegethon.damage);
+					put("durability", HAConfig.modifiedItems.scmodified.Phlegethon.durability);
+					put("speed", HAConfig.modifiedItems.scmodified.Phlegethon.speed);
+					put("enchantability", HAConfig.modifiedItems.scmodified.Phlegethon.enchantability);
+					put("rarity", HAConfig.modifiedItems.scmodified.Phlegethon.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scPhlegathon = new HASword("scPhlegathon", dummyMaterial, properties);
-					ALL_ITEMS.add(scPhlegathon);
+					scPhlegethon = new HASword("scPhlegethon", dummyMaterial, properties);
+					ALL_ITEMS.add(scPhlegethon);
 				}else {
-					scPhlegathon = new ItemLongswordHW("scPhlegathon", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
-					SpartanWeaponryAPI.addItemModelToRegistry(scPhlegathon, HeroicArmory.MOD_ID, "scPhlegathon");
-					event.getRegistry().register(scPhlegathon);
+					scPhlegethon = new ItemLongswordHW("scPhlegethon", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyShieldPierce(0.2f));
+					SpartanWeaponryAPI.addItemModelToRegistry(scPhlegethon, HeroicArmory.MOD_ID, "scPhlegethon");
+					event.getRegistry().register(scPhlegethon);
 				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Acheron.enabled) {
@@ -1355,7 +1349,7 @@ public class HAItemRegistry {
 					scLethe = new HASword("scLethe", dummyMaterial, properties);
 					ALL_ITEMS.add(scLethe);
 				}else {
-					scLethe = new ItemLongswordHW("scLethe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					scLethe = new ItemLongswordHW("scLethe", dummyMaterialEx, properties, new WeaponPropertyLifePercent(20));
 					SpartanWeaponryAPI.addItemModelToRegistry(scLethe, HeroicArmory.MOD_ID, "scLethe");
 					event.getRegistry().register(scLethe);
 				}
@@ -1372,7 +1366,7 @@ public class HAItemRegistry {
 					scQueenGuard = new HASword("scQueenGuard", dummyMaterial, properties);
 					ALL_ITEMS.add(scQueenGuard);
 				}else {
-					scQueenGuard = new ItemRapierHW("scQueenGuard", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					scQueenGuard = new ItemRapierHW("scQueenGuard", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertySelfPotion(MobEffects.REGENERATION.getName(), MobEffects.REGENERATION, 0.1D, 0));
 					SpartanWeaponryAPI.addItemModelToRegistry(scQueenGuard, HeroicArmory.MOD_ID, "scQueenGuard");
 					event.getRegistry().register(scQueenGuard);
 				}
@@ -1389,7 +1383,7 @@ public class HAItemRegistry {
 					scHolyAntler = new HASword("scHolyAntler", dummyMaterial, properties);
 					ALL_ITEMS.add(scHolyAntler);
 				}else {
-					scHolyAntler = new ItemRapierHW("scHolyAntler", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					scHolyAntler = new ItemRapierHW("scHolyAntler", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyLifeFlat(2));
 					SpartanWeaponryAPI.addItemModelToRegistry(scHolyAntler, HeroicArmory.MOD_ID, "scHolyAntler");
 					event.getRegistry().register(scHolyAntler);
 				}
@@ -1406,7 +1400,7 @@ public class HAItemRegistry {
 					scEpee = new HASword("scEpee", dummyMaterial, properties);
 					ALL_ITEMS.add(scEpee);
 				}else {
-					scEpee = new ItemRapierHW("scEpee", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					scEpee = new ItemRapierHW("scEpee", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyArmorBuff(0.3f));
 					SpartanWeaponryAPI.addItemModelToRegistry(scEpee, HeroicArmory.MOD_ID, "scEpee");
 					event.getRegistry().register(scEpee);
 				}
@@ -1428,21 +1422,21 @@ public class HAItemRegistry {
 					event.getRegistry().register(scWarHammer);
 				}
 			}
-			if (HAConfig.modifiedItems.scmodified.Kalutues.enabled) {
+			if (HAConfig.modifiedItems.scmodified.Kulutues.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Kalutues.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Kalutues.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Kalutues.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Kalutues.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Kalutues.rarity);
+					put("attack", HAConfig.modifiedItems.scmodified.Kulutues.damage);
+					put("durability", HAConfig.modifiedItems.scmodified.Kulutues.durability);
+					put("speed", HAConfig.modifiedItems.scmodified.Kulutues.speed);
+					put("enchantability", HAConfig.modifiedItems.scmodified.Kulutues.enchantability);
+					put("rarity", HAConfig.modifiedItems.scmodified.Kulutues.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scKalutues = new HASword("scKalutues", dummyMaterial, properties);
-					ALL_ITEMS.add(scKalutues);
+					scKulutues = new HASword("scKulutues", dummyMaterial, properties);
+					ALL_ITEMS.add(scKulutues);
 				}else {
-					scKalutues = new ItemHalberdHW("scKalutues", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
-					SpartanWeaponryAPI.addItemModelToRegistry(scKalutues, HeroicArmory.MOD_ID, "scKalutues");
-					event.getRegistry().register(scKalutues);
+					scKulutues = new ItemBattleaxeHW("scKulutues", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.ARMOUR_PIERCING_50, WeaponProperties.SWEEP_DAMAGE_HALF);
+					SpartanWeaponryAPI.addItemModelToRegistry(scKulutues, HeroicArmory.MOD_ID, "scKulutues");
+					event.getRegistry().register(scKulutues);
 				}
 			}
 			if (HAConfig.modifiedItems.scmodified.Estoc.enabled) {
@@ -1457,7 +1451,7 @@ public class HAItemRegistry {
 					scEstoc = new HASword("scEstoc", dummyMaterial, properties);
 					ALL_ITEMS.add(scEstoc);
 				}else {
-					scEstoc = new ItemRapierHW("scEstoc", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
+					scEstoc = new ItemRapierHW("scEstoc", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyShieldPierce(0.2f));
 					SpartanWeaponryAPI.addItemModelToRegistry(scEstoc, HeroicArmory.MOD_ID, "scEstoc");
 					event.getRegistry().register(scEstoc);
 				}
@@ -1532,8 +1526,14 @@ public class HAItemRegistry {
 					put("enchantability", HAConfig.modifiedItems.scmodified.FireBlade.enchantability);
 					put("rarity", HAConfig.modifiedItems.scmodified.FireBlade.rarity);
 				}};
-				scFireBlade = new HASword("scFireBlade", dummyMaterial, properties);
-				ALL_ITEMS.add(scFireBlade);
+				if (!SupportSpartanWeaponry) {
+					scFireBlade = new HASword("scFireBlade", dummyMaterial, properties);
+					ALL_ITEMS.add(scFireBlade);
+				}else {
+					scFireBlade = new ItemRapierHW("scFireBlade", dummyMaterialEx, properties, new WeaponPropertyShieldPierce(0.2f) );
+					SpartanWeaponryAPI.addItemModelToRegistry(scFireBlade, HeroicArmory.MOD_ID, "scFireBlade");
+					event.getRegistry().register(scFireBlade);
+				}
 			}
 			if (HAConfig.modifiedItems.scmodified.XiSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
@@ -2487,7 +2487,7 @@ public class HAItemRegistry {
 					rsZamorakGodsword = new HASword("rsZamorakGodsword", dummyMaterial, properties);
 					ALL_ITEMS.add(rsZamorakGodsword);
 				}else {
-					rsZamorakGodsword = new ItemGreatswordHW("rsZamorakGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					rsZamorakGodsword = new ItemGreatswordHW("rsZamorakGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyFreeze(6));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsZamorakGodsword, HeroicArmory.MOD_ID, "rsZamorakGodsword");
 					event.getRegistry().register(rsZamorakGodsword);
 				}
@@ -2504,7 +2504,7 @@ public class HAItemRegistry {
 					rsBandosGodsword = new HASword("rsBandosGodsword", dummyMaterial, properties);
 					ALL_ITEMS.add(rsBandosGodsword);
 				}else {
-					rsBandosGodsword = new ItemGreatswordHW("rsBandosGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					rsBandosGodsword = new ItemGreatswordHW("rsBandosGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyArmorDebuff(30));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBandosGodsword, HeroicArmory.MOD_ID, "rsBandosGodsword");
 					event.getRegistry().register(rsBandosGodsword);
 				}
@@ -2521,7 +2521,7 @@ public class HAItemRegistry {
 					rsArmadylGodsword = new HASword("rsArmadylGodsword", dummyMaterial, properties);
 					ALL_ITEMS.add(rsArmadylGodsword);
 				}else {
-					rsArmadylGodsword = new ItemGreatswordHW("rsArmadylGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					rsArmadylGodsword = new ItemGreatswordHW("rsArmadylGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyCritBonus(0.25f));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsArmadylGodsword, HeroicArmory.MOD_ID, "rsArmadylGodsword");
 					event.getRegistry().register(rsArmadylGodsword);
 				}
@@ -2538,7 +2538,7 @@ public class HAItemRegistry {
 					rsSaradominGodsword = new HASword("rsSaradominGodsword", dummyMaterial, properties);
 					ALL_ITEMS.add(rsSaradominGodsword);
 				}else {
-					rsSaradominGodsword = new ItemGreatswordHW("rsSaradominGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					rsSaradominGodsword = new ItemGreatswordHW("rsSaradominGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyLifePercent(20));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSaradominGodsword, HeroicArmory.MOD_ID, "rsSaradominGodsword");
 					event.getRegistry().register(rsSaradominGodsword);
 				}
@@ -2738,7 +2738,7 @@ public class HAItemRegistry {
 					khKeyblade = new HASword("khKeyblade", dummyMaterial, properties);
 					ALL_ITEMS.add(khKeyblade);
 				}else {
-					khKeyblade = new ItemLongswordHW("khKeyblade", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
+					khKeyblade = new ItemCustomKeybladeHW("khKeyblade", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.THROWABLE, WeaponProperties.SWEEP_DAMAGE_HALF, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), WeaponProperties.QUICK_STRIKE);
 					SpartanWeaponryAPI.addItemModelToRegistry(khKeyblade, HeroicArmory.MOD_ID, "khKeyblade");
 					event.getRegistry().register(khKeyblade);
 				}
@@ -2836,21 +2836,21 @@ public class HAItemRegistry {
 					event.getRegistry().register(dsAstoraGreatsword);
 				}
 			}
-			if (HAConfig.modifiedItems.dsmodified.Zweilhander.enabled) {
+			if (HAConfig.modifiedItems.dsmodified.Zweihander.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dsmodified.Zweilhander.damage);
-					put("durability", HAConfig.modifiedItems.dsmodified.Zweilhander.durability);
-					put("speed", HAConfig.modifiedItems.dsmodified.Zweilhander.speed);
-					put("enchantability", HAConfig.modifiedItems.dsmodified.Zweilhander.enchantability);
-					put("rarity", HAConfig.modifiedItems.dsmodified.Zweilhander.rarity);
+					put("attack", HAConfig.modifiedItems.dsmodified.Zweihander.damage);
+					put("durability", HAConfig.modifiedItems.dsmodified.Zweihander.durability);
+					put("speed", HAConfig.modifiedItems.dsmodified.Zweihander.speed);
+					put("enchantability", HAConfig.modifiedItems.dsmodified.Zweihander.enchantability);
+					put("rarity", HAConfig.modifiedItems.dsmodified.Zweihander.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dsZweilhander = new HASword("dsZweilhander", dummyMaterial, properties);
-					ALL_ITEMS.add(dsZweilhander);
+					dsZweihander = new HASword("dsZweihander", dummyMaterial, properties);
+					ALL_ITEMS.add(dsZweihander);
 				}else {
-					dsZweilhander = new ItemGreatswordHW("dsZweilhander", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
-					SpartanWeaponryAPI.addItemModelToRegistry(dsZweilhander, HeroicArmory.MOD_ID, "dsZweilhander");
-					event.getRegistry().register(dsZweilhander);
+					dsZweihander = new ItemGreatswordHW("dsZweihander", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					SpartanWeaponryAPI.addItemModelToRegistry(dsZweihander, HeroicArmory.MOD_ID, "dsZweihander");
+					event.getRegistry().register(dsZweihander);
 				}
 			}
 		}
@@ -2945,7 +2945,7 @@ public class HAItemRegistry {
 					gowLeviathanUpgraded = new HASword("gowLeviathanUpgraded", dummyMaterial, properties);
 					ALL_ITEMS.add(gowLeviathanUpgraded);
 				}else {
-					gowLeviathanUpgraded = new ItemBattleaxeHW("gowLeviathanUpgraded", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.SHIELD_BREACH, new WeaponPropertyFreeze(8));
+					gowLeviathanUpgraded = new ItemBattleaxeHW("gowLeviathanUpgraded", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.SHIELD_BREACH, new WeaponPropertyFreeze(8));
 					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathanUpgraded, HeroicArmory.MOD_ID, "gowLeviathanUpgraded");
 					event.getRegistry().register(gowLeviathanUpgraded);
 				}
@@ -2962,7 +2962,7 @@ public class HAItemRegistry {
 					gowLeviathan = new HASword("gowLeviathan", dummyMaterial, properties);
 					ALL_ITEMS.add(gowLeviathan);
 				}else {
-					gowLeviathan = new ItemBattleaxeHW("gowLeviathan", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL);
+					gowLeviathan = new ItemBattleaxeHW("gowLeviathan", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathan, HeroicArmory.MOD_ID, "gowLeviathan");
 					event.getRegistry().register(gowLeviathan);
 				}
@@ -2996,7 +2996,7 @@ public class HAItemRegistry {
 					gowBladeofChaos = new HASword("gowBladeofChaos", dummyMaterial, properties);
 					ALL_ITEMS.add(gowBladeofChaos);
 				}else {
-					gowBladeofChaos = new ItemThrowingKnifeHW("gowBladeofChaos", dummyMaterialEx, properties, 2, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
+					gowBladeofChaos = new ItemCustomBoomerangHW("gowBladeofChaos", dummyMaterialEx, properties, 2, WeaponProperties.THROWABLE);
 					SpartanWeaponryAPI.addItemModelToRegistry(gowBladeofChaos, HeroicArmory.MOD_ID, "gowBladeofChaos");
 					event.getRegistry().register(gowBladeofChaos);
 				}
@@ -3414,7 +3414,7 @@ public class HAItemRegistry {
 					mhWailingCleaver = new HASword("mhWailingCleaver", dummyMaterial, properties);
 					ALL_ITEMS.add(mhWailingCleaver);
 				}else {
-					mhWailingCleaver = new ItemLongswordHW("mhWailingCleaver", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
+					mhWailingCleaver = new ItemLongswordHW("mhWailingCleaver", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWailingCleaver, HeroicArmory.MOD_ID, "mhWailingCleaver");
 					event.getRegistry().register(mhWailingCleaver);
 				}
@@ -3487,21 +3487,21 @@ public class HAItemRegistry {
 					event.getRegistry().register(mhCentenarianDagger);
 				}
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enabled) {
+			if (HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.rarity);
+					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.damage);
+					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.durability);
+					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.speed);
+					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeBlood = new HASword("mhWyvernBladeBlood", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeBlood);
+					mhWyvernBladeLeaf = new HASword("mhWyvernBladeLeaf", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeLeaf);
 				}else {
-					mhWyvernBladeBlood = new ItemLongswordHW("mhWyvernBladeBlood", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 4, 1));
-					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeBlood, HeroicArmory.MOD_ID, "mhWyvernBladeBlood");
-					event.getRegistry().register(mhWyvernBladeBlood);
+					mhWyvernBladeLeaf = new ItemLongswordHW("mhWyvernBladeLeaf", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 3, 0));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeLeaf, HeroicArmory.MOD_ID, "mhWyvernBladeLeaf");
+					event.getRegistry().register(mhWyvernBladeLeaf);
 				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.enabled) {
@@ -3516,26 +3516,26 @@ public class HAItemRegistry {
 					mhWyvernBladeHolly = new HASword("mhWyvernBladeHolly", dummyMaterial, properties);
 					ALL_ITEMS.add(mhWyvernBladeHolly);
 				}else {
-					mhWyvernBladeHolly = new ItemLongswordHW("mhWyvernBladeHolly", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 8, 3));
+					mhWyvernBladeHolly = new ItemLongswordHW("mhWyvernBladeHolly", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 8, 3));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeHolly, HeroicArmory.MOD_ID, "mhWyvernBladeHolly");
 					event.getRegistry().register(mhWyvernBladeHolly);
 				}
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladePale.enabled) {
+			if (HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladePale.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladePale.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladePale.rarity);
+					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.damage);
+					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.durability);
+					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.speed);
+					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladePale = new HASword("mhWyvernBladePale", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladePale);
+					mhWyvernBladeBlood = new HASword("mhWyvernBladeBlood", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladeBlood);
 				}else {
-					mhWyvernBladePale = new ItemLongswordHW("mhWyvernBladePale", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 10, 4));
-					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladePale, HeroicArmory.MOD_ID, "mhWyvernBladePale");
-					event.getRegistry().register(mhWyvernBladePale);
+					mhWyvernBladeBlood = new ItemLongswordHW("mhWyvernBladeBlood", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(6));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeBlood, HeroicArmory.MOD_ID, "mhWyvernBladeBlood");
+					event.getRegistry().register(mhWyvernBladeBlood);
 				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.enabled) {
@@ -3550,26 +3550,26 @@ public class HAItemRegistry {
 					mhWyvernBladeAzure = new HASword("mhWyvernBladeAzure", dummyMaterial, properties);
 					ALL_ITEMS.add(mhWyvernBladeAzure);
 				}else {
-					mhWyvernBladeAzure = new ItemLongswordHW("mhWyvernBladeAzure", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 6, 2));
+					mhWyvernBladeAzure = new ItemLongswordHW("mhWyvernBladeAzure", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(8));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeAzure, HeroicArmory.MOD_ID, "mhWyvernBladeAzure");
 					event.getRegistry().register(mhWyvernBladeAzure);
 				}
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enabled) {
+			if (HAConfig.modifiedItems.mhmodified.WyvernBladePale.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.rarity);
+					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladePale.damage);
+					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.durability);
+					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladePale.speed);
+					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladePale.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeLeaf = new HASword("mhWyvernBladeLeaf", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeLeaf);
+					mhWyvernBladePale = new HASword("mhWyvernBladePale", dummyMaterial, properties);
+					ALL_ITEMS.add(mhWyvernBladePale);
 				}else {
-					mhWyvernBladeLeaf = new ItemLongswordHW("mhWyvernBladeLeaf", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 3, 0));
-					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeLeaf, HeroicArmory.MOD_ID, "mhWyvernBladeLeaf");
-					event.getRegistry().register(mhWyvernBladeLeaf);
+					mhWyvernBladePale = new ItemLongswordHW("mhWyvernBladePale", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(10));
+					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladePale, HeroicArmory.MOD_ID, "mhWyvernBladePale");
+					event.getRegistry().register(mhWyvernBladePale);
 				}
 			}
 			if (HAConfig.modifiedItems.mhmodified.RathalosFlamesword.enabled) {
@@ -3584,7 +3584,7 @@ public class HAItemRegistry {
 					mhRathalosFlamesword = new HASword("mhRathalosFlamesword", dummyMaterial, properties);
 					ALL_ITEMS.add(mhRathalosFlamesword);
 				}else {
-					mhRathalosFlamesword = new ItemGreatswordHW("mhRathalosFlamesword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(8));
+					mhRathalosFlamesword = new ItemGreatswordHW("mhRathalosFlamesword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(14));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhRathalosFlamesword, HeroicArmory.MOD_ID, "mhRathalosFlamesword");
 					event.getRegistry().register(mhRathalosFlamesword);
 				}
@@ -4472,7 +4472,7 @@ public class HAItemRegistry {
 					nhGrayswandir = new HASword("nhGrayswandir", dummyMaterial, properties);
 					ALL_ITEMS.add(nhGrayswandir);
 				}else {
-					nhGrayswandir = new ItemSaberHW("nhGrayswandir", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
+					nhGrayswandir = new ItemSaberHW("nhGrayswandir", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(nhGrayswandir, HeroicArmory.MOD_ID, "nhGrayswandir");
 					event.getRegistry().register(nhGrayswandir);
 				}

@@ -87,14 +87,14 @@ item.scFirangi.name=Firangi
 item.scCocytus.name=Cocytus
 item.scErlangBlade.name=Erlang's Blade
 item.scSoulEdgeNightmare.name=Soul Edge
-item.scPhlegathon.name=Phlegathon
+item.scPhlegethon.name=Phlegethon
 item.scAcheron.name=Acheron
 item.scLethe.name=Lethe
 item.scQueenGuard.name=Queen's Guard
 item.scHolyAntler.name=Holy Antler
 item.scEpee.name=Epee
 item.scWarHammer.name=War Hammer
-item.scKalutues.name=Kalutues
+item.scKulutues.name=Kulutues
 item.scEstoc.name=Estoc
 item.scFlambert2P.name=Flambert
 item.scReiterpallasch.name=Reiterpallasch
@@ -198,7 +198,7 @@ item.bleachZangetsu.name=Zangetsu
 item.dsGreatswordofArtorias.name=Greatsword of Artorias
 item.dsGreatLordGreatsword.name=Great Lord Greatsword
 item.dsAstoraGreatsword.name=Astora Greatsword
-item.dsZweilhander.name=Zweilhander
+item.dsZweihander.name=Zweihander
 #
 #myth
 item.mythDeathScythe.name=Death's Scythe
@@ -338,13 +338,16 @@ tooltip.heroicarmory:handandahalf=Hand and a Half
 tooltip.heroicarmory:handandahalf.desc=With both hands: +20%% Damage -10%% Speed. With one hand: -10%% Damage, +20%% Speed
 
 tooltip.heroicarmory:elven=Elven
-tooltip.heroicarmory:elven.desc=When held, reveals nearby trolls
+tooltip.heroicarmory:elven.desc=Reveals nearby trolls when held
 
 tooltip.heroicarmory:bonus_living=Living Damage Bonus
 tooltip.heroicarmory:bonus_living.desc=+75%% damage against non-Undead foes
 
 tooltip.heroicarmory:potion=%s %s
 tooltip.heroicarmory:potion.desc=Applies %s %s for %ss on hit
+
+tooltip.heroicarmory:selfpotion=%s %s
+tooltip.heroicarmory:selfpotion.desc=Wielder gains %s %s
 
 tooltip.heroicarmory:randomrepair=Reforged
 tooltip.heroicarmory:randomrepair.desc=75%% chance to gain durability on hit
@@ -364,8 +367,28 @@ tooltip.heroicarmory:detonatedead.desc=Undead explode when killed
 tooltip.heroicarmory:lifeflat=Life on Hit
 tooltip.heroicarmory:lifeflat.desc=Restores %s Health on hit
 
+tooltip.heroicarmory:lifepercent=Life Leech
+tooltip.heroicarmory:lifepercent.desc=Restores %d%% of damage dealt on hit
+
 tooltip.heroicarmory:bonus_dragon=Dragon Damage Bonus
 tooltip.heroicarmory:bonus_dragon.desc=+50%% damage against Dragons
 
 tooltip.heroicarmory:thunder=Thundering
 tooltip.heroicarmory:thunder.desc=When charged, chance to summon lightning on hit. Raise during thunderstorm to charge.
+
+tooltip.heroicarmory:celestial=Celestial
+tooltip.heroicarmory:celestial.desc=Deals more damage the closer to max health you are
+
+tooltip.heroicarmory:shieldpierce=Shield Piercing
+tooltip.heroicarmory:shieldpierce.desc=%d%% of damage inflicted bypasses Shields
+
+tooltip.heroicarmory:armordebuff=War Cleave
+tooltip.heroicarmory:armordebuff.desc=Reduces targets armor by %d%% for %ss
+
+tooltip.heroicarmory:armorbuff=Defense Up
+tooltip.heroicarmory:armorbuff.desc=Increases Armor Toughness by %d%%
+
+tooltip.heroicarmory:critbonus=Critical Damage Bonus
+tooltip.heroicarmory:critbonus.desc=Deal %d%% more damage when landing a critical hit
+
+potion.heroicarmory:armordebuff=Armor Down

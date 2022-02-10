@@ -57,7 +57,6 @@ public class HAConfig {
 
 	public static class InculdeSeries {
 
-		
 		@Name("Include Lord of the Rings")
 		@Comment("Include all Lord of the Rings items from drop tables / creative mode")
 		public boolean lotr = true;
@@ -164,7 +163,6 @@ public class HAConfig {
 	public static final ModifiedItems modifiedItems = new ModifiedItems();
 
 	public static class ModifiedItems {
-
 
 		@Name("Lord of the Rings")
 		public final lotrModified lotrmodified = new lotrModified();
@@ -1470,9 +1468,9 @@ public class HAConfig {
 				public boolean enabled = true;
 			}
 
-			@Name("Phlegathon")
-			public final Phlegathon Phlegathon = new Phlegathon();
-			public static class Phlegathon {
+			@Name("Phlegethon")
+			public final Phlegethon Phlegethon = new Phlegethon();
+			public static class Phlegethon {
 				@Name("Damage")
 				public float damage = 6;
 				@Name("Durability")
@@ -1589,9 +1587,9 @@ public class HAConfig {
 				public boolean enabled = true;
 			}
 
-			@Name("Kalutues")
-			public final Kalutues Kalutues = new Kalutues();
-			public static class Kalutues {
+			@Name("Kulutues")
+			public final Kulutues Kulutues = new Kulutues();
+			public static class Kulutues {
 				@Name("Damage")
 				public float damage = 8;
 				@Name("Durability")
@@ -3125,8 +3123,8 @@ public class HAConfig {
 				public boolean enabled = true;
 			}
 
-			@Name("Zweilhander")
-			public final Zweilhander Zweilhander = new Zweilhander();
+			@Name("Zweihander")
+			public final Zweilhander Zweihander = new Zweilhander();
 			public static class Zweilhander {
 				@Name("Damage")
 				public float damage = 9;

@@ -1,17 +1,17 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "heroicarmory:items/sc/kalutues"
+        "layer0": "heroicarmory:items/ds/zweihander"
     },
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [ 18, 90, 0 ],
-			"translation": [ 0.00, 10.50, -4.50 ],
+			"translation": [ 0.00, 13.75, -5.50 ],
 			"scale": [ 2.00, 2.00, 1.00 ]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [ -340, -90, 0 ],
-			"translation": [ 0.00, 10.50, -4.50 ],
+			"translation": [ 0.00, 13.75, -5.50 ],
 			"scale": [ 2.00, 2.00, 1.00 ]
 		},
 		"firstperson_righthand": {
@@ -26,8 +26,8 @@
 		},
 		"gui": {
 			"rotation": [ 0, 0, 0 ],
-			"translation": [ 0, 0, 0.75 ],
-			"scale": [ 1, 1, 1.00 ]
+			"translation": [ 1.1428571428571423, 1.1428571428571423, 0.75 ],
+			"scale": [ 1.1428571428571428, 1.1428571428571428, 1.00 ]
 		}
 	}
 }

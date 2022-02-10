@@ -1,0 +1,25 @@
+{
+    "parent": "heroicarmory:item/khkeyblade",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [19, 170, -15],
+			"translation": [-11, 2.75, -0.5],
+			"scale": [2, 2, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [18, -10, 15],
+			"translation": [-11, 2.75, -0.5],
+			"scale": [2, 2, 1]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -180, -30],
+			"translation": [-3.75, 2.25, 0.75],
+			"scale": [2, 2, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 0, 30],
+			"translation": [-3.75, 2.25, 0.75],
+			"scale": [2, 2, 1]
+		}
+	}
+}

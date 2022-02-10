@@ -62,9 +62,10 @@ public class WeaponPropertyThunder extends WeaponPropertyWithCallback {
             victim.world.addWeatherEffect(new EntityLightningBolt(attacker.world, pos.getX(), pos.getY(), pos.getZ(), true));
             List<Entity> hitList = attacker.getEntityWorld().getEntitiesInAABBexcluding(attacker, victim.getEntityBoundingBox().grow(2.5,1,2.5), ent -> ent instanceof EntityLivingBase && !ent.isDead && ent.canBeAttackedWithItem());
             for (Entity near : hitList){
-                if (near instanceof EntityLivingBase){
+                if (near instanceof EntityLivingBase && near != victim){
                     near.hurtResistantTime = 0;
                     source.damageType = DamageSource.LIGHTNING_BOLT.getDamageType();
+                    near.attackEntityFrom(source,baseDamage/2f);
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,10*20,1,true,false));
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,10*20,2,true,false));
                     ((EntityLivingBase) near).addPotionEffect(new PotionEffect(MobEffects.NAUSEA,10*20,2,true,false));
