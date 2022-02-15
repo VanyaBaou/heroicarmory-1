@@ -165,7 +165,7 @@ public class HAConfig {
 	public static class ModifiedItems {
 
 		@Name("Lord of the Rings")
-		public final lotrModified lotrmodified = new lotrModified();
+		public final lotrModified lotrModified = new lotrModified();
 		public static class lotrModified {
 
 			@Name("Gimli's Battle Axe")
@@ -323,7 +323,7 @@ public class HAConfig {
 		}
 
 		@Name("Legend of Zelda")
-		public final lozModified lozmodified = new lozModified();
+		public final lozModified lozModified = new lozModified();
 		public static class lozModified {
 
 			@Name("Master Sword")
@@ -889,7 +889,7 @@ public class HAConfig {
 		}
 
 		@Name("Adventure Time")
-		public final atModified atmodified = new atModified();
+		public final atModified atModified = new atModified();
 		public static class atModified {
 
 			@Name("Jake's Sword")
@@ -1098,7 +1098,7 @@ public class HAConfig {
 		}
 
 		@Name("Final Fantasy")
-		public final ffModified ffmodified = new ffModified();
+		public final ffModified ffModified = new ffModified();
 		public static class ffModified {
 
 			@Name("The Masamune")
@@ -1154,7 +1154,7 @@ public class HAConfig {
 		}
 
 		@Name("Realm of the Mad God")
-		public final rotmgModified rotmgmodified = new rotmgModified();
+		public final rotmgModified rotmgModified = new rotmgModified();
 		public static class rotmgModified {
 
 			@Name("Sword of the Colossus")
@@ -1397,7 +1397,7 @@ public class HAConfig {
 		}
 
 		@Name("Soul Calibur")
-		public final scModified scmodified = new scModified();
+		public final scModified scModified = new scModified();
 		public static class scModified {
 
 			@Name("Firangi")
@@ -1895,7 +1895,7 @@ public class HAConfig {
 		}
 
 		@Name("Runescape")
-		public final rsModified rsmodified = new rsModified();
+		public final rsModified rsModified = new rsModified();
 		public static class rsModified {
 
 			@Name("Bronze Sword")
@@ -2818,7 +2818,7 @@ public class HAConfig {
 		}
 
 		@Name("Devil May Cry")
-		public final dmcModified dmcmodified = new dmcModified();
+		public final dmcModified dmcModified = new dmcModified();
 		public static class dmcModified {
 
 			@Name("Red Queen")
@@ -2874,7 +2874,7 @@ public class HAConfig {
 		}
 
 		@Name("Pokemon")
-		public final pkmnModified pkmnmodified = new pkmnModified();
+		public final pkmnModified pkmnModified = new pkmnModified();
 		public static class pkmnModified {
 
 			@Name("Honedge Shiny")
@@ -2913,7 +2913,7 @@ public class HAConfig {
 		}
 
 		@Name("Kirby")
-		public final kirbyModified kirbymodified = new kirbyModified();
+		public final kirbyModified kirbyModified = new kirbyModified();
 		public static class kirbyModified {
 
 			@Name("Galaxia")
@@ -2969,7 +2969,7 @@ public class HAConfig {
 		}
 
 		@Name("Fire Emblem")
-		public final feModified femodified = new feModified();
+		public final feModified feModified = new feModified();
 		public static class feModified {
 
 			@Name("Chrom's Falchion")
@@ -3008,7 +3008,7 @@ public class HAConfig {
 		}
 
 		@Name("Kingdom Hearts")
-		public final khModified khmodified = new khModified();
+		public final khModified khModified = new khModified();
 		public static class khModified {
 
 			@Name("Keyblade")
@@ -3030,7 +3030,7 @@ public class HAConfig {
 		}
 
 		@Name("Bleach")
-		public final bleachModified bleachmodified = new bleachModified();
+		public final bleachModified bleachModified = new bleachModified();
 		public static class bleachModified {
 
 			@Name("Zabimaru")
@@ -3069,7 +3069,7 @@ public class HAConfig {
 		}
 
 		@Name("Dark Souls")
-		public final dsModified dsmodified = new dsModified();
+		public final dsModified dsModified = new dsModified();
 		public static class dsModified {
 
 			@Name("Greatsword of Artorias")
@@ -3142,7 +3142,7 @@ public class HAConfig {
 		}
 
 		@Name("Mythology")
-		public final mythModified mythmodified = new mythModified();
+		public final mythModified mythModified = new mythModified();
 		public static class mythModified {
 
 			@Name("Death's Scythe")
@@ -3181,7 +3181,7 @@ public class HAConfig {
 		}
 
 		@Name("Bayonetta")
-		public final bayonettaModified bayonettamodified = new bayonettaModified();
+		public final bayonettaModified bayonettaModified = new bayonettaModified();
 		public static class bayonettaModified {
 
 			@Name("Shuraba")
@@ -3220,7 +3220,7 @@ public class HAConfig {
 		}
 
 		@Name("God of War")
-		public final gowModified gowmodified = new gowModified();
+		public final gowModified gowModified = new gowModified();
 		public static class gowModified {
 
 			@Name("Leviathan Upgraded")
@@ -3295,7 +3295,7 @@ public class HAConfig {
 		}
 
 		@Name("Skyrim")
-		public final skyrimModified skyrimmodified = new skyrimModified();
+		public final skyrimModified skyrimModified = new skyrimModified();
 		public static class skyrimModified {
 
 			@Name("Iron Sword")
@@ -3691,7 +3691,7 @@ public class HAConfig {
 		}
 
 		@Name("Monster Hunter")
-		public final mhModified mhmodified = new mhModified();
+		public final mhModified mhModified = new mhModified();
 		public static class mhModified {
 
 			@Name("Chicken Decapitator")
@@ -3951,7 +3951,7 @@ public class HAConfig {
 		}
 
 		@Name("Terraria")
-		public final terrariaModified terrariamodified = new terrariaModified();
+		public final terrariaModified terrariaModified = new terrariaModified();
 		public static class terrariaModified {
 
 			@Name("Palm Wood Sword")
@@ -4789,7 +4789,7 @@ public class HAConfig {
 		}
 
 		@Name("Star Wars")
-		public final swModified swmodified = new swModified();
+		public final swModified swModified = new swModified();
 		public static class swModified {
 
 			@Name("Yellow Lightsaber")
@@ -4981,7 +4981,7 @@ public class HAConfig {
 		}
 
 		@Name("Internet")
-		public final internetModified internetmodified = new internetModified();
+		public final internetModified internetModified = new internetModified();
 		public static class internetModified {
 
 			@Name("Demonoid's Pitchfork")
@@ -5003,7 +5003,7 @@ public class HAConfig {
 		}
 
 		@Name("Nethack")
-		public final nhModified nhmodified = new nhModified();
+		public final nhModified nhModified = new nhModified();
 		public static class nhModified {
 
 			@Name("Magicbane")
@@ -5076,7 +5076,7 @@ public class HAConfig {
 		}
 
 		@Name("Merlin (ABC)")
-		public final abcmModified abcmmodified = new abcmModified();
+		public final abcmModified abcmModified = new abcmModified();
 		public static class abcmModified {
 
 			@Name("Excalibur")

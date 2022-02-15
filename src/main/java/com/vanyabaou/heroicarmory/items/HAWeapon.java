@@ -16,14 +16,14 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 
-public class HASword extends ItemSword implements IHeroicItem {
+public class HAWeapon extends ItemSword implements IHeroicItem {
 
 	private final float attackDamage;
 	private final double attackSpeed;
 	private final int enchantability;
 	private final int lootRarity;
 
-	public HASword(String name, ToolMaterial material, HashMap<String,Object> properties) {
+	public HAWeapon(String name, ToolMaterial material, HashMap<String,Object> properties) {
 		super(material);
 		this.setCreativeTab(HAItemRegistry.tabHeroicArmory);
 		this.setRegistryName(name);

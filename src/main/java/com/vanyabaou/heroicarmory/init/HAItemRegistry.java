@@ -9,7 +9,7 @@ import com.vanyabaou.heroicarmory.HeroicArmory;
 import com.vanyabaou.heroicarmory.IHeroicItem;
 import com.vanyabaou.heroicarmory.integration.ItemType.*;
 import com.vanyabaou.heroicarmory.integration.WeaponProperties.*;
-import com.vanyabaou.heroicarmory.items.HASword;
+import com.vanyabaou.heroicarmory.items.HAWeapon;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -152,8 +152,7 @@ public class HAItemRegistry {
 
 
 	static List<Item> ALL_ITEMS = new ArrayList<>();
-
-
+	static List<Item> HEROIC_ITEMS = new ArrayList<>();
 
 	//creative tab
 	public static final CreativeTabs tabHeroicArmory = new CreativeTabs("tabHeroicArmory") {
@@ -176,4344 +175,4415 @@ public class HAItemRegistry {
 
 		//lotr
 		if (HAConfig.includeSeries.lotr) {
-			if (HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.GimliBattleAxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.GimliBattleAxe.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.GimliBattleAxe.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.GimliBattleAxe.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.GimliBattleAxe.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.GimliBattleAxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.GimliBattleAxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrGimliBattleAxe = new HASword("lotrGimliBattleAxe", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrGimliBattleAxe);
+					lotrGimliBattleAxe = new HAWeapon("lotrGimliBattleAxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrGimliBattleAxe);
 				}else{
 					lotrGimliBattleAxe = new ItemBattleaxeHW("lotrGimliBattleAxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrGimliBattleAxe, HeroicArmory.MOD_ID, "lotrGimliBattleAxe");
-					event.getRegistry().register(lotrGimliBattleAxe);
 				}
+				ALL_ITEMS.add(lotrGimliBattleAxe);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.GimliLongAxe.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.GimliLongAxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.GimliLongAxe.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.GimliLongAxe.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.GimliLongAxe.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.GimliLongAxe.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.GimliLongAxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.GimliLongAxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrGimliLongAxe = new HASword("lotrGimliLongAxe", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrGimliLongAxe);
+					lotrGimliLongAxe = new HAWeapon("lotrGimliLongAxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrGimliLongAxe);
 				}else {
 					lotrGimliLongAxe = new ItemBattleaxeHW("lotrGimliLongAxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrGimliLongAxe, HeroicArmory.MOD_ID, "lotrGimliLongAxe");
-					event.getRegistry().register(lotrGimliLongAxe);
 				}
+				ALL_ITEMS.add(lotrGimliLongAxe);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.MorgulBlade.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.MorgulBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.MorgulBlade.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.MorgulBlade.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.MorgulBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.MorgulBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.MorgulBlade.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.MorgulBlade.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.MorgulBlade.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.MorgulBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.MorgulBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.MorgulBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrMorgulBlade = new HASword("lotrMorgulBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrMorgulBlade);
+					lotrMorgulBlade = new HAWeapon("lotrMorgulBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrMorgulBlade);
 				}else {
 					lotrMorgulBlade = new ItemDaggerHW("lotrMorgulBlade", dummyMaterialEx, properties, new WeaponPropertyBonusLiving(), new WeaponPropertyPotion(MobEffects.WITHER.getName(), MobEffects.WITHER, 5, 3), WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrMorgulBlade, HeroicArmory.MOD_ID, "lotrMorgulBlade");
-					event.getRegistry().register(lotrMorgulBlade);
 				}
+				ALL_ITEMS.add(lotrMorgulBlade);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.Sting.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.Sting.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.Sting.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.Sting.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.Sting.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.Sting.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.Sting.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.Sting.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.Sting.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.Sting.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.Sting.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.Sting.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrSting = new HASword("lotrSting", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrSting);
+					lotrSting = new HAWeapon("lotrSting", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrSting);
 				}else {
 					lotrSting = new ItemDaggerHW("lotrSting", dummyMaterialEx, properties, new WeaponPropertyElven(), WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrSting, HeroicArmory.MOD_ID, "lotrSting");
-					event.getRegistry().register(lotrSting);
 				}
+				ALL_ITEMS.add(lotrSting);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.Glamdring.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.Glamdring.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.Glamdring.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.Glamdring.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.Glamdring.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.Glamdring.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.Glamdring.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.Glamdring.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.Glamdring.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.Glamdring.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.Glamdring.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.Glamdring.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrGlamdring = new HASword("lotrGlamdring", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrGlamdring);
+					lotrGlamdring = new HAWeapon("lotrGlamdring", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrGlamdring);
 				}else {
 					lotrGlamdring = new ItemLongswordHW("lotrGlamdring", dummyMaterialEx, properties, new WeaponPropertyElven(), new WeaponPropertyHandAndAHalf());
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrGlamdring, HeroicArmory.MOD_ID, "lotrGlamdring");
-					event.getRegistry().register(lotrGlamdring);
 				}
+				ALL_ITEMS.add(lotrGlamdring);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.Anduril.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.Anduril.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.Anduril.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.Anduril.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.Anduril.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.Anduril.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.Anduril.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.Anduril.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.Anduril.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.Anduril.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.Anduril.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.Anduril.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrAnduril = new HASword("lotrAnduril", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrAnduril);
+					lotrAnduril = new HAWeapon("lotrAnduril", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrAnduril);
 				}else {
 					lotrAnduril = new ItemLongswordHW("lotrAnduril", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 1.75F), new WeaponPropertyRandomRepair());
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrAnduril, HeroicArmory.MOD_ID, "lotrAnduril");
-					event.getRegistry().register(lotrAnduril);
 				}
+				ALL_ITEMS.add(lotrAnduril);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.Narsil.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.Narsil.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.Narsil.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.Narsil.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.Narsil.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.Narsil.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.Narsil.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.Narsil.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.Narsil.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.Narsil.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.Narsil.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.Narsil.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrNarsil = new HASword("lotrNarsil", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrNarsil);
+					lotrNarsil = new HAWeapon("lotrNarsil", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrNarsil);
 				}else {
 					lotrNarsil = new ItemLongswordHW("lotrNarsil", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrNarsil, HeroicArmory.MOD_ID, "lotrNarsil");
-					event.getRegistry().register(lotrNarsil);
 				}
+				ALL_ITEMS.add(lotrNarsil);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.SauronMace.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.SauronMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.SauronMace.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.SauronMace.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.SauronMace.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.SauronMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.SauronMace.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.SauronMace.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.SauronMace.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.SauronMace.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.SauronMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.SauronMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrSauronMace = new HASword("lotrSauronMace", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrSauronMace);
+					lotrSauronMace = new HAWeapon("lotrSauronMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrSauronMace);
 				}else {
 					lotrSauronMace = new ItemGreatswordHW("lotrSauronMace", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.NAUSEA.getName(), MobEffects.NAUSEA, 5, 1));
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrSauronMace, HeroicArmory.MOD_ID, "lotrSauronMace");
-					event.getRegistry().register(lotrSauronMace);
 				}
+				ALL_ITEMS.add(lotrSauronMace);
 			}
-			if (HAConfig.modifiedItems.lotrmodified.WitchKingSword.enabled) {
+			if (HAConfig.modifiedItems.lotrModified.WitchKingSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lotrmodified.WitchKingSword.damage);
-					put("durability", HAConfig.modifiedItems.lotrmodified.WitchKingSword.durability);
-					put("speed", HAConfig.modifiedItems.lotrmodified.WitchKingSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lotrmodified.WitchKingSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lotrmodified.WitchKingSword.rarity);
+					put("attack", HAConfig.modifiedItems.lotrModified.WitchKingSword.damage);
+					put("durability", HAConfig.modifiedItems.lotrModified.WitchKingSword.durability);
+					put("speed", HAConfig.modifiedItems.lotrModified.WitchKingSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lotrModified.WitchKingSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lotrModified.WitchKingSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lotrWitchKingSword = new HASword("lotrWitchKingSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lotrWitchKingSword);
+					lotrWitchKingSword = new HAWeapon("lotrWitchKingSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lotrWitchKingSword);
 				}else {
 					lotrWitchKingSword = new ItemGreatswordHW("lotrWitchKingSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lotrWitchKingSword, HeroicArmory.MOD_ID, "lotrWitchKingSword");
-					event.getRegistry().register(lotrWitchKingSword);
 				}
+				ALL_ITEMS.add(lotrWitchKingSword);
 			}
 		}
-
-//loz
+		//loz
 		if (HAConfig.includeSeries.loz) {
-			if (HAConfig.modifiedItems.lozmodified.MasterSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MasterSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MasterSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MasterSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MasterSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MasterSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MasterSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MasterSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MasterSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MasterSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozMasterSword = new HASword("lozMasterSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozMasterSword);
+					lozMasterSword = new HAWeapon("lozMasterSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozMasterSword);
 				}else {
 					lozMasterSword = new ItemLongswordHW("lozMasterSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSword, HeroicArmory.MOD_ID, "lozMasterSword");
-					event.getRegistry().register(lozMasterSword);
 				}
+				ALL_ITEMS.add(lozMasterSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.MasterSwordII.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MasterSwordII.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MasterSwordII.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MasterSwordII.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MasterSwordII.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSwordII.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSwordII.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MasterSwordII.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MasterSwordII.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MasterSwordII.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MasterSwordII.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MasterSwordII.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozMasterSwordII = new HASword("lozMasterSwordII", dummyMaterial, properties);
-					ALL_ITEMS.add(lozMasterSwordII);
+					lozMasterSwordII = new HAWeapon("lozMasterSwordII", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozMasterSwordII);
 				}else {
 					lozMasterSwordII = new ItemLongswordHW("lozMasterSwordII", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSwordII, HeroicArmory.MOD_ID, "lozMasterSwordII");
-					event.getRegistry().register(lozMasterSwordII);
 				}
+				ALL_ITEMS.add(lozMasterSwordII);
 			}
-			if (HAConfig.modifiedItems.lozmodified.TemperedSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.TemperedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.TemperedSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.TemperedSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.TemperedSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.TemperedSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.TemperedSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.TemperedSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.TemperedSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.TemperedSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.TemperedSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.TemperedSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozTemperedSword = new HASword("lozTemperedSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozTemperedSword);
+					lozTemperedSword = new HAWeapon("lozTemperedSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozTemperedSword);
 				}else {
 					lozTemperedSword = new ItemLongswordHW("lozTemperedSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozTemperedSword, HeroicArmory.MOD_ID, "lozTemperedSword");
-					event.getRegistry().register(lozTemperedSword);
 				}
+				ALL_ITEMS.add(lozTemperedSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.MasterSwordIII.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MasterSwordIII.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MasterSwordIII.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MasterSwordIII.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MasterSwordIII.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MasterSwordIII.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MasterSwordIII.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MasterSwordIII.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MasterSwordIII.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MasterSwordIII.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MasterSwordIII.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MasterSwordIII.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozMasterSwordIII = new HASword("lozMasterSwordIII", dummyMaterial, properties);
-					ALL_ITEMS.add(lozMasterSwordIII);
+					lozMasterSwordIII = new HAWeapon("lozMasterSwordIII", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozMasterSwordIII);
 				}else {
 					lozMasterSwordIII = new ItemLongswordHW("lozMasterSwordIII", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozMasterSwordIII, HeroicArmory.MOD_ID, "lozMasterSwordIII");
-					event.getRegistry().register(lozMasterSwordIII);
 				}
+				ALL_ITEMS.add(lozMasterSwordIII);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GoldenSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GoldenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GoldenSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GoldenSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GoldenSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GoldenSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GoldenSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GoldenSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GoldenSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GoldenSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GoldenSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GoldenSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozGoldenSword = new HASword("lozGoldenSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozGoldenSword);
+					lozGoldenSword = new HAWeapon("lozGoldenSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozGoldenSword);
 				}else {
 					lozGoldenSword = new ItemLongswordHW("lozGoldenSword", dummyMaterialEx, properties, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozGoldenSword, HeroicArmory.MOD_ID, "lozGoldenSword");
-					event.getRegistry().register(lozGoldenSword);
 				}
+				ALL_ITEMS.add(lozGoldenSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.Flameblade.enabled) {
+			if (HAConfig.modifiedItems.lozModified.Flameblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.Flameblade.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.Flameblade.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.Flameblade.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.Flameblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.Flameblade.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.Flameblade.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.Flameblade.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.Flameblade.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.Flameblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.Flameblade.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozFlameblade = new HASword("lozFlameblade", dummyMaterial, properties);
-					ALL_ITEMS.add(lozFlameblade);
+					lozFlameblade = new HAWeapon("lozFlameblade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozFlameblade);
 				}else {
 					lozFlameblade = new ItemLongswordHW("lozFlameblade", dummyMaterialEx, properties, new WeaponPropertyIgnite(4));
 					SpartanWeaponryAPI.addItemModelToRegistry(lozFlameblade, HeroicArmory.MOD_ID, "lozFlameblade");
-					event.getRegistry().register(lozFlameblade);
 				}
+				ALL_ITEMS.add(lozFlameblade);
 			}
-			if (HAConfig.modifiedItems.lozmodified.DarknutSwordTp.enabled) {
+			if (HAConfig.modifiedItems.lozModified.DarknutSwordTp.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.DarknutSwordTp.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.DarknutSwordTp.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.DarknutSwordTp.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.DarknutSwordTp.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.DarknutSwordTp.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.DarknutSwordTp.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozDarknutSwordTp = new HASword("lozDarknutSwordTp", dummyMaterial, properties);
-					ALL_ITEMS.add(lozDarknutSwordTp);
+					lozDarknutSwordTp = new HAWeapon("lozDarknutSwordTp", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozDarknutSwordTp);
 				}else {
 					lozDarknutSwordTp = new ItemGreatswordHW("lozDarknutSwordTp", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozDarknutSwordTp, HeroicArmory.MOD_ID, "lozDarknutSwordTp");
-					event.getRegistry().register(lozDarknutSwordTp);
 				}
+				ALL_ITEMS.add(lozDarknutSwordTp);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GhirahimSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GhirahimSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GhirahimSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GhirahimSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GhirahimSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GhirahimSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GhirahimSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GhirahimSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GhirahimSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GhirahimSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GhirahimSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GhirahimSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozGhirahimSword = new HASword("lozGhirahimSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozGhirahimSword);
+					lozGhirahimSword = new HAWeapon("lozGhirahimSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozGhirahimSword);
 				}else {
 					lozGhirahimSword = new ItemKatanaHW("lozGhirahimSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozGhirahimSword, HeroicArmory.MOD_ID, "lozGhirahimSword");
-					event.getRegistry().register(lozGhirahimSword);
 				}
+				ALL_ITEMS.add(lozGhirahimSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.FierceDeitySword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.FierceDeitySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.FierceDeitySword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.FierceDeitySword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.FierceDeitySword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.FierceDeitySword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.FierceDeitySword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.FierceDeitySword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.FierceDeitySword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.FierceDeitySword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.FierceDeitySword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.FierceDeitySword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozFierceDeitySword = new HASword("lozFierceDeitySword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozFierceDeitySword);
+					lozFierceDeitySword = new HAWeapon("lozFierceDeitySword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozFierceDeitySword);
 				}else {
 					lozFierceDeitySword = new ItemGreatswordHW("lozFierceDeitySword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozFierceDeitySword, HeroicArmory.MOD_ID, "lozFierceDeitySword");
-					event.getRegistry().register(lozFierceDeitySword);
 				}
+				ALL_ITEMS.add(lozFierceDeitySword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.ZeldaSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.ZeldaSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.ZeldaSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.ZeldaSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.ZeldaSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.ZeldaSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.ZeldaSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.ZeldaSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.ZeldaSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.ZeldaSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.ZeldaSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.ZeldaSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozZeldaSword = new HASword("lozZeldaSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozZeldaSword);
+					lozZeldaSword = new HAWeapon("lozZeldaSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozZeldaSword);
 				}else {
 					lozZeldaSword = new ItemRapierHW("lozZeldaSword", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozZeldaSword, HeroicArmory.MOD_ID, "lozZeldaSword");
-					event.getRegistry().register(lozZeldaSword);
 				}
+				ALL_ITEMS.add(lozZeldaSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.BokoStick.enabled) {
+			if (HAConfig.modifiedItems.lozModified.BokoStick.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.BokoStick.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.BokoStick.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.BokoStick.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.BokoStick.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.BokoStick.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.BokoStick.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.BokoStick.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.BokoStick.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.BokoStick.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.BokoStick.rarity);
 				}};
-				lozBokoStick = new HASword("lozBokoStick", dummyMaterial, properties);
+				lozBokoStick = new HAWeapon("lozBokoStick", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozBokoStick);
 				ALL_ITEMS.add(lozBokoStick);
 			}
-			if (HAConfig.modifiedItems.lozmodified.CaneofByrna.enabled) {
+			if (HAConfig.modifiedItems.lozModified.CaneofByrna.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.CaneofByrna.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.CaneofByrna.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.CaneofByrna.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.CaneofByrna.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.CaneofByrna.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.CaneofByrna.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.CaneofByrna.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.CaneofByrna.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.CaneofByrna.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.CaneofByrna.rarity);
 				}};
-				lozCaneofByrna = new HASword("lozCaneofByrna", dummyMaterial, properties);
+				lozCaneofByrna = new HAWeapon("lozCaneofByrna", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozCaneofByrna);
 				ALL_ITEMS.add(lozCaneofByrna);
 			}
-			if (HAConfig.modifiedItems.lozmodified.MegatonHammer.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MegatonHammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MegatonHammer.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MegatonHammer.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MegatonHammer.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MegatonHammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MegatonHammer.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MegatonHammer.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MegatonHammer.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MegatonHammer.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MegatonHammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MegatonHammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozMegatonHammer = new HASword("lozMegatonHammer", dummyMaterial, properties);
-					ALL_ITEMS.add(lozMegatonHammer);
+					lozMegatonHammer = new HAWeapon("lozMegatonHammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozMegatonHammer);
 				}else {
 					lozMegatonHammer = new ItemHammerHW("lozMegatonHammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozMegatonHammer, HeroicArmory.MOD_ID, "lozMegatonHammer");
-					event.getRegistry().register(lozMegatonHammer);
 				}
+				ALL_ITEMS.add(lozMegatonHammer);
 			}
-			if (HAConfig.modifiedItems.lozmodified.KokiriSwordMm.enabled) {
+			if (HAConfig.modifiedItems.lozModified.KokiriSwordMm.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.KokiriSwordMm.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.KokiriSwordMm.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.KokiriSwordMm.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.KokiriSwordMm.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.KokiriSwordMm.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.KokiriSwordMm.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.KokiriSwordMm.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.KokiriSwordMm.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.KokiriSwordMm.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.KokiriSwordMm.rarity);
 				}};
-				lozKokiriSwordMm = new HASword("lozKokiriSwordMm", dummyMaterial, properties);
+				lozKokiriSwordMm = new HAWeapon("lozKokiriSwordMm", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozKokiriSwordMm);
 				ALL_ITEMS.add(lozKokiriSwordMm);
 			}
-			if (HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.enabled) {
+			if (HAConfig.modifiedItems.lozModified.KokiriSwordOoT.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.KokiriSwordOoT.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.KokiriSwordOoT.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.KokiriSwordOoT.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.KokiriSwordOoT.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.KokiriSwordOoT.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.KokiriSwordOoT.rarity);
 				}};
-				lozKokiriSwordOoT = new HASword("lozKokiriSwordOoT", dummyMaterial, properties);
+				lozKokiriSwordOoT = new HAWeapon("lozKokiriSwordOoT", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozKokiriSwordOoT);
 				ALL_ITEMS.add(lozKokiriSwordOoT);
 			}
-			if (HAConfig.modifiedItems.lozmodified.DemiseSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.DemiseSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.DemiseSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.DemiseSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.DemiseSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.DemiseSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.DemiseSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.DemiseSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.DemiseSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.DemiseSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.DemiseSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.DemiseSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozDemiseSword = new HASword("lozDemiseSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozDemiseSword);
+					lozDemiseSword = new HAWeapon("lozDemiseSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozDemiseSword);
 				}else {
 					lozDemiseSword = new ItemParryingDaggerHW("lozDemiseSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.BLOCK_MELEE, new WeaponPropertyThunder());
 					SpartanWeaponryAPI.addItemModelToRegistry(lozDemiseSword, HeroicArmory.MOD_ID, "lozDemiseSword");
-					event.getRegistry().register(lozDemiseSword);
 				}
+				ALL_ITEMS.add(lozDemiseSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GiantKnife.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GiantKnife.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GiantKnife.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GiantKnife.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GiantKnife.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GiantKnife.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GiantKnife.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GiantKnife.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GiantKnife.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GiantKnife.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GiantKnife.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GiantKnife.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozGiantKnife = new HASword("lozGiantKnife", dummyMaterial, properties);
-					ALL_ITEMS.add(lozGiantKnife);
+					lozGiantKnife = new HAWeapon("lozGiantKnife", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozGiantKnife);
 				}else {
 					lozGiantKnife = new ItemGreatswordHW("lozGiantKnife", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozGiantKnife, HeroicArmory.MOD_ID, "lozGiantKnife");
-					event.getRegistry().register(lozGiantKnife);
 				}
+				ALL_ITEMS.add(lozGiantKnife);
 			}
-			if (HAConfig.modifiedItems.lozmodified.BiggoronSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.BiggoronSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.BiggoronSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.BiggoronSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.BiggoronSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.BiggoronSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.BiggoronSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.BiggoronSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.BiggoronSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.BiggoronSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.BiggoronSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.BiggoronSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozBiggoronSword = new HASword("lozBiggoronSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozBiggoronSword);
+					lozBiggoronSword = new HAWeapon("lozBiggoronSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozBiggoronSword);
 				}else {
 					lozBiggoronSword = new ItemGreatswordHW("lozBiggoronSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozBiggoronSword, HeroicArmory.MOD_ID, "lozBiggoronSword");
-					event.getRegistry().register(lozBiggoronSword);
 				}
+				ALL_ITEMS.add(lozBiggoronSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.PhantomGanonSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.PhantomGanonSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.PhantomGanonSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.PhantomGanonSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.PhantomGanonSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.PhantomGanonSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.PhantomGanonSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.PhantomGanonSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozPhantomGanonSword = new HASword("lozPhantomGanonSword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozPhantomGanonSword);
+					lozPhantomGanonSword = new HAWeapon("lozPhantomGanonSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozPhantomGanonSword);
 				}else {
 					lozPhantomGanonSword = new ItemGreatswordHW("lozPhantomGanonSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozPhantomGanonSword, HeroicArmory.MOD_ID, "lozPhantomGanonSword");
-					event.getRegistry().register(lozPhantomGanonSword);
 				}
+				ALL_ITEMS.add(lozPhantomGanonSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.UltimateSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.UltimateSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.UltimateSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.UltimateSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.UltimateSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.UltimateSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.UltimateSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.UltimateSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.UltimateSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.UltimateSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.UltimateSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.UltimateSword.rarity);
 				}};
-				lozUltimateSword = new HASword("lozUltimateSword", dummyMaterial, properties);
+				lozUltimateSword = new HAWeapon("lozUltimateSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozUltimateSword);
 				ALL_ITEMS.add(lozUltimateSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.RoyalGuardSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.RoyalGuardSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.RoyalGuardSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.RoyalGuardSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.RoyalGuardSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.RoyalGuardSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.RoyalGuardSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.RoyalGuardSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.RoyalGuardSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.RoyalGuardSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.RoyalGuardSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.RoyalGuardSword.rarity);
 				}};
-				lozRoyalGuardSword = new HASword("lozRoyalGuardSword", dummyMaterial, properties);
+				lozRoyalGuardSword = new HAWeapon("lozRoyalGuardSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozRoyalGuardSword);
 				ALL_ITEMS.add(lozRoyalGuardSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.MagicSwordConcept.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MagicSwordConcept.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MagicSwordConcept.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MagicSwordConcept.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MagicSwordConcept.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MagicSwordConcept.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MagicSwordConcept.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MagicSwordConcept.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MagicSwordConcept.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MagicSwordConcept.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MagicSwordConcept.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MagicSwordConcept.rarity);
 				}};
-				lozMagicSwordConcept = new HASword("lozMagicSwordConcept", dummyMaterial, properties);
+				lozMagicSwordConcept = new HAWeapon("lozMagicSwordConcept", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozMagicSwordConcept);
 				ALL_ITEMS.add(lozMagicSwordConcept);
 			}
-			if (HAConfig.modifiedItems.lozmodified.MagicSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.MagicSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.MagicSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.MagicSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.MagicSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.MagicSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.MagicSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.MagicSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.MagicSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.MagicSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.MagicSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.MagicSword.rarity);
 				}};
-				lozMagicSword = new HASword("lozMagicSword", dummyMaterial, properties);
+				lozMagicSword = new HAWeapon("lozMagicSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozMagicSword);
 				ALL_ITEMS.add(lozMagicSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.WhiteSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.WhiteSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.WhiteSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.WhiteSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.WhiteSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.WhiteSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.WhiteSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.WhiteSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.WhiteSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.WhiteSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.WhiteSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.WhiteSword.rarity);
 				}};
-				lozWhiteSword = new HASword("lozWhiteSword", dummyMaterial, properties);
+				lozWhiteSword = new HAWeapon("lozWhiteSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozWhiteSword);
 				ALL_ITEMS.add(lozWhiteSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.enabled) {
+			if (HAConfig.modifiedItems.lozModified.WhiteSwordConcept.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.WhiteSwordConcept.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.WhiteSwordConcept.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.WhiteSwordConcept.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.WhiteSwordConcept.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.WhiteSwordConcept.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.WhiteSwordConcept.rarity);
 				}};
-				lozWhiteSwordConcept = new HASword("lozWhiteSwordConcept", dummyMaterial, properties);
+				lozWhiteSwordConcept = new HAWeapon("lozWhiteSwordConcept", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozWhiteSwordConcept);
 				ALL_ITEMS.add(lozWhiteSwordConcept);
 			}
-			if (HAConfig.modifiedItems.lozmodified.PicoriBlade.enabled) {
+			if (HAConfig.modifiedItems.lozModified.PicoriBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.PicoriBlade.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.PicoriBlade.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.PicoriBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.PicoriBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.PicoriBlade.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.PicoriBlade.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.PicoriBlade.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.PicoriBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.PicoriBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.PicoriBlade.rarity);
 				}};
-				lozPicoriBlade = new HASword("lozPicoriBlade", dummyMaterial, properties);
+				lozPicoriBlade = new HAWeapon("lozPicoriBlade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozPicoriBlade);
 				ALL_ITEMS.add(lozPicoriBlade);
 			}
-			if (HAConfig.modifiedItems.lozmodified.RazorSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.RazorSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.RazorSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.RazorSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.RazorSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.RazorSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.RazorSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.RazorSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.RazorSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.RazorSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.RazorSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.RazorSword.rarity);
 				}};
-				lozRazorSword = new HASword("lozRazorSword", dummyMaterial, properties);
+				lozRazorSword = new HAWeapon("lozRazorSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozRazorSword);
 				ALL_ITEMS.add(lozRazorSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GreatFairySword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GreatFairySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GreatFairySword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GreatFairySword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GreatFairySword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GreatFairySword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GreatFairySword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GreatFairySword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GreatFairySword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GreatFairySword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GreatFairySword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GreatFairySword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozGreatFairySword = new HASword("lozGreatFairySword", dummyMaterial, properties);
-					ALL_ITEMS.add(lozGreatFairySword);
+					lozGreatFairySword = new HAWeapon("lozGreatFairySword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozGreatFairySword);
 				}else {
 					lozGreatFairySword = new ItemGreatswordHW("lozGreatFairySword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozGreatFairySword, HeroicArmory.MOD_ID, "lozGreatFairySword");
-					event.getRegistry().register(lozGreatFairySword);
 				}
+				ALL_ITEMS.add(lozGreatFairySword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GoddessWhiteSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GoddessWhiteSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GoddessWhiteSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GoddessWhiteSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GoddessWhiteSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GoddessWhiteSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GoddessWhiteSword.rarity);
 				}};
-				lozGoddessWhiteSword = new HASword("lozGoddessWhiteSword", dummyMaterial, properties);
+				lozGoddessWhiteSword = new HAWeapon("lozGoddessWhiteSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozGoddessWhiteSword);
 				ALL_ITEMS.add(lozGoddessWhiteSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GoddessSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GoddessSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GoddessSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GoddessSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GoddessSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GoddessSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GoddessSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GoddessSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GoddessSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GoddessSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GoddessSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GoddessSword.rarity);
 				}};
-				lozGoddessSword = new HASword("lozGoddessSword", dummyMaterial, properties);
+				lozGoddessSword = new HAWeapon("lozGoddessSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozGoddessSword);
 				ALL_ITEMS.add(lozGoddessSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.GildedSword.enabled) {
+			if (HAConfig.modifiedItems.lozModified.GildedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.GildedSword.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.GildedSword.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.GildedSword.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.GildedSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.GildedSword.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.GildedSword.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.GildedSword.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.GildedSword.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.GildedSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.GildedSword.rarity);
 				}};
-				lozGildedSword = new HASword("lozGildedSword", dummyMaterial, properties);
+				lozGildedSword = new HAWeapon("lozGildedSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(lozGildedSword);
 				ALL_ITEMS.add(lozGildedSword);
 			}
-			if (HAConfig.modifiedItems.lozmodified.SpikedBokoClub.enabled) {
+			if (HAConfig.modifiedItems.lozModified.SpikedBokoClub.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.SpikedBokoClub.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.SpikedBokoClub.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.SpikedBokoClub.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.SpikedBokoClub.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.SpikedBokoClub.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.SpikedBokoClub.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozSpikedBokoClub = new HASword("lozSpikedBokoClub", dummyMaterial, properties);
-					ALL_ITEMS.add(lozSpikedBokoClub);
+					lozSpikedBokoClub = new HAWeapon("lozSpikedBokoClub", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozSpikedBokoClub);
 				}else {
 					lozSpikedBokoClub = new ItemClubHW("lozSpikedBokoClub", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozSpikedBokoClub, HeroicArmory.MOD_ID, "lozSpikedBokoClub");
-					event.getRegistry().register(lozSpikedBokoClub);
 				}
+				ALL_ITEMS.add(lozSpikedBokoClub);
 			}
-			if (HAConfig.modifiedItems.lozmodified.BokoClub.enabled) {
+			if (HAConfig.modifiedItems.lozModified.BokoClub.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.lozmodified.BokoClub.damage);
-					put("durability", HAConfig.modifiedItems.lozmodified.BokoClub.durability);
-					put("speed", HAConfig.modifiedItems.lozmodified.BokoClub.speed);
-					put("enchantability", HAConfig.modifiedItems.lozmodified.BokoClub.enchantability);
-					put("rarity", HAConfig.modifiedItems.lozmodified.BokoClub.rarity);
+					put("attack", HAConfig.modifiedItems.lozModified.BokoClub.damage);
+					put("durability", HAConfig.modifiedItems.lozModified.BokoClub.durability);
+					put("speed", HAConfig.modifiedItems.lozModified.BokoClub.speed);
+					put("enchantability", HAConfig.modifiedItems.lozModified.BokoClub.enchantability);
+					put("rarity", HAConfig.modifiedItems.lozModified.BokoClub.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					lozBokoClub = new HASword("lozBokoClub", dummyMaterial, properties);
-					ALL_ITEMS.add(lozBokoClub);
+					lozBokoClub = new HAWeapon("lozBokoClub", dummyMaterial, properties);
+					HEROIC_ITEMS.add(lozBokoClub);
 				}else {
 					lozBokoClub = new ItemClubHW("lozBokoClub", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(lozBokoClub, HeroicArmory.MOD_ID, "lozBokoClub");
-					event.getRegistry().register(lozBokoClub);
 				}
+				ALL_ITEMS.add(lozBokoClub);
 			}
 		}
-
-//at
+		//at
 		if (HAConfig.includeSeries.at) {
-			if (HAConfig.modifiedItems.atmodified.JakeSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.JakeSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.JakeSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.JakeSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.JakeSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.JakeSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.JakeSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.JakeSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.JakeSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.JakeSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.JakeSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.JakeSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atJakeSword = new HASword("atJakeSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atJakeSword);
+					atJakeSword = new HAWeapon("atJakeSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atJakeSword);
 				}else {
 					atJakeSword = new ItemLongswordHW("atJakeSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atJakeSword, HeroicArmory.MOD_ID, "atJakeSword");
-					event.getRegistry().register(atJakeSword);
 				}
+				ALL_ITEMS.add(atJakeSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.CrystalSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.CrystalSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.CrystalSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.CrystalSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.CrystalSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.CrystalSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.CrystalSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.CrystalSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.CrystalSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.CrystalSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.CrystalSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.CrystalSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atCrystalSword = new HASword("atCrystalSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atCrystalSword);
+					atCrystalSword = new HAWeapon("atCrystalSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atCrystalSword);
 				}else {
 					atCrystalSword = new ItemLongswordHW("atCrystalSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atCrystalSword, HeroicArmory.MOD_ID, "atCrystalSword");
-					event.getRegistry().register(atCrystalSword);
 				}
+				ALL_ITEMS.add(atCrystalSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.Nothung.enabled) {
+			if (HAConfig.modifiedItems.atModified.Nothung.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.Nothung.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.Nothung.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.Nothung.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.Nothung.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.Nothung.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.Nothung.damage);
+					put("durability", HAConfig.modifiedItems.atModified.Nothung.durability);
+					put("speed", HAConfig.modifiedItems.atModified.Nothung.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.Nothung.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.Nothung.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atNothung = new HASword("atNothung", dummyMaterial, properties);
-					ALL_ITEMS.add(atNothung);
+					atNothung = new HAWeapon("atNothung", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atNothung);
 				}else {
 					atNothung = new ItemLongswordHW("atNothung", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atNothung, HeroicArmory.MOD_ID, "atNothung");
-					event.getRegistry().register(atNothung);
 				}
+				ALL_ITEMS.add(atNothung);
 			}
-			if (HAConfig.modifiedItems.atmodified.FinnSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.FinnSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.FinnSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.FinnSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.FinnSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.FinnSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.FinnSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.FinnSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.FinnSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.FinnSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.FinnSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.FinnSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atFinnSword = new HASword("atFinnSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atFinnSword);
+					atFinnSword = new HAWeapon("atFinnSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atFinnSword);
 				}else {
 					atFinnSword = new ItemLongswordHW("atFinnSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atFinnSword, HeroicArmory.MOD_ID, "atFinnSword");
-					event.getRegistry().register(atFinnSword);
 				}
+				ALL_ITEMS.add(atFinnSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.SwordoftheDead.enabled) {
+			if (HAConfig.modifiedItems.atModified.SwordoftheDead.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.SwordoftheDead.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.SwordoftheDead.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.SwordoftheDead.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.SwordoftheDead.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.SwordoftheDead.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.SwordoftheDead.damage);
+					put("durability", HAConfig.modifiedItems.atModified.SwordoftheDead.durability);
+					put("speed", HAConfig.modifiedItems.atModified.SwordoftheDead.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.SwordoftheDead.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.SwordoftheDead.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atSwordoftheDead = new HASword("atSwordoftheDead", dummyMaterial, properties);
-					ALL_ITEMS.add(atSwordoftheDead);
+					atSwordoftheDead = new HAWeapon("atSwordoftheDead", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atSwordoftheDead);
 				}else {
 					atSwordoftheDead = new ItemLongswordHW("atSwordoftheDead", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atSwordoftheDead, HeroicArmory.MOD_ID, "atSwordoftheDead");
-					event.getRegistry().register(atSwordoftheDead);
 				}
+				ALL_ITEMS.add(atSwordoftheDead);
 			}
-			if (HAConfig.modifiedItems.atmodified.WishStarSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.WishStarSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.WishStarSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.WishStarSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.WishStarSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.WishStarSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.WishStarSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.WishStarSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.WishStarSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.WishStarSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.WishStarSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.WishStarSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atWishStarSword = new HASword("atWishStarSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atWishStarSword);
+					atWishStarSword = new HAWeapon("atWishStarSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atWishStarSword);
 				}else {
 					atWishStarSword = new ItemLongswordHW("atWishStarSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(atWishStarSword, HeroicArmory.MOD_ID, "atWishStarSword");
-					event.getRegistry().register(atWishStarSword);
 				}
+				ALL_ITEMS.add(atWishStarSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.FightKingSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.FightKingSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.FightKingSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.FightKingSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.FightKingSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.FightKingSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.FightKingSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.FightKingSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.FightKingSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.FightKingSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.FightKingSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.FightKingSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atFightKingSword = new HASword("atFightKingSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atFightKingSword);
+					atFightKingSword = new HAWeapon("atFightKingSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atFightKingSword);
 				}else {
 					atFightKingSword = new ItemGreatswordHW("atFightKingSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.THROWABLE);
 					SpartanWeaponryAPI.addItemModelToRegistry(atFightKingSword, HeroicArmory.MOD_ID, "atFightKingSword");
-					event.getRegistry().register(atFightKingSword);
 				}
+				ALL_ITEMS.add(atFightKingSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.RootSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.RootSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.RootSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.RootSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.RootSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.RootSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.RootSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.RootSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.RootSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.RootSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.RootSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.RootSword.rarity);
 				}};
-				atRootSword = new HASword("atRootSword", dummyMaterial, properties);
+				atRootSword = new HAWeapon("atRootSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(atRootSword);
 				ALL_ITEMS.add(atRootSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.Scarlet.enabled) {
+			if (HAConfig.modifiedItems.atModified.Scarlet.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.Scarlet.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.Scarlet.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.Scarlet.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.Scarlet.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.Scarlet.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.Scarlet.damage);
+					put("durability", HAConfig.modifiedItems.atModified.Scarlet.durability);
+					put("speed", HAConfig.modifiedItems.atModified.Scarlet.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.Scarlet.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.Scarlet.rarity);
 				}};
-				atScarlet = new HASword("atScarlet", dummyMaterial, properties);
+				atScarlet = new HAWeapon("atScarlet", dummyMaterial, properties);
+				HEROIC_ITEMS.add(atScarlet);
 				ALL_ITEMS.add(atScarlet);
 			}
-			if (HAConfig.modifiedItems.atmodified.GrassSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.GrassSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.GrassSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.GrassSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.GrassSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.GrassSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.GrassSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.GrassSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.GrassSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.GrassSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.GrassSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.GrassSword.rarity);
 				}};
-				atGrassSword = new HASword("atGrassSword", dummyMaterial, properties);
+				atGrassSword = new HAWeapon("atGrassSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(atGrassSword);
 				ALL_ITEMS.add(atGrassSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.DemonBloodSword.enabled) {
+			if (HAConfig.modifiedItems.atModified.DemonBloodSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.DemonBloodSword.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.DemonBloodSword.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.DemonBloodSword.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.DemonBloodSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.DemonBloodSword.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.DemonBloodSword.damage);
+					put("durability", HAConfig.modifiedItems.atModified.DemonBloodSword.durability);
+					put("speed", HAConfig.modifiedItems.atModified.DemonBloodSword.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.DemonBloodSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.DemonBloodSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atDemonBloodSword = new HASword("atDemonBloodSword", dummyMaterial, properties);
-					ALL_ITEMS.add(atDemonBloodSword);
+					atDemonBloodSword = new HAWeapon("atDemonBloodSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atDemonBloodSword);
 				}else {
 					atDemonBloodSword = new ItemGreatswordHW("atDemonBloodSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(atDemonBloodSword, HeroicArmory.MOD_ID, "atDemonBloodSword");
-					event.getRegistry().register(atDemonBloodSword);
 				}
+				ALL_ITEMS.add(atDemonBloodSword);
 			}
-			if (HAConfig.modifiedItems.atmodified.AxeBass.enabled) {
+			if (HAConfig.modifiedItems.atModified.AxeBass.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.atmodified.AxeBass.damage);
-					put("durability", HAConfig.modifiedItems.atmodified.AxeBass.durability);
-					put("speed", HAConfig.modifiedItems.atmodified.AxeBass.speed);
-					put("enchantability", HAConfig.modifiedItems.atmodified.AxeBass.enchantability);
-					put("rarity", HAConfig.modifiedItems.atmodified.AxeBass.rarity);
+					put("attack", HAConfig.modifiedItems.atModified.AxeBass.damage);
+					put("durability", HAConfig.modifiedItems.atModified.AxeBass.durability);
+					put("speed", HAConfig.modifiedItems.atModified.AxeBass.speed);
+					put("enchantability", HAConfig.modifiedItems.atModified.AxeBass.enchantability);
+					put("rarity", HAConfig.modifiedItems.atModified.AxeBass.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					atAxeBass = new HASword("atAxeBass", dummyMaterial, properties);
-					ALL_ITEMS.add(atAxeBass);
+					atAxeBass = new HAWeapon("atAxeBass", dummyMaterial, properties);
+					HEROIC_ITEMS.add(atAxeBass);
 				}else {
 					atAxeBass = new ItemBattleaxeHW("atAxeBass", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(atAxeBass, HeroicArmory.MOD_ID, "atAxeBass");
-					event.getRegistry().register(atAxeBass);
 				}
+				ALL_ITEMS.add(atAxeBass);
 			}
 		}
-
-//ff
+		//ff
 		if (HAConfig.includeSeries.ff) {
-			if (HAConfig.modifiedItems.ffmodified.TheMasamune.enabled) {
+			if (HAConfig.modifiedItems.ffModified.TheMasamune.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.ffmodified.TheMasamune.damage);
-					put("durability", HAConfig.modifiedItems.ffmodified.TheMasamune.durability);
-					put("speed", HAConfig.modifiedItems.ffmodified.TheMasamune.speed);
-					put("enchantability", HAConfig.modifiedItems.ffmodified.TheMasamune.enchantability);
-					put("rarity", HAConfig.modifiedItems.ffmodified.TheMasamune.rarity);
+					put("attack", HAConfig.modifiedItems.ffModified.TheMasamune.damage);
+					put("durability", HAConfig.modifiedItems.ffModified.TheMasamune.durability);
+					put("speed", HAConfig.modifiedItems.ffModified.TheMasamune.speed);
+					put("enchantability", HAConfig.modifiedItems.ffModified.TheMasamune.enchantability);
+					put("rarity", HAConfig.modifiedItems.ffModified.TheMasamune.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					ffTheMasamune = new HASword("ffTheMasamune", dummyMaterial, properties);
-					ALL_ITEMS.add(ffTheMasamune);
+					ffTheMasamune = new HAWeapon("ffTheMasamune", dummyMaterial, properties);
+					HEROIC_ITEMS.add(ffTheMasamune);
 				}else {
 					ffTheMasamune = new ItemKatanaHW("ffTheMasamune", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL , WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(ffTheMasamune, HeroicArmory.MOD_ID, "ffTheMasamune");
-					event.getRegistry().register(ffTheMasamune);
 				}
+				ALL_ITEMS.add(ffTheMasamune);
 			}
-			if (HAConfig.modifiedItems.ffmodified.BusterSword.enabled) {
+			if (HAConfig.modifiedItems.ffModified.BusterSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.ffmodified.BusterSword.damage);
-					put("durability", HAConfig.modifiedItems.ffmodified.BusterSword.durability);
-					put("speed", HAConfig.modifiedItems.ffmodified.BusterSword.speed);
-					put("enchantability", HAConfig.modifiedItems.ffmodified.BusterSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.ffmodified.BusterSword.rarity);
+					put("attack", HAConfig.modifiedItems.ffModified.BusterSword.damage);
+					put("durability", HAConfig.modifiedItems.ffModified.BusterSword.durability);
+					put("speed", HAConfig.modifiedItems.ffModified.BusterSword.speed);
+					put("enchantability", HAConfig.modifiedItems.ffModified.BusterSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.ffModified.BusterSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					ffBusterSword = new HASword("ffBusterSword", dummyMaterial, properties);
-					ALL_ITEMS.add(ffBusterSword);
+					ffBusterSword = new HAWeapon("ffBusterSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(ffBusterSword);
 				}else {
 					ffBusterSword = new ItemGreatswordHW("ffBusterSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(ffBusterSword, HeroicArmory.MOD_ID, "ffBusterSword");
-					event.getRegistry().register(ffBusterSword);
 				}
+				ALL_ITEMS.add(ffBusterSword);
 			}
-			if (HAConfig.modifiedItems.ffmodified.Caladbolg.enabled) {
+			if (HAConfig.modifiedItems.ffModified.Caladbolg.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.ffmodified.Caladbolg.damage);
-					put("durability", HAConfig.modifiedItems.ffmodified.Caladbolg.durability);
-					put("speed", HAConfig.modifiedItems.ffmodified.Caladbolg.speed);
-					put("enchantability", HAConfig.modifiedItems.ffmodified.Caladbolg.enchantability);
-					put("rarity", HAConfig.modifiedItems.ffmodified.Caladbolg.rarity);
+					put("attack", HAConfig.modifiedItems.ffModified.Caladbolg.damage);
+					put("durability", HAConfig.modifiedItems.ffModified.Caladbolg.durability);
+					put("speed", HAConfig.modifiedItems.ffModified.Caladbolg.speed);
+					put("enchantability", HAConfig.modifiedItems.ffModified.Caladbolg.enchantability);
+					put("rarity", HAConfig.modifiedItems.ffModified.Caladbolg.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					ffCaladbolg = new HASword("ffCaladbolg", dummyMaterial, properties);
-					ALL_ITEMS.add(ffCaladbolg);
+					ffCaladbolg = new HAWeapon("ffCaladbolg", dummyMaterial, properties);
+					HEROIC_ITEMS.add(ffCaladbolg);
 				}else {
 					ffCaladbolg = new ItemGreatswordHW("ffCaladbolg", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyCelestial());
 					SpartanWeaponryAPI.addItemModelToRegistry(ffCaladbolg, HeroicArmory.MOD_ID, "ffCaladbolg");
-					event.getRegistry().register(ffCaladbolg);
 				}
+				ALL_ITEMS.add(ffCaladbolg);
 			}
 		}
-
-//rotmg
+		//rotmg
 		if (HAConfig.includeSeries.rotmg) {
-			if (HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.SwordoftheColossus.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.SwordoftheColossus.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					rotmgSwordoftheColossus = new HASword("rotmgSwordoftheColossus", dummyMaterial, properties);
-					ALL_ITEMS.add(rotmgSwordoftheColossus);
+					rotmgSwordoftheColossus = new HAWeapon("rotmgSwordoftheColossus", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rotmgSwordoftheColossus);
 				}else {
 					rotmgSwordoftheColossus = new ItemGreatswordHW("rotmgSwordoftheColossus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(rotmgSwordoftheColossus, HeroicArmory.MOD_ID, "rotmgSwordoftheColossus");
-					event.getRegistry().register(rotmgSwordoftheColossus);
 				}
+				ALL_ITEMS.add(rotmgSwordoftheColossus);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.CrystalSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.CrystalSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.CrystalSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.CrystalSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.CrystalSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.CrystalSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.CrystalSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.CrystalSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.CrystalSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.CrystalSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.CrystalSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.CrystalSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					rotmgCrystalSword = new HASword("rotmgCrystalSword", dummyMaterial, properties);
-					ALL_ITEMS.add(rotmgCrystalSword);
+					rotmgCrystalSword = new HAWeapon("rotmgCrystalSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rotmgCrystalSword);
 				}else {
 					rotmgCrystalSword = new ItemLongswordHW("rotmgCrystalSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(rotmgCrystalSword, HeroicArmory.MOD_ID, "rotmgCrystalSword");
-					event.getRegistry().register(rotmgCrystalSword);
 				}
+				ALL_ITEMS.add(rotmgCrystalSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.PixieEnchantedSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.PixieEnchantedSword.rarity);
 				}};
-				rotmgPixieEnchantedSword = new HASword("rotmgPixieEnchantedSword", dummyMaterial, properties);
+				rotmgPixieEnchantedSword = new HAWeapon("rotmgPixieEnchantedSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgPixieEnchantedSword);
 				ALL_ITEMS.add(rotmgPixieEnchantedSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.SwordOfAcclaim.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.SwordOfAcclaim.rarity);
 				}};
-				rotmgSwordOfAcclaim = new HASword("rotmgSwordOfAcclaim", dummyMaterial, properties);
+				rotmgSwordOfAcclaim = new HAWeapon("rotmgSwordOfAcclaim", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgSwordOfAcclaim);
 				ALL_ITEMS.add(rotmgSwordOfAcclaim);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.DemonBlade.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.DemonBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.DemonBlade.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.DemonBlade.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.DemonBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.DemonBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.DemonBlade.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.DemonBlade.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.DemonBlade.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.DemonBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.DemonBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.DemonBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					rotmgDemonBlade = new HASword("rotmgDemonBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(rotmgDemonBlade);
+					rotmgDemonBlade = new HAWeapon("rotmgDemonBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rotmgDemonBlade);
 				}else {
 					rotmgDemonBlade = new ItemGreatswordHW("rotmgDemonBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(rotmgDemonBlade, HeroicArmory.MOD_ID, "rotmgDemonBlade");
-					event.getRegistry().register(rotmgDemonBlade);
 				}
+				ALL_ITEMS.add(rotmgDemonBlade);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.SwordoftheMadGod.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.SwordoftheMadGod.rarity);
 				}};
-				rotmgSwordoftheMadGod = new HASword("rotmgSwordoftheMadGod", dummyMaterial, properties);
+				rotmgSwordoftheMadGod = new HAWeapon("rotmgSwordoftheMadGod", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgSwordoftheMadGod);
 				ALL_ITEMS.add(rotmgSwordoftheMadGod);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.Indomptable.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.Indomptable.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.Indomptable.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.Indomptable.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.Indomptable.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.Indomptable.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.Indomptable.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.Indomptable.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.Indomptable.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.Indomptable.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.Indomptable.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.Indomptable.rarity);
 				}};
-				rotmgIndomptable = new HASword("rotmgIndomptable", dummyMaterial, properties);
+				rotmgIndomptable = new HAWeapon("rotmgIndomptable", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgIndomptable);
 				ALL_ITEMS.add(rotmgIndomptable);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.PirateKingCutlass.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.PirateKingCutlass.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					rotmgPirateKingCutlass = new HASword("rotmgPirateKingCutlass", dummyMaterial, properties);
-					ALL_ITEMS.add(rotmgPirateKingCutlass);
+					rotmgPirateKingCutlass = new HAWeapon("rotmgPirateKingCutlass", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rotmgPirateKingCutlass);
 				}else {
 					rotmgPirateKingCutlass = new ItemSaberHW("rotmgPirateKingCutlass", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rotmgPirateKingCutlass, HeroicArmory.MOD_ID, "rotmgPirateKingCutlass");
-					event.getRegistry().register(rotmgPirateKingCutlass);
 				}
+				ALL_ITEMS.add(rotmgPirateKingCutlass);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.SwordofSplendor.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.SwordofSplendor.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.SwordofSplendor.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.SwordofSplendor.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.SwordofSplendor.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.SwordofSplendor.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.SwordofSplendor.rarity);
 				}};
-				rotmgSwordofSplendor = new HASword("rotmgSwordofSplendor", dummyMaterial, properties);
+				rotmgSwordofSplendor = new HAWeapon("rotmgSwordofSplendor", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgSwordofSplendor);
 				ALL_ITEMS.add(rotmgSwordofSplendor);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.SkysplitterSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.SkysplitterSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.SkysplitterSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.SkysplitterSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.SkysplitterSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.SkysplitterSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.SkysplitterSword.rarity);
 				}};
-				rotmgSkysplitterSword = new HASword("rotmgSkysplitterSword", dummyMaterial, properties);
+				rotmgSkysplitterSword = new HAWeapon("rotmgSkysplitterSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgSkysplitterSword);
 				ALL_ITEMS.add(rotmgSkysplitterSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.ArchonSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.ArchonSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.ArchonSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.ArchonSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.ArchonSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.ArchonSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.ArchonSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.ArchonSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.ArchonSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.ArchonSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.ArchonSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.ArchonSword.rarity);
 				}};
-				rotmgArchonSword = new HASword("rotmgArchonSword", dummyMaterial, properties);
+				rotmgArchonSword = new HAWeapon("rotmgArchonSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgArchonSword);
 				ALL_ITEMS.add(rotmgArchonSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.AncientStoneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.AncientStoneSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.AncientStoneSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.AncientStoneSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.AncientStoneSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.AncientStoneSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.AncientStoneSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					rotmgAncientStoneSword = new HASword("rotmgAncientStoneSword", dummyMaterial, properties);
-					ALL_ITEMS.add(rotmgAncientStoneSword);
+					rotmgAncientStoneSword = new HAWeapon("rotmgAncientStoneSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rotmgAncientStoneSword);
 				}else {
 					rotmgAncientStoneSword = new ItemGreatswordHW("rotmgAncientStoneSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(rotmgAncientStoneSword, HeroicArmory.MOD_ID, "rotmgAncientStoneSword");
-					event.getRegistry().register(rotmgAncientStoneSword);
 				}
+				ALL_ITEMS.add(rotmgAncientStoneSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.DragonsoulSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.DragonsoulSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.DragonsoulSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.DragonsoulSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.DragonsoulSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.DragonsoulSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.DragonsoulSword.rarity);
 				}};
-				rotmgDragonsoulSword = new HASword("rotmgDragonsoulSword", dummyMaterial, properties);
+				rotmgDragonsoulSword = new HAWeapon("rotmgDragonsoulSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgDragonsoulSword);
 				ALL_ITEMS.add(rotmgDragonsoulSword);
 			}
-			if (HAConfig.modifiedItems.rotmgmodified.RavenheartSword.enabled) {
+			if (HAConfig.modifiedItems.rotmgModified.RavenheartSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rotmgmodified.RavenheartSword.damage);
-					put("durability", HAConfig.modifiedItems.rotmgmodified.RavenheartSword.durability);
-					put("speed", HAConfig.modifiedItems.rotmgmodified.RavenheartSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rotmgmodified.RavenheartSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rotmgmodified.RavenheartSword.rarity);
+					put("attack", HAConfig.modifiedItems.rotmgModified.RavenheartSword.damage);
+					put("durability", HAConfig.modifiedItems.rotmgModified.RavenheartSword.durability);
+					put("speed", HAConfig.modifiedItems.rotmgModified.RavenheartSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rotmgModified.RavenheartSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rotmgModified.RavenheartSword.rarity);
 				}};
-				rotmgRavenheartSword = new HASword("rotmgRavenheartSword", dummyMaterial, properties);
+				rotmgRavenheartSword = new HAWeapon("rotmgRavenheartSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rotmgRavenheartSword);
 				ALL_ITEMS.add(rotmgRavenheartSword);
 			}
 		}
-
-//sc
+		//sc
 		if (HAConfig.includeSeries.sc) {
-			if (HAConfig.modifiedItems.scmodified.Firangi.enabled) {
+			if (HAConfig.modifiedItems.scModified.Firangi.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Firangi.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Firangi.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Firangi.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Firangi.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Firangi.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Firangi.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Firangi.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Firangi.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Firangi.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Firangi.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scFirangi = new HASword("scFirangi", dummyMaterial, properties);
-					ALL_ITEMS.add(scFirangi);
+					scFirangi = new HAWeapon("scFirangi", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFirangi);
 				}else {
 					scFirangi = new ItemGreatswordHW("scFirangi", dummyMaterialEx, properties, new WeaponPropertySelfPotion(MobEffects.REGENERATION.getName(), MobEffects.REGENERATION, 0.1D, 0));
 					SpartanWeaponryAPI.addItemModelToRegistry(scFirangi, HeroicArmory.MOD_ID, "scFirangi");
-					event.getRegistry().register(scFirangi);
 				}
+				ALL_ITEMS.add(scFirangi);
 			}
-			if (HAConfig.modifiedItems.scmodified.Cocytus.enabled) {
+			if (HAConfig.modifiedItems.scModified.Cocytus.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Cocytus.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Cocytus.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Cocytus.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Cocytus.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Cocytus.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Cocytus.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Cocytus.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Cocytus.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Cocytus.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Cocytus.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scCocytus = new HASword("scCocytus", dummyMaterial, properties);
-					ALL_ITEMS.add(scCocytus);
+					scCocytus = new HAWeapon("scCocytus", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scCocytus);
 				}else {
 					scCocytus = new ItemGreatswordHW("scCocytus", dummyMaterialEx, properties, new WeaponPropertyLifePercent(-30));
 					SpartanWeaponryAPI.addItemModelToRegistry(scCocytus, HeroicArmory.MOD_ID, "scCocytus");
-					event.getRegistry().register(scCocytus);
 				}
+				ALL_ITEMS.add(scCocytus);
 			}
-			if (HAConfig.modifiedItems.scmodified.ErlangBlade.enabled) {
+			if (HAConfig.modifiedItems.scModified.ErlangBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.ErlangBlade.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.ErlangBlade.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.ErlangBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.ErlangBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.ErlangBlade.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.ErlangBlade.damage);
+					put("durability", HAConfig.modifiedItems.scModified.ErlangBlade.durability);
+					put("speed", HAConfig.modifiedItems.scModified.ErlangBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.ErlangBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.ErlangBlade.rarity);
 				}};
-				scErlangBlade = new HASword("scErlangBlade", dummyMaterial, properties);
+				scErlangBlade = new HAWeapon("scErlangBlade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scErlangBlade);
 				ALL_ITEMS.add(scErlangBlade);
 			}
-			if (HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.enabled) {
+			if (HAConfig.modifiedItems.scModified.SoulEdgeNightmare.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.SoulEdgeNightmare.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.SoulEdgeNightmare.damage);
+					put("durability", HAConfig.modifiedItems.scModified.SoulEdgeNightmare.durability);
+					put("speed", HAConfig.modifiedItems.scModified.SoulEdgeNightmare.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.SoulEdgeNightmare.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.SoulEdgeNightmare.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scSoulEdgeNightmare = new HASword("scSoulEdgeNightmare", dummyMaterial, properties);
-					ALL_ITEMS.add(scSoulEdgeNightmare);
+					scSoulEdgeNightmare = new HAWeapon("scSoulEdgeNightmare", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scSoulEdgeNightmare);
 				}else {
 					scSoulEdgeNightmare = new ItemGreatswordHW("scSoulEdgeNightmare", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scSoulEdgeNightmare, HeroicArmory.MOD_ID, "scSoulEdgeNightmare");
-					event.getRegistry().register(scSoulEdgeNightmare);
 				}
+				ALL_ITEMS.add(scSoulEdgeNightmare);
 			}
-			if (HAConfig.modifiedItems.scmodified.Phlegethon.enabled) {
+			if (HAConfig.modifiedItems.scModified.Phlegethon.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Phlegethon.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Phlegethon.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Phlegethon.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Phlegethon.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Phlegethon.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Phlegethon.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Phlegethon.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Phlegethon.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Phlegethon.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Phlegethon.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scPhlegethon = new HASword("scPhlegethon", dummyMaterial, properties);
-					ALL_ITEMS.add(scPhlegethon);
+					scPhlegethon = new HAWeapon("scPhlegethon", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scPhlegethon);
 				}else {
 					scPhlegethon = new ItemLongswordHW("scPhlegethon", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyShieldPierce(0.2f));
 					SpartanWeaponryAPI.addItemModelToRegistry(scPhlegethon, HeroicArmory.MOD_ID, "scPhlegethon");
-					event.getRegistry().register(scPhlegethon);
 				}
+				ALL_ITEMS.add(scPhlegethon);
 			}
-			if (HAConfig.modifiedItems.scmodified.Acheron.enabled) {
+			if (HAConfig.modifiedItems.scModified.Acheron.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Acheron.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Acheron.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Acheron.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Acheron.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Acheron.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Acheron.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Acheron.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Acheron.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Acheron.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Acheron.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scAcheron = new HASword("scAcheron", dummyMaterial, properties);
-					ALL_ITEMS.add(scAcheron);
+					scAcheron = new HAWeapon("scAcheron", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scAcheron);
 				}else {
 					scAcheron = new ItemLongswordHW("scAcheron", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(scAcheron, HeroicArmory.MOD_ID, "scAcheron");
-					event.getRegistry().register(scAcheron);
 				}
+				ALL_ITEMS.add(scAcheron);
 			}
-			if (HAConfig.modifiedItems.scmodified.Lethe.enabled) {
+			if (HAConfig.modifiedItems.scModified.Lethe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Lethe.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Lethe.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Lethe.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Lethe.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Lethe.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Lethe.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Lethe.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Lethe.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Lethe.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Lethe.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scLethe = new HASword("scLethe", dummyMaterial, properties);
-					ALL_ITEMS.add(scLethe);
+					scLethe = new HAWeapon("scLethe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scLethe);
 				}else {
 					scLethe = new ItemLongswordHW("scLethe", dummyMaterialEx, properties, new WeaponPropertyLifePercent(20));
 					SpartanWeaponryAPI.addItemModelToRegistry(scLethe, HeroicArmory.MOD_ID, "scLethe");
-					event.getRegistry().register(scLethe);
 				}
+				ALL_ITEMS.add(scLethe);
 			}
-			if (HAConfig.modifiedItems.scmodified.QueenGuard.enabled) {
+			if (HAConfig.modifiedItems.scModified.QueenGuard.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.QueenGuard.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.QueenGuard.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.QueenGuard.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.QueenGuard.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.QueenGuard.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.QueenGuard.damage);
+					put("durability", HAConfig.modifiedItems.scModified.QueenGuard.durability);
+					put("speed", HAConfig.modifiedItems.scModified.QueenGuard.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.QueenGuard.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.QueenGuard.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scQueenGuard = new HASword("scQueenGuard", dummyMaterial, properties);
-					ALL_ITEMS.add(scQueenGuard);
+					scQueenGuard = new HAWeapon("scQueenGuard", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scQueenGuard);
 				}else {
 					scQueenGuard = new ItemRapierHW("scQueenGuard", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertySelfPotion(MobEffects.REGENERATION.getName(), MobEffects.REGENERATION, 0.1D, 0));
 					SpartanWeaponryAPI.addItemModelToRegistry(scQueenGuard, HeroicArmory.MOD_ID, "scQueenGuard");
-					event.getRegistry().register(scQueenGuard);
 				}
+				ALL_ITEMS.add(scQueenGuard);
 			}
-			if (HAConfig.modifiedItems.scmodified.HolyAntler.enabled) {
+			if (HAConfig.modifiedItems.scModified.HolyAntler.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.HolyAntler.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.HolyAntler.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.HolyAntler.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.HolyAntler.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.HolyAntler.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.HolyAntler.damage);
+					put("durability", HAConfig.modifiedItems.scModified.HolyAntler.durability);
+					put("speed", HAConfig.modifiedItems.scModified.HolyAntler.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.HolyAntler.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.HolyAntler.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scHolyAntler = new HASword("scHolyAntler", dummyMaterial, properties);
-					ALL_ITEMS.add(scHolyAntler);
+					scHolyAntler = new HAWeapon("scHolyAntler", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scHolyAntler);
 				}else {
 					scHolyAntler = new ItemRapierHW("scHolyAntler", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyLifeFlat(2));
 					SpartanWeaponryAPI.addItemModelToRegistry(scHolyAntler, HeroicArmory.MOD_ID, "scHolyAntler");
-					event.getRegistry().register(scHolyAntler);
 				}
+				ALL_ITEMS.add(scHolyAntler);
 			}
-			if (HAConfig.modifiedItems.scmodified.Epee.enabled) {
+			if (HAConfig.modifiedItems.scModified.Epee.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Epee.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Epee.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Epee.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Epee.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Epee.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Epee.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Epee.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Epee.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Epee.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Epee.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scEpee = new HASword("scEpee", dummyMaterial, properties);
-					ALL_ITEMS.add(scEpee);
+					scEpee = new HAWeapon("scEpee", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scEpee);
 				}else {
 					scEpee = new ItemRapierHW("scEpee", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyArmorBuff(0.3f));
 					SpartanWeaponryAPI.addItemModelToRegistry(scEpee, HeroicArmory.MOD_ID, "scEpee");
-					event.getRegistry().register(scEpee);
 				}
+				ALL_ITEMS.add(scEpee);
 			}
-			if (HAConfig.modifiedItems.scmodified.WarHammer.enabled) {
+			if (HAConfig.modifiedItems.scModified.WarHammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.WarHammer.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.WarHammer.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.WarHammer.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.WarHammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.WarHammer.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.WarHammer.damage);
+					put("durability", HAConfig.modifiedItems.scModified.WarHammer.durability);
+					put("speed", HAConfig.modifiedItems.scModified.WarHammer.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.WarHammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.WarHammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scWarHammer = new HASword("scWarHammer", dummyMaterial, properties);
-					ALL_ITEMS.add(scWarHammer);
+					scWarHammer = new HAWeapon("scWarHammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scWarHammer);
 				}else {
 					scWarHammer = new ItemWarhammerHW("scWarHammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(scWarHammer, HeroicArmory.MOD_ID, "scWarHammer");
-					event.getRegistry().register(scWarHammer);
 				}
+				ALL_ITEMS.add(scWarHammer);
 			}
-			if (HAConfig.modifiedItems.scmodified.Kulutues.enabled) {
+			if (HAConfig.modifiedItems.scModified.Kulutues.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Kulutues.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Kulutues.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Kulutues.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Kulutues.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Kulutues.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Kulutues.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Kulutues.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Kulutues.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Kulutues.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Kulutues.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scKulutues = new HASword("scKulutues", dummyMaterial, properties);
-					ALL_ITEMS.add(scKulutues);
+					scKulutues = new HAWeapon("scKulutues", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scKulutues);
 				}else {
 					scKulutues = new ItemBattleaxeHW("scKulutues", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.ARMOUR_PIERCING_50, WeaponProperties.SWEEP_DAMAGE_HALF);
 					SpartanWeaponryAPI.addItemModelToRegistry(scKulutues, HeroicArmory.MOD_ID, "scKulutues");
-					event.getRegistry().register(scKulutues);
 				}
+				ALL_ITEMS.add(scKulutues);
 			}
-			if (HAConfig.modifiedItems.scmodified.Estoc.enabled) {
+			if (HAConfig.modifiedItems.scModified.Estoc.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Estoc.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Estoc.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Estoc.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Estoc.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Estoc.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Estoc.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Estoc.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Estoc.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Estoc.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Estoc.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scEstoc = new HASword("scEstoc", dummyMaterial, properties);
-					ALL_ITEMS.add(scEstoc);
+					scEstoc = new HAWeapon("scEstoc", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scEstoc);
 				}else {
 					scEstoc = new ItemRapierHW("scEstoc", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR, new WeaponPropertyShieldPierce(0.2f));
 					SpartanWeaponryAPI.addItemModelToRegistry(scEstoc, HeroicArmory.MOD_ID, "scEstoc");
-					event.getRegistry().register(scEstoc);
 				}
+				ALL_ITEMS.add(scEstoc);
 			}
-			if (HAConfig.modifiedItems.scmodified.Flambert2P.enabled) {
+			if (HAConfig.modifiedItems.scModified.Flambert2P.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Flambert2P.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Flambert2P.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Flambert2P.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Flambert2P.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Flambert2P.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Flambert2P.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Flambert2P.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Flambert2P.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Flambert2P.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Flambert2P.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scFlambert2P = new HASword("scFlambert2P", dummyMaterial, properties);
-					ALL_ITEMS.add(scFlambert2P);
+					scFlambert2P = new HAWeapon("scFlambert2P", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFlambert2P);
 				}else {
 					scFlambert2P = new ItemRapierHW("scFlambert2P", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
 					SpartanWeaponryAPI.addItemModelToRegistry(scFlambert2P, HeroicArmory.MOD_ID, "scFlambert2P");
-					event.getRegistry().register(scFlambert2P);
 				}
+				ALL_ITEMS.add(scFlambert2P);
 			}
-			if (HAConfig.modifiedItems.scmodified.Reiterpallasch.enabled) {
+			if (HAConfig.modifiedItems.scModified.Reiterpallasch.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Reiterpallasch.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Reiterpallasch.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Reiterpallasch.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Reiterpallasch.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Reiterpallasch.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Reiterpallasch.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Reiterpallasch.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Reiterpallasch.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Reiterpallasch.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Reiterpallasch.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scReiterpallasch = new HASword("scReiterpallasch", dummyMaterial, properties);
-					ALL_ITEMS.add(scReiterpallasch);
+					scReiterpallasch = new HAWeapon("scReiterpallasch", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scReiterpallasch);
 				}else {
 					scReiterpallasch = new ItemRapierHW("scReiterpallasch", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
 					SpartanWeaponryAPI.addItemModelToRegistry(scReiterpallasch, HeroicArmory.MOD_ID, "scReiterpallasch");
-					event.getRegistry().register(scReiterpallasch);
 				}
+				ALL_ITEMS.add(scReiterpallasch);
 			}
-			if (HAConfig.modifiedItems.scmodified.Flambert.enabled) {
+			if (HAConfig.modifiedItems.scModified.Flambert.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Flambert.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Flambert.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Flambert.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Flambert.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Flambert.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Flambert.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Flambert.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Flambert.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Flambert.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Flambert.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scFlambert = new HASword("scFlambert", dummyMaterial, properties);
-					ALL_ITEMS.add(scFlambert);
+					scFlambert = new HAWeapon("scFlambert", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFlambert);
 				}else {
 					scFlambert = new ItemRapierHW("scFlambert", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
 					SpartanWeaponryAPI.addItemModelToRegistry(scFlambert, HeroicArmory.MOD_ID, "scFlambert");
-					event.getRegistry().register(scFlambert);
 				}
+				ALL_ITEMS.add(scFlambert);
 			}
-			if (HAConfig.modifiedItems.scmodified.BlueCrystalRod.enabled) {
+			if (HAConfig.modifiedItems.scModified.BlueCrystalRod.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.BlueCrystalRod.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.BlueCrystalRod.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.BlueCrystalRod.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.BlueCrystalRod.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.BlueCrystalRod.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.BlueCrystalRod.damage);
+					put("durability", HAConfig.modifiedItems.scModified.BlueCrystalRod.durability);
+					put("speed", HAConfig.modifiedItems.scModified.BlueCrystalRod.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.BlueCrystalRod.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.BlueCrystalRod.rarity);
 				}};
-				scBlueCrystalRod = new HASword("scBlueCrystalRod", dummyMaterial, properties);
+				scBlueCrystalRod = new HAWeapon("scBlueCrystalRod", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scBlueCrystalRod);
 				ALL_ITEMS.add(scBlueCrystalRod);
 			}
-			if (HAConfig.modifiedItems.scmodified.FireBlade.enabled) {
+			if (HAConfig.modifiedItems.scModified.FireBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.FireBlade.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.FireBlade.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.FireBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.FireBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.FireBlade.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.FireBlade.damage);
+					put("durability", HAConfig.modifiedItems.scModified.FireBlade.durability);
+					put("speed", HAConfig.modifiedItems.scModified.FireBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.FireBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.FireBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry) {
-					scFireBlade = new HASword("scFireBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(scFireBlade);
+					scFireBlade = new HAWeapon("scFireBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFireBlade);
 				}else {
 					scFireBlade = new ItemRapierHW("scFireBlade", dummyMaterialEx, properties, new WeaponPropertyShieldPierce(0.2f) );
 					SpartanWeaponryAPI.addItemModelToRegistry(scFireBlade, HeroicArmory.MOD_ID, "scFireBlade");
-					event.getRegistry().register(scFireBlade);
 				}
+				ALL_ITEMS.add(scFireBlade);
 			}
-			if (HAConfig.modifiedItems.scmodified.XiSword.enabled) {
+			if (HAConfig.modifiedItems.scModified.XiSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.XiSword.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.XiSword.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.XiSword.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.XiSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.XiSword.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.XiSword.damage);
+					put("durability", HAConfig.modifiedItems.scModified.XiSword.durability);
+					put("speed", HAConfig.modifiedItems.scModified.XiSword.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.XiSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.XiSword.rarity);
 				}};
-				scXiSword = new HASword("scXiSword", dummyMaterial, properties);
+				scXiSword = new HAWeapon("scXiSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scXiSword);
 				ALL_ITEMS.add(scXiSword);
 			}
-			if (HAConfig.modifiedItems.scmodified.OmegaSword2P.enabled) {
+			if (HAConfig.modifiedItems.scModified.OmegaSword2P.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.OmegaSword2P.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.OmegaSword2P.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.OmegaSword2P.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.OmegaSword2P.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.OmegaSword2P.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.OmegaSword2P.damage);
+					put("durability", HAConfig.modifiedItems.scModified.OmegaSword2P.durability);
+					put("speed", HAConfig.modifiedItems.scModified.OmegaSword2P.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.OmegaSword2P.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.OmegaSword2P.rarity);
 				}};
-				scOmegaSword2P = new HASword("scOmegaSword2P", dummyMaterial, properties);
+				scOmegaSword2P = new HAWeapon("scOmegaSword2P", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scOmegaSword2P);
 				ALL_ITEMS.add(scOmegaSword2P);
 			}
-			if (HAConfig.modifiedItems.scmodified.OmegaSword.enabled) {
+			if (HAConfig.modifiedItems.scModified.OmegaSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.OmegaSword.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.OmegaSword.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.OmegaSword.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.OmegaSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.OmegaSword.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.OmegaSword.damage);
+					put("durability", HAConfig.modifiedItems.scModified.OmegaSword.durability);
+					put("speed", HAConfig.modifiedItems.scModified.OmegaSword.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.OmegaSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.OmegaSword.rarity);
 				}};
-				scOmegaSword = new HASword("scOmegaSword", dummyMaterial, properties);
+				scOmegaSword = new HAWeapon("scOmegaSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scOmegaSword);
 				ALL_ITEMS.add(scOmegaSword);
 			}
-			if (HAConfig.modifiedItems.scmodified.Orichalcum.enabled) {
+			if (HAConfig.modifiedItems.scModified.Orichalcum.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Orichalcum.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Orichalcum.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Orichalcum.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Orichalcum.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Orichalcum.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Orichalcum.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Orichalcum.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Orichalcum.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Orichalcum.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Orichalcum.rarity);
 				}};
-				scOrichalcum = new HASword("scOrichalcum", dummyMaterial, properties);
+				scOrichalcum = new HAWeapon("scOrichalcum", dummyMaterial, properties);
+				HEROIC_ITEMS.add(scOrichalcum);
 				ALL_ITEMS.add(scOrichalcum);
 			}
-			if (HAConfig.modifiedItems.scmodified.Stiletto.enabled) {
+			if (HAConfig.modifiedItems.scModified.Stiletto.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Stiletto.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Stiletto.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Stiletto.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Stiletto.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Stiletto.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Stiletto.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Stiletto.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Stiletto.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Stiletto.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Stiletto.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scStiletto = new HASword("scStiletto", dummyMaterial, properties);
-					ALL_ITEMS.add(scStiletto);
+					scStiletto = new HAWeapon("scStiletto", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scStiletto);
 				}else {
 					scStiletto = new ItemRapierHW("scStiletto", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_3_NO_ARMOUR);
 					SpartanWeaponryAPI.addItemModelToRegistry(scStiletto, HeroicArmory.MOD_ID, "scStiletto");
-					event.getRegistry().register(scStiletto);
 				}
+				ALL_ITEMS.add(scStiletto);
 			}
-			if (HAConfig.modifiedItems.scmodified.Requiem.enabled) {
+			if (HAConfig.modifiedItems.scModified.Requiem.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Requiem.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Requiem.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Requiem.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Requiem.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Requiem.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Requiem.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Requiem.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Requiem.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Requiem.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Requiem.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scRequiem = new HASword("scRequiem", dummyMaterial, properties);
-					ALL_ITEMS.add(scRequiem);
+					scRequiem = new HAWeapon("scRequiem", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scRequiem);
 				}else {
 					scRequiem = new ItemGreatswordHW("scRequiem", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scRequiem, HeroicArmory.MOD_ID, "scRequiem");
-					event.getRegistry().register(scRequiem);
 				}
+				ALL_ITEMS.add(scRequiem);
 			}
-			if (HAConfig.modifiedItems.scmodified.Faust.enabled) {
+			if (HAConfig.modifiedItems.scModified.Faust.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Faust.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Faust.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Faust.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Faust.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Faust.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Faust.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Faust.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Faust.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Faust.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Faust.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scFaust = new HASword("scFaust", dummyMaterial, properties);
-					ALL_ITEMS.add(scFaust);
+					scFaust = new HAWeapon("scFaust", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFaust);
 				}else {
 					scFaust = new ItemGreatswordHW("scFaust", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scFaust, HeroicArmory.MOD_ID, "scFaust");
-					event.getRegistry().register(scFaust);
 				}
+				ALL_ITEMS.add(scFaust);
 			}
-			if (HAConfig.modifiedItems.scmodified.Flamberge.enabled) {
+			if (HAConfig.modifiedItems.scModified.Flamberge.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Flamberge.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Flamberge.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Flamberge.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Flamberge.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Flamberge.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Flamberge.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Flamberge.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Flamberge.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Flamberge.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Flamberge.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scFlamberge = new HASword("scFlamberge", dummyMaterial, properties);
-					ALL_ITEMS.add(scFlamberge);
+					scFlamberge = new HAWeapon("scFlamberge", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scFlamberge);
 				}else {
 					scFlamberge = new ItemGreatswordHW("scFlamberge", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scFlamberge, HeroicArmory.MOD_ID, "scFlamberge");
-					event.getRegistry().register(scFlamberge);
 				}
+				ALL_ITEMS.add(scFlamberge);
 			}
-			if (HAConfig.modifiedItems.scmodified.SteelPaddle.enabled) {
+			if (HAConfig.modifiedItems.scModified.SteelPaddle.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.SteelPaddle.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.SteelPaddle.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.SteelPaddle.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.SteelPaddle.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.SteelPaddle.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.SteelPaddle.damage);
+					put("durability", HAConfig.modifiedItems.scModified.SteelPaddle.durability);
+					put("speed", HAConfig.modifiedItems.scModified.SteelPaddle.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.SteelPaddle.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.SteelPaddle.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scSteelPaddle = new HASword("scSteelPaddle", dummyMaterial, properties);
-					ALL_ITEMS.add(scSteelPaddle);
+					scSteelPaddle = new HAWeapon("scSteelPaddle", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scSteelPaddle);
 				}else {
 					scSteelPaddle = new ItemGreatswordHW("scSteelPaddle", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scSteelPaddle, HeroicArmory.MOD_ID, "scSteelPaddle");
-					event.getRegistry().register(scSteelPaddle);
 				}
+				ALL_ITEMS.add(scSteelPaddle);
 			}
-			if (HAConfig.modifiedItems.scmodified.Glam.enabled) {
+			if (HAConfig.modifiedItems.scModified.Glam.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.Glam.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.Glam.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.Glam.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.Glam.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.Glam.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.Glam.damage);
+					put("durability", HAConfig.modifiedItems.scModified.Glam.durability);
+					put("speed", HAConfig.modifiedItems.scModified.Glam.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.Glam.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.Glam.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scGlam = new HASword("scGlam", dummyMaterial, properties);
-					ALL_ITEMS.add(scGlam);
+					scGlam = new HAWeapon("scGlam", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scGlam);
 				}else {
 					scGlam = new ItemGreatswordHW("scGlam", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scGlam, HeroicArmory.MOD_ID, "scGlam");
-					event.getRegistry().register(scGlam);
 				}
+				ALL_ITEMS.add(scGlam);
 			}
-			if (HAConfig.modifiedItems.scmodified.GreatBlade.enabled) {
+			if (HAConfig.modifiedItems.scModified.GreatBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.scmodified.GreatBlade.damage);
-					put("durability", HAConfig.modifiedItems.scmodified.GreatBlade.durability);
-					put("speed", HAConfig.modifiedItems.scmodified.GreatBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.scmodified.GreatBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.scmodified.GreatBlade.rarity);
+					put("attack", HAConfig.modifiedItems.scModified.GreatBlade.damage);
+					put("durability", HAConfig.modifiedItems.scModified.GreatBlade.durability);
+					put("speed", HAConfig.modifiedItems.scModified.GreatBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.scModified.GreatBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.scModified.GreatBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					scGreatBlade = new HASword("scGreatBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(scGreatBlade);
+					scGreatBlade = new HAWeapon("scGreatBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(scGreatBlade);
 				}else {
 					scGreatBlade = new ItemGreatswordHW("scGreatBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(scGreatBlade, HeroicArmory.MOD_ID, "scGreatBlade");
-					event.getRegistry().register(scGreatBlade);
 				}
+				ALL_ITEMS.add(scGreatBlade);
 			}
 		}
-
-//rs
+		//rs
 		if (HAConfig.includeSeries.rs) {
-			if (HAConfig.modifiedItems.rsmodified.BronzeSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BronzeSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BronzeSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BronzeSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BronzeSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BronzeSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BronzeSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BronzeSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BronzeSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BronzeSword.rarity);
 				}};
-				rsBronzeSword = new HASword("rsBronzeSword", dummyMaterial, properties);
+				rsBronzeSword = new HAWeapon("rsBronzeSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsBronzeSword);
 				ALL_ITEMS.add(rsBronzeSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.IronSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.IronSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.IronSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.IronSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.IronSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.IronSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.IronSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.IronSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.IronSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.IronSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.IronSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.IronSword.rarity);
 				}};
-				rsIronSword = new HASword("rsIronSword", dummyMaterial, properties);
+				rsIronSword = new HAWeapon("rsIronSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsIronSword);
 				ALL_ITEMS.add(rsIronSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.WhiteSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.WhiteSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.WhiteSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.WhiteSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.WhiteSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.WhiteSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.WhiteSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.WhiteSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.WhiteSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.WhiteSword.rarity);
 				}};
-				rsWhiteSword = new HASword("rsWhiteSword", dummyMaterial, properties);
+				rsWhiteSword = new HAWeapon("rsWhiteSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsWhiteSword);
 				ALL_ITEMS.add(rsWhiteSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BlackSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BlackSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BlackSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BlackSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BlackSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BlackSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BlackSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BlackSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BlackSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BlackSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BlackSword.rarity);
 				}};
-				rsBlackSword = new HASword("rsBlackSword", dummyMaterial, properties);
+				rsBlackSword = new HAWeapon("rsBlackSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsBlackSword);
 				ALL_ITEMS.add(rsBlackSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SteelSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SteelSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SteelSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SteelSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SteelSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SteelSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SteelSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SteelSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SteelSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SteelSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SteelSword.rarity);
 				}};
-				rsSteelSword = new HASword("rsSteelSword", dummyMaterial, properties);
+				rsSteelSword = new HAWeapon("rsSteelSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsSteelSword);
 				ALL_ITEMS.add(rsSteelSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.MithrilSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.MithrilSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.MithrilSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.MithrilSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.MithrilSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.MithrilSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.MithrilSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.MithrilSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.MithrilSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.MithrilSword.rarity);
 				}};
-				rsMithrilSword = new HASword("rsMithrilSword", dummyMaterial, properties);
+				rsMithrilSword = new HAWeapon("rsMithrilSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsMithrilSword);
 				ALL_ITEMS.add(rsMithrilSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.AdamantSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.AdamantSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.AdamantSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.AdamantSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.AdamantSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.AdamantSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.AdamantSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.AdamantSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.AdamantSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.AdamantSword.rarity);
 				}};
-				rsAdamantSword = new HASword("rsAdamantSword", dummyMaterial, properties);
+				rsAdamantSword = new HAWeapon("rsAdamantSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsAdamantSword);
 				ALL_ITEMS.add(rsAdamantSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.RuneSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.RuneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.RuneSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.RuneSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.RuneSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.RuneSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.RuneSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.RuneSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.RuneSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.RuneSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.RuneSword.rarity);
 				}};
-				rsRuneSword = new HASword("rsRuneSword", dummyMaterial, properties);
+				rsRuneSword = new HAWeapon("rsRuneSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsRuneSword);
 				ALL_ITEMS.add(rsRuneSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.DragonSword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.DragonSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.DragonSword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.DragonSword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.DragonSword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.DragonSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.DragonSword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.DragonSword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.DragonSword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.DragonSword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.DragonSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.DragonSword.rarity);
 				}};
-				rsDragonSword = new HASword("rsDragonSword", dummyMaterial, properties);
+				rsDragonSword = new HAWeapon("rsDragonSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsDragonSword);
 				ALL_ITEMS.add(rsDragonSword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BronzeBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BronzeBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BronzeBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BronzeBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BronzeBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BronzeBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBronzeBattleaxe = new HASword("rsBronzeBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBronzeBattleaxe);
+					rsBronzeBattleaxe = new HAWeapon("rsBronzeBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBronzeBattleaxe);
 				}else {
 					rsBronzeBattleaxe = new ItemBattleaxeHW("rsBronzeBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeBattleaxe, HeroicArmory.MOD_ID, "rsBronzeBattleaxe");
-					event.getRegistry().register(rsBronzeBattleaxe);
 				}
+				ALL_ITEMS.add(rsBronzeBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.IronBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.IronBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.IronBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.IronBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.IronBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.IronBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.IronBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.IronBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.IronBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.IronBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.IronBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.IronBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsIronBattleaxe = new HASword("rsIronBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsIronBattleaxe);
+					rsIronBattleaxe = new HAWeapon("rsIronBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsIronBattleaxe);
 				}else {
 					rsIronBattleaxe = new ItemBattleaxeHW("rsIronBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsIronBattleaxe, HeroicArmory.MOD_ID, "rsIronBattleaxe");
-					event.getRegistry().register(rsIronBattleaxe);
 				}
+				ALL_ITEMS.add(rsIronBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SteelBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SteelBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SteelBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SteelBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SteelBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SteelBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SteelBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SteelBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsSteelBattleaxe = new HASword("rsSteelBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsSteelBattleaxe);
+					rsSteelBattleaxe = new HAWeapon("rsSteelBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsSteelBattleaxe);
 				}else {
 					rsSteelBattleaxe = new ItemBattleaxeHW("rsSteelBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelBattleaxe, HeroicArmory.MOD_ID, "rsSteelBattleaxe");
-					event.getRegistry().register(rsSteelBattleaxe);
 				}
+				ALL_ITEMS.add(rsSteelBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BlackBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BlackBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BlackBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BlackBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BlackBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BlackBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BlackBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BlackBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBlackBattleaxe = new HASword("rsBlackBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBlackBattleaxe);
+					rsBlackBattleaxe = new HAWeapon("rsBlackBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBlackBattleaxe);
 				}else {
 					rsBlackBattleaxe = new ItemBattleaxeHW("rsBlackBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackBattleaxe, HeroicArmory.MOD_ID, "rsBlackBattleaxe");
-					event.getRegistry().register(rsBlackBattleaxe);
 				}
+				ALL_ITEMS.add(rsBlackBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.WhiteBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.WhiteBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.WhiteBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.WhiteBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.WhiteBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.WhiteBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsWhiteBattleaxe = new HASword("rsWhiteBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsWhiteBattleaxe);
+					rsWhiteBattleaxe = new HAWeapon("rsWhiteBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsWhiteBattleaxe);
 				}else {
 					rsWhiteBattleaxe = new ItemBattleaxeHW("rsWhiteBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteBattleaxe, HeroicArmory.MOD_ID, "rsWhiteBattleaxe");
-					event.getRegistry().register(rsWhiteBattleaxe);
 				}
+				ALL_ITEMS.add(rsWhiteBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.MithrilBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.MithrilBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.MithrilBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.MithrilBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.MithrilBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.MithrilBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsMithrilBattleaxe = new HASword("rsMithrilBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsMithrilBattleaxe);
+					rsMithrilBattleaxe = new HAWeapon("rsMithrilBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsMithrilBattleaxe);
 				}else {
 					rsMithrilBattleaxe = new ItemBattleaxeHW("rsMithrilBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilBattleaxe, HeroicArmory.MOD_ID, "rsMithrilBattleaxe");
-					event.getRegistry().register(rsMithrilBattleaxe);
 				}
+				ALL_ITEMS.add(rsMithrilBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.AdamantBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.AdamantBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.AdamantBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.AdamantBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.AdamantBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.AdamantBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsAdamantBattleaxe = new HASword("rsAdamantBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsAdamantBattleaxe);
+					rsAdamantBattleaxe = new HAWeapon("rsAdamantBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsAdamantBattleaxe);
 				}else {
 					rsAdamantBattleaxe = new ItemBattleaxeHW("rsAdamantBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantBattleaxe, HeroicArmory.MOD_ID, "rsAdamantBattleaxe");
-					event.getRegistry().register(rsAdamantBattleaxe);
 				}
+				ALL_ITEMS.add(rsAdamantBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.RuneBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.RuneBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.RuneBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.RuneBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.RuneBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.RuneBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.RuneBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.RuneBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsRuneBattleaxe = new HASword("rsRuneBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsRuneBattleaxe);
+					rsRuneBattleaxe = new HAWeapon("rsRuneBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsRuneBattleaxe);
 				}else {
 					rsRuneBattleaxe = new ItemBattleaxeHW("rsRuneBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneBattleaxe, HeroicArmory.MOD_ID, "rsRuneBattleaxe");
-					event.getRegistry().register(rsRuneBattleaxe);
 				}
+				ALL_ITEMS.add(rsRuneBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.DragonBattleaxe.enabled) {
+			if (HAConfig.modifiedItems.rsModified.DragonBattleaxe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.DragonBattleaxe.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.DragonBattleaxe.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.DragonBattleaxe.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.DragonBattleaxe.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.DragonBattleaxe.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.DragonBattleaxe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsDragonBattleaxe = new HASword("rsDragonBattleaxe", dummyMaterial, properties);
-					ALL_ITEMS.add(rsDragonBattleaxe);
+					rsDragonBattleaxe = new HAWeapon("rsDragonBattleaxe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsDragonBattleaxe);
 				}else {
 					rsDragonBattleaxe = new ItemBattleaxeHW("rsDragonBattleaxe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsDragonBattleaxe, HeroicArmory.MOD_ID, "rsDragonBattleaxe");
-					event.getRegistry().register(rsDragonBattleaxe);
 				}
+				ALL_ITEMS.add(rsDragonBattleaxe);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BronzeScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BronzeScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BronzeScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BronzeScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BronzeScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BronzeScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BronzeScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BronzeScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BronzeScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BronzeScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBronzeScimitar = new HASword("rsBronzeScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBronzeScimitar);
+					rsBronzeScimitar = new HAWeapon("rsBronzeScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBronzeScimitar);
 				}else {
 					rsBronzeScimitar = new ItemSaberHW("rsBronzeScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeScimitar, HeroicArmory.MOD_ID, "rsBronzeScimitar");
-					event.getRegistry().register(rsBronzeScimitar);
 				}
+				ALL_ITEMS.add(rsBronzeScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.IronScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.IronScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.IronScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.IronScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.IronScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.IronScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.IronScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.IronScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.IronScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.IronScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.IronScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.IronScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsIronScimitar = new HASword("rsIronScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsIronScimitar);
+					rsIronScimitar = new HAWeapon("rsIronScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsIronScimitar);
 				}else {
 					rsIronScimitar = new ItemSaberHW("rsIronScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsIronScimitar, HeroicArmory.MOD_ID, "rsIronScimitar");
-					event.getRegistry().register(rsIronScimitar);
 				}
+				ALL_ITEMS.add(rsIronScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BlackScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BlackScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BlackScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BlackScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BlackScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BlackScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BlackScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BlackScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BlackScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BlackScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BlackScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBlackScimitar = new HASword("rsBlackScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBlackScimitar);
+					rsBlackScimitar = new HAWeapon("rsBlackScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBlackScimitar);
 				}else {
 					rsBlackScimitar = new ItemSaberHW("rsBlackScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackScimitar, HeroicArmory.MOD_ID, "rsBlackScimitar");
-					event.getRegistry().register(rsBlackScimitar);
 				}
+				ALL_ITEMS.add(rsBlackScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.WhiteScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.WhiteScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.WhiteScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.WhiteScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.WhiteScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.WhiteScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.WhiteScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.WhiteScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.WhiteScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.WhiteScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsWhiteScimitar = new HASword("rsWhiteScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsWhiteScimitar);
+					rsWhiteScimitar = new HAWeapon("rsWhiteScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsWhiteScimitar);
 				}else {
 					rsWhiteScimitar = new ItemSaberHW("rsWhiteScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteScimitar, HeroicArmory.MOD_ID, "rsWhiteScimitar");
-					event.getRegistry().register(rsWhiteScimitar);
 				}
+				ALL_ITEMS.add(rsWhiteScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SteelScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SteelScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SteelScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SteelScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SteelScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SteelScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SteelScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SteelScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SteelScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SteelScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SteelScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsSteelScimitar = new HASword("rsSteelScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsSteelScimitar);
+					rsSteelScimitar = new HAWeapon("rsSteelScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsSteelScimitar);
 				}else {
 					rsSteelScimitar = new ItemSaberHW("rsSteelScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelScimitar, HeroicArmory.MOD_ID, "rsSteelScimitar");
-					event.getRegistry().register(rsSteelScimitar);
 				}
+				ALL_ITEMS.add(rsSteelScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.MithrilScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.MithrilScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.MithrilScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.MithrilScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.MithrilScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.MithrilScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.MithrilScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.MithrilScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.MithrilScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.MithrilScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsMithrilScimitar = new HASword("rsMithrilScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsMithrilScimitar);
+					rsMithrilScimitar = new HAWeapon("rsMithrilScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsMithrilScimitar);
 				}else {
 					rsMithrilScimitar = new ItemSaberHW("rsMithrilScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilScimitar, HeroicArmory.MOD_ID, "rsMithrilScimitar");
-					event.getRegistry().register(rsMithrilScimitar);
 				}
+				ALL_ITEMS.add(rsMithrilScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.AdamantScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.AdamantScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.AdamantScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.AdamantScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.AdamantScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.AdamantScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.AdamantScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.AdamantScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.AdamantScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.AdamantScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsAdamantScimitar = new HASword("rsAdamantScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsAdamantScimitar);
+					rsAdamantScimitar = new HAWeapon("rsAdamantScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsAdamantScimitar);
 				}else {
 					rsAdamantScimitar = new ItemSaberHW("rsAdamantScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantScimitar, HeroicArmory.MOD_ID, "rsAdamantScimitar");
-					event.getRegistry().register(rsAdamantScimitar);
 				}
+				ALL_ITEMS.add(rsAdamantScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.RuneScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.RuneScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.RuneScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.RuneScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.RuneScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.RuneScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.RuneScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.RuneScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.RuneScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.RuneScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.RuneScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsRuneScimitar = new HASword("rsRuneScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsRuneScimitar);
+					rsRuneScimitar = new HAWeapon("rsRuneScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsRuneScimitar);
 				}else {
 					rsRuneScimitar = new ItemSaberHW("rsRuneScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneScimitar, HeroicArmory.MOD_ID, "rsRuneScimitar");
-					event.getRegistry().register(rsRuneScimitar);
 				}
+				ALL_ITEMS.add(rsRuneScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.DragonScimitar.enabled) {
+			if (HAConfig.modifiedItems.rsModified.DragonScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.DragonScimitar.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.DragonScimitar.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.DragonScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.DragonScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.DragonScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.DragonScimitar.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.DragonScimitar.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.DragonScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.DragonScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.DragonScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsDragonScimitar = new HASword("rsDragonScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(rsDragonScimitar);
+					rsDragonScimitar = new HAWeapon("rsDragonScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsDragonScimitar);
 				}else {
 					rsDragonScimitar = new ItemSaberHW("rsDragonScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsDragonScimitar, HeroicArmory.MOD_ID, "rsDragonScimitar");
-					event.getRegistry().register(rsDragonScimitar);
 				}
+				ALL_ITEMS.add(rsDragonScimitar);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BronzeWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BronzeWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BronzeWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BronzeWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BronzeWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BronzeWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BronzeWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBronzeWarhammer = new HASword("rsBronzeWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBronzeWarhammer);
+					rsBronzeWarhammer = new HAWeapon("rsBronzeWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBronzeWarhammer);
 				}else {
 					rsBronzeWarhammer = new ItemHammerHW("rsBronzeWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeWarhammer, HeroicArmory.MOD_ID, "rsBronzeWarhammer");
-					event.getRegistry().register(rsBronzeWarhammer);
 				}
+				ALL_ITEMS.add(rsBronzeWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.IronWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.IronWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.IronWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.IronWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.IronWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.IronWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.IronWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.IronWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.IronWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.IronWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.IronWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.IronWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsIronWarhammer = new HASword("rsIronWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsIronWarhammer);
+					rsIronWarhammer = new HAWeapon("rsIronWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsIronWarhammer);
 				}else {
 					rsIronWarhammer = new ItemHammerHW("rsIronWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsIronWarhammer, HeroicArmory.MOD_ID, "rsIronWarhammer");
-					event.getRegistry().register(rsIronWarhammer);
 				}
+				ALL_ITEMS.add(rsIronWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SteelWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SteelWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SteelWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SteelWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SteelWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SteelWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SteelWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SteelWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SteelWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SteelWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SteelWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsSteelWarhammer = new HASword("rsSteelWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsSteelWarhammer);
+					rsSteelWarhammer = new HAWeapon("rsSteelWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsSteelWarhammer);
 				}else {
 					rsSteelWarhammer = new ItemHammerHW("rsSteelWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelWarhammer, HeroicArmory.MOD_ID, "rsSteelWarhammer");
-					event.getRegistry().register(rsSteelWarhammer);
 				}
+				ALL_ITEMS.add(rsSteelWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BlackWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BlackWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BlackWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BlackWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BlackWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BlackWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BlackWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BlackWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BlackWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BlackWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BlackWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBlackWarhammer = new HASword("rsBlackWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBlackWarhammer);
+					rsBlackWarhammer = new HAWeapon("rsBlackWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBlackWarhammer);
 				}else {
 					rsBlackWarhammer = new ItemHammerHW("rsBlackWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackWarhammer, HeroicArmory.MOD_ID, "rsBlackWarhammer");
-					event.getRegistry().register(rsBlackWarhammer);
 				}
+				ALL_ITEMS.add(rsBlackWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.WhiteWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.WhiteWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.WhiteWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.WhiteWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.WhiteWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.WhiteWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.WhiteWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsWhiteWarhammer = new HASword("rsWhiteWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsWhiteWarhammer);
+					rsWhiteWarhammer = new HAWeapon("rsWhiteWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsWhiteWarhammer);
 				}else {
 					rsWhiteWarhammer = new ItemHammerHW("rsWhiteWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteWarhammer, HeroicArmory.MOD_ID, "rsWhiteWarhammer");
-					event.getRegistry().register(rsWhiteWarhammer);
 				}
+				ALL_ITEMS.add(rsWhiteWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.MithrilWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.MithrilWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.MithrilWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.MithrilWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.MithrilWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.MithrilWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.MithrilWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsMithrilWarhammer = new HASword("rsMithrilWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsMithrilWarhammer);
+					rsMithrilWarhammer = new HAWeapon("rsMithrilWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsMithrilWarhammer);
 				}else {
 					rsMithrilWarhammer = new ItemHammerHW("rsMithrilWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilWarhammer, HeroicArmory.MOD_ID, "rsMithrilWarhammer");
-					event.getRegistry().register(rsMithrilWarhammer);
 				}
+				ALL_ITEMS.add(rsMithrilWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.AdamantWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.AdamantWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.AdamantWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.AdamantWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.AdamantWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.AdamantWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.AdamantWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsAdamantWarhammer = new HASword("rsAdamantWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsAdamantWarhammer);
+					rsAdamantWarhammer = new HAWeapon("rsAdamantWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsAdamantWarhammer);
 				}else {
 					rsAdamantWarhammer = new ItemHammerHW("rsAdamantWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantWarhammer, HeroicArmory.MOD_ID, "rsAdamantWarhammer");
-					event.getRegistry().register(rsAdamantWarhammer);
 				}
+				ALL_ITEMS.add(rsAdamantWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.RuneWarhammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.RuneWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.RuneWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.RuneWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.RuneWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.RuneWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.RuneWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.RuneWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.RuneWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.RuneWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.RuneWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsRuneWarhammer = new HASword("rsRuneWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsRuneWarhammer);
+					rsRuneWarhammer = new HAWeapon("rsRuneWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsRuneWarhammer);
 				}else {
 					rsRuneWarhammer = new ItemHammerHW("rsRuneWarhammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneWarhammer, HeroicArmory.MOD_ID, "rsRuneWarhammer");
-					event.getRegistry().register(rsRuneWarhammer);
 				}
+				ALL_ITEMS.add(rsRuneWarhammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BronzeMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BronzeMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BronzeMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BronzeMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BronzeMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BronzeMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BronzeMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BronzeMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BronzeMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BronzeMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BronzeMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BronzeMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBronzeMace = new HASword("rsBronzeMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBronzeMace);
+					rsBronzeMace = new HAWeapon("rsBronzeMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBronzeMace);
 				}else {
 					rsBronzeMace = new ItemMaceHW("rsBronzeMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBronzeMace, HeroicArmory.MOD_ID, "rsBronzeMace");
-					event.getRegistry().register(rsBronzeMace);
 				}
+				ALL_ITEMS.add(rsBronzeMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.IronMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.IronMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.IronMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.IronMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.IronMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.IronMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.IronMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.IronMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.IronMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.IronMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.IronMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.IronMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsIronMace = new HASword("rsIronMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsIronMace);
+					rsIronMace = new HAWeapon("rsIronMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsIronMace);
 				}else {
 					rsIronMace = new ItemMaceHW("rsIronMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsIronMace, HeroicArmory.MOD_ID, "rsIronMace");
-					event.getRegistry().register(rsIronMace);
 				}
+				ALL_ITEMS.add(rsIronMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SteelMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SteelMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SteelMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SteelMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SteelMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SteelMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SteelMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SteelMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SteelMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SteelMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SteelMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SteelMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsSteelMace = new HASword("rsSteelMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsSteelMace);
+					rsSteelMace = new HAWeapon("rsSteelMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsSteelMace);
 				}else {
 					rsSteelMace = new ItemMaceHW("rsSteelMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSteelMace, HeroicArmory.MOD_ID, "rsSteelMace");
-					event.getRegistry().register(rsSteelMace);
 				}
+				ALL_ITEMS.add(rsSteelMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BlackMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BlackMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BlackMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BlackMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BlackMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BlackMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BlackMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BlackMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BlackMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BlackMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BlackMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BlackMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBlackMace = new HASword("rsBlackMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBlackMace);
+					rsBlackMace = new HAWeapon("rsBlackMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBlackMace);
 				}else {
 					rsBlackMace = new ItemMaceHW("rsBlackMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBlackMace, HeroicArmory.MOD_ID, "rsBlackMace");
-					event.getRegistry().register(rsBlackMace);
 				}
+				ALL_ITEMS.add(rsBlackMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.WhiteMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.WhiteMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.WhiteMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.WhiteMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.WhiteMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.WhiteMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.WhiteMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.WhiteMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.WhiteMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.WhiteMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.WhiteMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.WhiteMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsWhiteMace = new HASword("rsWhiteMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsWhiteMace);
+					rsWhiteMace = new HAWeapon("rsWhiteMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsWhiteMace);
 				}else {
 					rsWhiteMace = new ItemMaceHW("rsWhiteMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsWhiteMace, HeroicArmory.MOD_ID, "rsWhiteMace");
-					event.getRegistry().register(rsWhiteMace);
 				}
+				ALL_ITEMS.add(rsWhiteMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.MithrilMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.MithrilMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.MithrilMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.MithrilMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.MithrilMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.MithrilMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.MithrilMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.MithrilMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.MithrilMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.MithrilMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.MithrilMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.MithrilMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsMithrilMace = new HASword("rsMithrilMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsMithrilMace);
+					rsMithrilMace = new HAWeapon("rsMithrilMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsMithrilMace);
 				}else {
 					rsMithrilMace = new ItemMaceHW("rsMithrilMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsMithrilMace, HeroicArmory.MOD_ID, "rsMithrilMace");
-					event.getRegistry().register(rsMithrilMace);
 				}
+				ALL_ITEMS.add(rsMithrilMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.AdamantMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.AdamantMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.AdamantMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.AdamantMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.AdamantMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.AdamantMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.AdamantMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.AdamantMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.AdamantMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.AdamantMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.AdamantMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.AdamantMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsAdamantMace = new HASword("rsAdamantMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsAdamantMace);
+					rsAdamantMace = new HAWeapon("rsAdamantMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsAdamantMace);
 				}else {
 					rsAdamantMace = new ItemMaceHW("rsAdamantMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsAdamantMace, HeroicArmory.MOD_ID, "rsAdamantMace");
-					event.getRegistry().register(rsAdamantMace);
 				}
+				ALL_ITEMS.add(rsAdamantMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.RuneMace.enabled) {
+			if (HAConfig.modifiedItems.rsModified.RuneMace.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.RuneMace.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.RuneMace.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.RuneMace.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.RuneMace.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.RuneMace.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.RuneMace.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.RuneMace.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.RuneMace.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.RuneMace.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.RuneMace.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsRuneMace = new HASword("rsRuneMace", dummyMaterial, properties);
-					ALL_ITEMS.add(rsRuneMace);
+					rsRuneMace = new HAWeapon("rsRuneMace", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsRuneMace);
 				}else {
 					rsRuneMace = new ItemMaceHW("rsRuneMace", dummyMaterialEx, properties, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsRuneMace, HeroicArmory.MOD_ID, "rsRuneMace");
-					event.getRegistry().register(rsRuneMace);
 				}
+				ALL_ITEMS.add(rsRuneMace);
 			}
-			if (HAConfig.modifiedItems.rsmodified.GraniteLongsword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.GraniteLongsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.GraniteLongsword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.GraniteLongsword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.GraniteLongsword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteLongsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteLongsword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.GraniteLongsword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.GraniteLongsword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.GraniteLongsword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.GraniteLongsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.GraniteLongsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsGraniteLongsword = new HASword("rsGraniteLongsword", dummyMaterial, properties);
-					ALL_ITEMS.add(rsGraniteLongsword);
+					rsGraniteLongsword = new HAWeapon("rsGraniteLongsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsGraniteLongsword);
 				}else {
 					rsGraniteLongsword = new ItemLongswordHW("rsGraniteLongsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteLongsword, HeroicArmory.MOD_ID, "rsGraniteLongsword");
-					event.getRegistry().register(rsGraniteLongsword);
 				}
+				ALL_ITEMS.add(rsGraniteLongsword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.GraniteHammer.enabled) {
+			if (HAConfig.modifiedItems.rsModified.GraniteHammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.GraniteHammer.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.GraniteHammer.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.GraniteHammer.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteHammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteHammer.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.GraniteHammer.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.GraniteHammer.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.GraniteHammer.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.GraniteHammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.GraniteHammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsGraniteHammer = new HASword("rsGraniteHammer", dummyMaterial, properties);
-					ALL_ITEMS.add(rsGraniteHammer);
+					rsGraniteHammer = new HAWeapon("rsGraniteHammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsGraniteHammer);
 				}else {
 					rsGraniteHammer = new ItemHammerHW("rsGraniteHammer", dummyMaterialEx, properties, WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteHammer, HeroicArmory.MOD_ID, "rsGraniteHammer");
-					event.getRegistry().register(rsGraniteHammer);
 				}
+				ALL_ITEMS.add(rsGraniteHammer);
 			}
-			if (HAConfig.modifiedItems.rsmodified.GraniteMaul.enabled) {
+			if (HAConfig.modifiedItems.rsModified.GraniteMaul.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.GraniteMaul.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.GraniteMaul.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.GraniteMaul.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.GraniteMaul.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.GraniteMaul.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.GraniteMaul.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.GraniteMaul.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.GraniteMaul.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.GraniteMaul.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.GraniteMaul.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsGraniteMaul = new HASword("rsGraniteMaul", dummyMaterial, properties);
-					ALL_ITEMS.add(rsGraniteMaul);
+					rsGraniteMaul = new HAWeapon("rsGraniteMaul", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsGraniteMaul);
 				}else {
 					rsGraniteMaul = new ItemWarhammerHW("rsGraniteMaul", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsGraniteMaul, HeroicArmory.MOD_ID, "rsGraniteMaul");
-					event.getRegistry().register(rsGraniteMaul);
 				}
+				ALL_ITEMS.add(rsGraniteMaul);
 			}
-			if (HAConfig.modifiedItems.rsmodified.ElderMaul.enabled) {
+			if (HAConfig.modifiedItems.rsModified.ElderMaul.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.ElderMaul.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.ElderMaul.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.ElderMaul.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.ElderMaul.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.ElderMaul.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.ElderMaul.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.ElderMaul.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.ElderMaul.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.ElderMaul.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.ElderMaul.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsElderMaul = new HASword("rsElderMaul", dummyMaterial, properties);
-					ALL_ITEMS.add(rsElderMaul);
+					rsElderMaul = new HAWeapon("rsElderMaul", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsElderMaul);
 				}else {
 					rsElderMaul = new ItemWarhammerHW("rsElderMaul", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsElderMaul, HeroicArmory.MOD_ID, "rsElderMaul");
-					event.getRegistry().register(rsElderMaul);
 				}
+				ALL_ITEMS.add(rsElderMaul);
 			}
-			if (HAConfig.modifiedItems.rsmodified.Toktzxilak.enabled) {
+			if (HAConfig.modifiedItems.rsModified.Toktzxilak.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.Toktzxilak.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.Toktzxilak.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.Toktzxilak.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.Toktzxilak.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.Toktzxilak.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.Toktzxilak.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.Toktzxilak.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.Toktzxilak.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.Toktzxilak.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.Toktzxilak.rarity);
 				}};
-				rsToktzxilak = new HASword("rsToktzxilak", dummyMaterial, properties);
+				rsToktzxilak = new HAWeapon("rsToktzxilak", dummyMaterial, properties);
+				HEROIC_ITEMS.add(rsToktzxilak);
 				ALL_ITEMS.add(rsToktzxilak);
 			}
-			if (HAConfig.modifiedItems.rsmodified.Wolfsbane.enabled) {
+			if (HAConfig.modifiedItems.rsModified.Wolfsbane.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.Wolfsbane.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.Wolfsbane.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.Wolfsbane.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.Wolfsbane.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.Wolfsbane.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.Wolfsbane.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.Wolfsbane.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.Wolfsbane.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.Wolfsbane.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.Wolfsbane.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsWolfsbane = new HASword("rsWolfsbane", dummyMaterial, properties);
-					ALL_ITEMS.add(rsWolfsbane);
+					rsWolfsbane = new HAWeapon("rsWolfsbane", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsWolfsbane);
 				}else {
 					rsWolfsbane = new ItemDaggerHW("rsWolfsbane", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsWolfsbane, HeroicArmory.MOD_ID, "rsWolfsbane");
-					event.getRegistry().register(rsWolfsbane);
 				}
+				ALL_ITEMS.add(rsWolfsbane);
 			}
-			if (HAConfig.modifiedItems.rsmodified.ZamorakGodsword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.ZamorakGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.ZamorakGodsword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.ZamorakGodsword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.ZamorakGodsword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.ZamorakGodsword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.ZamorakGodsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.ZamorakGodsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsZamorakGodsword = new HASword("rsZamorakGodsword", dummyMaterial, properties);
-					ALL_ITEMS.add(rsZamorakGodsword);
+					rsZamorakGodsword = new HAWeapon("rsZamorakGodsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsZamorakGodsword);
 				}else {
 					rsZamorakGodsword = new ItemGreatswordHW("rsZamorakGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyFreeze(6));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsZamorakGodsword, HeroicArmory.MOD_ID, "rsZamorakGodsword");
-					event.getRegistry().register(rsZamorakGodsword);
 				}
+				ALL_ITEMS.add(rsZamorakGodsword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BandosGodsword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BandosGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BandosGodsword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BandosGodsword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BandosGodsword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BandosGodsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BandosGodsword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BandosGodsword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BandosGodsword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BandosGodsword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BandosGodsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BandosGodsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBandosGodsword = new HASword("rsBandosGodsword", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBandosGodsword);
+					rsBandosGodsword = new HAWeapon("rsBandosGodsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBandosGodsword);
 				}else {
 					rsBandosGodsword = new ItemGreatswordHW("rsBandosGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyArmorDebuff(30));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBandosGodsword, HeroicArmory.MOD_ID, "rsBandosGodsword");
-					event.getRegistry().register(rsBandosGodsword);
 				}
+				ALL_ITEMS.add(rsBandosGodsword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.ArmadylGodsword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.ArmadylGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.ArmadylGodsword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.ArmadylGodsword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.ArmadylGodsword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.ArmadylGodsword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.ArmadylGodsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.ArmadylGodsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsArmadylGodsword = new HASword("rsArmadylGodsword", dummyMaterial, properties);
-					ALL_ITEMS.add(rsArmadylGodsword);
+					rsArmadylGodsword = new HAWeapon("rsArmadylGodsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsArmadylGodsword);
 				}else {
 					rsArmadylGodsword = new ItemGreatswordHW("rsArmadylGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyCritBonus(0.25f));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsArmadylGodsword, HeroicArmory.MOD_ID, "rsArmadylGodsword");
-					event.getRegistry().register(rsArmadylGodsword);
 				}
+				ALL_ITEMS.add(rsArmadylGodsword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.SaradominGodsword.enabled) {
+			if (HAConfig.modifiedItems.rsModified.SaradominGodsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.SaradominGodsword.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.SaradominGodsword.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.SaradominGodsword.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.SaradominGodsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.SaradominGodsword.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.SaradominGodsword.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.SaradominGodsword.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.SaradominGodsword.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.SaradominGodsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.SaradominGodsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsSaradominGodsword = new HASword("rsSaradominGodsword", dummyMaterial, properties);
-					ALL_ITEMS.add(rsSaradominGodsword);
+					rsSaradominGodsword = new HAWeapon("rsSaradominGodsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsSaradominGodsword);
 				}else {
 					rsSaradominGodsword = new ItemGreatswordHW("rsSaradominGodsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyLifePercent(20));
 					SpartanWeaponryAPI.addItemModelToRegistry(rsSaradominGodsword, HeroicArmory.MOD_ID, "rsSaradominGodsword");
-					event.getRegistry().register(rsSaradominGodsword);
 				}
+				ALL_ITEMS.add(rsSaradominGodsword);
 			}
-			if (HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.enabled) {
+			if (HAConfig.modifiedItems.rsModified.BarrelchestAnchor.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.damage);
-					put("durability", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.durability);
-					put("speed", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.speed);
-					put("enchantability", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.enchantability);
-					put("rarity", HAConfig.modifiedItems.rsmodified.BarrelchestAnchor.rarity);
+					put("attack", HAConfig.modifiedItems.rsModified.BarrelchestAnchor.damage);
+					put("durability", HAConfig.modifiedItems.rsModified.BarrelchestAnchor.durability);
+					put("speed", HAConfig.modifiedItems.rsModified.BarrelchestAnchor.speed);
+					put("enchantability", HAConfig.modifiedItems.rsModified.BarrelchestAnchor.enchantability);
+					put("rarity", HAConfig.modifiedItems.rsModified.BarrelchestAnchor.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					rsBarrelchestAnchor = new HASword("rsBarrelchestAnchor", dummyMaterial, properties);
-					ALL_ITEMS.add(rsBarrelchestAnchor);
+					rsBarrelchestAnchor = new HAWeapon("rsBarrelchestAnchor", dummyMaterial, properties);
+					HEROIC_ITEMS.add(rsBarrelchestAnchor);
 				}else {
 					rsBarrelchestAnchor = new ItemClubHW("rsBarrelchestAnchor", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.SWEEP_DAMAGE_FULL , WeaponProperties.KNOCKBACK, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(rsBarrelchestAnchor, HeroicArmory.MOD_ID, "rsBarrelchestAnchor");
-					event.getRegistry().register(rsBarrelchestAnchor);
 				}
+				ALL_ITEMS.add(rsBarrelchestAnchor);
 			}
 		}
-
-//dmc
+		//dmc
 		if (HAConfig.includeSeries.dmc) {
-			if (HAConfig.modifiedItems.dmcmodified.RedQueen.enabled) {
+			if (HAConfig.modifiedItems.dmcModified.RedQueen.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dmcmodified.RedQueen.damage);
-					put("durability", HAConfig.modifiedItems.dmcmodified.RedQueen.durability);
-					put("speed", HAConfig.modifiedItems.dmcmodified.RedQueen.speed);
-					put("enchantability", HAConfig.modifiedItems.dmcmodified.RedQueen.enchantability);
-					put("rarity", HAConfig.modifiedItems.dmcmodified.RedQueen.rarity);
+					put("attack", HAConfig.modifiedItems.dmcModified.RedQueen.damage);
+					put("durability", HAConfig.modifiedItems.dmcModified.RedQueen.durability);
+					put("speed", HAConfig.modifiedItems.dmcModified.RedQueen.speed);
+					put("enchantability", HAConfig.modifiedItems.dmcModified.RedQueen.enchantability);
+					put("rarity", HAConfig.modifiedItems.dmcModified.RedQueen.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dmcRedQueen = new HASword("dmcRedQueen", dummyMaterial, properties);
-					ALL_ITEMS.add(dmcRedQueen);
+					dmcRedQueen = new HAWeapon("dmcRedQueen", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dmcRedQueen);
 				}else {
 					dmcRedQueen = new ItemSaberHW("dmcRedQueen", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(dmcRedQueen, HeroicArmory.MOD_ID, "dmcRedQueen");
-					event.getRegistry().register(dmcRedQueen);
 				}
+				ALL_ITEMS.add(dmcRedQueen);
 			}
-			if (HAConfig.modifiedItems.dmcmodified.Rebellion.enabled) {
+			if (HAConfig.modifiedItems.dmcModified.Rebellion.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dmcmodified.Rebellion.damage);
-					put("durability", HAConfig.modifiedItems.dmcmodified.Rebellion.durability);
-					put("speed", HAConfig.modifiedItems.dmcmodified.Rebellion.speed);
-					put("enchantability", HAConfig.modifiedItems.dmcmodified.Rebellion.enchantability);
-					put("rarity", HAConfig.modifiedItems.dmcmodified.Rebellion.rarity);
+					put("attack", HAConfig.modifiedItems.dmcModified.Rebellion.damage);
+					put("durability", HAConfig.modifiedItems.dmcModified.Rebellion.durability);
+					put("speed", HAConfig.modifiedItems.dmcModified.Rebellion.speed);
+					put("enchantability", HAConfig.modifiedItems.dmcModified.Rebellion.enchantability);
+					put("rarity", HAConfig.modifiedItems.dmcModified.Rebellion.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dmcRebellion = new HASword("dmcRebellion", dummyMaterial, properties);
-					ALL_ITEMS.add(dmcRebellion);
+					dmcRebellion = new HAWeapon("dmcRebellion", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dmcRebellion);
 				}else {
 					dmcRebellion = new ItemGreatswordHW("dmcRebellion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(dmcRebellion, HeroicArmory.MOD_ID, "dmcRebellion");
-					event.getRegistry().register(dmcRebellion);
 				}
+				ALL_ITEMS.add(dmcRebellion);
 			}
-			if (HAConfig.modifiedItems.dmcmodified.Yamato.enabled) {
+			if (HAConfig.modifiedItems.dmcModified.Yamato.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dmcmodified.Yamato.damage);
-					put("durability", HAConfig.modifiedItems.dmcmodified.Yamato.durability);
-					put("speed", HAConfig.modifiedItems.dmcmodified.Yamato.speed);
-					put("enchantability", HAConfig.modifiedItems.dmcmodified.Yamato.enchantability);
-					put("rarity", HAConfig.modifiedItems.dmcmodified.Yamato.rarity);
+					put("attack", HAConfig.modifiedItems.dmcModified.Yamato.damage);
+					put("durability", HAConfig.modifiedItems.dmcModified.Yamato.durability);
+					put("speed", HAConfig.modifiedItems.dmcModified.Yamato.speed);
+					put("enchantability", HAConfig.modifiedItems.dmcModified.Yamato.enchantability);
+					put("rarity", HAConfig.modifiedItems.dmcModified.Yamato.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dmcYamato = new HASword("dmcYamato", dummyMaterial, properties);
-					ALL_ITEMS.add(dmcYamato);
+					dmcYamato = new HAWeapon("dmcYamato", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dmcYamato);
 				}else {
 					dmcYamato = new ItemKatanaHW("dmcYamato", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(dmcYamato, HeroicArmory.MOD_ID, "dmcYamato");
-					event.getRegistry().register(dmcYamato);
 				}
+				ALL_ITEMS.add(dmcYamato);
 			}
 		}
-
-//pkmn
+		//pkmn
 		if (HAConfig.includeSeries.pkmn) {
-			if (HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.enabled) {
+			if (HAConfig.modifiedItems.pkmnModified.HonedgeShiny.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.damage);
-					put("durability", HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.durability);
-					put("speed", HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.speed);
-					put("enchantability", HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.enchantability);
-					put("rarity", HAConfig.modifiedItems.pkmnmodified.HonedgeShiny.rarity);
+					put("attack", HAConfig.modifiedItems.pkmnModified.HonedgeShiny.damage);
+					put("durability", HAConfig.modifiedItems.pkmnModified.HonedgeShiny.durability);
+					put("speed", HAConfig.modifiedItems.pkmnModified.HonedgeShiny.speed);
+					put("enchantability", HAConfig.modifiedItems.pkmnModified.HonedgeShiny.enchantability);
+					put("rarity", HAConfig.modifiedItems.pkmnModified.HonedgeShiny.rarity);
 				}};
-				pkmnHonedgeShiny = new HASword("pkmnHonedgeShiny", dummyMaterial, properties);
+				pkmnHonedgeShiny = new HAWeapon("pkmnHonedgeShiny", dummyMaterial, properties);
+				HEROIC_ITEMS.add(pkmnHonedgeShiny);
 				ALL_ITEMS.add(pkmnHonedgeShiny);
 			}
-			if (HAConfig.modifiedItems.pkmnmodified.Honedge.enabled) {
+			if (HAConfig.modifiedItems.pkmnModified.Honedge.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.pkmnmodified.Honedge.damage);
-					put("durability", HAConfig.modifiedItems.pkmnmodified.Honedge.durability);
-					put("speed", HAConfig.modifiedItems.pkmnmodified.Honedge.speed);
-					put("enchantability", HAConfig.modifiedItems.pkmnmodified.Honedge.enchantability);
-					put("rarity", HAConfig.modifiedItems.pkmnmodified.Honedge.rarity);
+					put("attack", HAConfig.modifiedItems.pkmnModified.Honedge.damage);
+					put("durability", HAConfig.modifiedItems.pkmnModified.Honedge.durability);
+					put("speed", HAConfig.modifiedItems.pkmnModified.Honedge.speed);
+					put("enchantability", HAConfig.modifiedItems.pkmnModified.Honedge.enchantability);
+					put("rarity", HAConfig.modifiedItems.pkmnModified.Honedge.rarity);
 				}};
-				pkmnHonedge = new HASword("pkmnHonedge", dummyMaterial, properties);
+				pkmnHonedge = new HAWeapon("pkmnHonedge", dummyMaterial, properties);
+				HEROIC_ITEMS.add(pkmnHonedge);
 				ALL_ITEMS.add(pkmnHonedge);
 			}
 		}
-
-//kirby
+		//kirby
 		if (HAConfig.includeSeries.kirby) {
-			if (HAConfig.modifiedItems.kirbymodified.Galaxia.enabled) {
+			if (HAConfig.modifiedItems.kirbyModified.Galaxia.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.kirbymodified.Galaxia.damage);
-					put("durability", HAConfig.modifiedItems.kirbymodified.Galaxia.durability);
-					put("speed", HAConfig.modifiedItems.kirbymodified.Galaxia.speed);
-					put("enchantability", HAConfig.modifiedItems.kirbymodified.Galaxia.enchantability);
-					put("rarity", HAConfig.modifiedItems.kirbymodified.Galaxia.rarity);
+					put("attack", HAConfig.modifiedItems.kirbyModified.Galaxia.damage);
+					put("durability", HAConfig.modifiedItems.kirbyModified.Galaxia.durability);
+					put("speed", HAConfig.modifiedItems.kirbyModified.Galaxia.speed);
+					put("enchantability", HAConfig.modifiedItems.kirbyModified.Galaxia.enchantability);
+					put("rarity", HAConfig.modifiedItems.kirbyModified.Galaxia.rarity);
 				}};
-				kirbyGalaxia = new HASword("kirbyGalaxia", dummyMaterial, properties);
+				kirbyGalaxia = new HAWeapon("kirbyGalaxia", dummyMaterial, properties);
+				HEROIC_ITEMS.add(kirbyGalaxia);
 				ALL_ITEMS.add(kirbyGalaxia);
 			}
-			if (HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.enabled) {
+			if (HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.damage);
-					put("durability", HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.durability);
-					put("speed", HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.speed);
-					put("enchantability", HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.kirbymodified.KirbyUltraSword.rarity);
+					put("attack", HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.damage);
+					put("durability", HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.durability);
+					put("speed", HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.speed);
+					put("enchantability", HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.kirbyModified.KirbyUltraSword.rarity);
 				}};
-				kirbyKirbyUltraSword = new HASword("kirbyKirbyUltraSword", dummyMaterial, properties);
+				kirbyKirbyUltraSword = new HAWeapon("kirbyKirbyUltraSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(kirbyKirbyUltraSword);
 				ALL_ITEMS.add(kirbyKirbyUltraSword);
 			}
-			if (HAConfig.modifiedItems.kirbymodified.KirbySword.enabled) {
+			if (HAConfig.modifiedItems.kirbyModified.KirbySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.kirbymodified.KirbySword.damage);
-					put("durability", HAConfig.modifiedItems.kirbymodified.KirbySword.durability);
-					put("speed", HAConfig.modifiedItems.kirbymodified.KirbySword.speed);
-					put("enchantability", HAConfig.modifiedItems.kirbymodified.KirbySword.enchantability);
-					put("rarity", HAConfig.modifiedItems.kirbymodified.KirbySword.rarity);
+					put("attack", HAConfig.modifiedItems.kirbyModified.KirbySword.damage);
+					put("durability", HAConfig.modifiedItems.kirbyModified.KirbySword.durability);
+					put("speed", HAConfig.modifiedItems.kirbyModified.KirbySword.speed);
+					put("enchantability", HAConfig.modifiedItems.kirbyModified.KirbySword.enchantability);
+					put("rarity", HAConfig.modifiedItems.kirbyModified.KirbySword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					kirbyKirbySword = new HASword("kirbyKirbySword", dummyMaterial, properties);
-					ALL_ITEMS.add(kirbyKirbySword);
+					kirbyKirbySword = new HAWeapon("kirbyKirbySword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(kirbyKirbySword);
 				}else {
 					kirbyKirbySword = new ItemDaggerHW("kirbyKirbySword", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(kirbyKirbySword, HeroicArmory.MOD_ID, "kirbyKirbySword");
-					event.getRegistry().register(kirbyKirbySword);
 				}
+				ALL_ITEMS.add(kirbyKirbySword);
 			}
 		}
-
-//fe
+		//fe
 		if (HAConfig.includeSeries.fe) {
-			if (HAConfig.modifiedItems.femodified.ChromFalchion.enabled) {
+			if (HAConfig.modifiedItems.feModified.ChromFalchion.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.femodified.ChromFalchion.damage);
-					put("durability", HAConfig.modifiedItems.femodified.ChromFalchion.durability);
-					put("speed", HAConfig.modifiedItems.femodified.ChromFalchion.speed);
-					put("enchantability", HAConfig.modifiedItems.femodified.ChromFalchion.enchantability);
-					put("rarity", HAConfig.modifiedItems.femodified.ChromFalchion.rarity);
+					put("attack", HAConfig.modifiedItems.feModified.ChromFalchion.damage);
+					put("durability", HAConfig.modifiedItems.feModified.ChromFalchion.durability);
+					put("speed", HAConfig.modifiedItems.feModified.ChromFalchion.speed);
+					put("enchantability", HAConfig.modifiedItems.feModified.ChromFalchion.enchantability);
+					put("rarity", HAConfig.modifiedItems.feModified.ChromFalchion.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					feChromFalchion = new HASword("feChromFalchion", dummyMaterial, properties);
-					ALL_ITEMS.add(feChromFalchion);
+					feChromFalchion = new HAWeapon("feChromFalchion", dummyMaterial, properties);
+					HEROIC_ITEMS.add(feChromFalchion);
 				}else {
 					feChromFalchion = new ItemLongswordHW("feChromFalchion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(feChromFalchion, HeroicArmory.MOD_ID, "feChromFalchion");
-					event.getRegistry().register(feChromFalchion);
 				}
+				ALL_ITEMS.add(feChromFalchion);
 			}
-			if (HAConfig.modifiedItems.femodified.Falchion.enabled) {
+			if (HAConfig.modifiedItems.feModified.Falchion.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.femodified.Falchion.damage);
-					put("durability", HAConfig.modifiedItems.femodified.Falchion.durability);
-					put("speed", HAConfig.modifiedItems.femodified.Falchion.speed);
-					put("enchantability", HAConfig.modifiedItems.femodified.Falchion.enchantability);
-					put("rarity", HAConfig.modifiedItems.femodified.Falchion.rarity);
+					put("attack", HAConfig.modifiedItems.feModified.Falchion.damage);
+					put("durability", HAConfig.modifiedItems.feModified.Falchion.durability);
+					put("speed", HAConfig.modifiedItems.feModified.Falchion.speed);
+					put("enchantability", HAConfig.modifiedItems.feModified.Falchion.enchantability);
+					put("rarity", HAConfig.modifiedItems.feModified.Falchion.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					feFalchion = new HASword("feFalchion", dummyMaterial, properties);
-					ALL_ITEMS.add(feFalchion);
+					feFalchion = new HAWeapon("feFalchion", dummyMaterial, properties);
+					HEROIC_ITEMS.add(feFalchion);
 				}else {
 					feFalchion = new ItemLongswordHW("feFalchion", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(feFalchion, HeroicArmory.MOD_ID, "feFalchion");
-					event.getRegistry().register(feFalchion);
 				}
+				ALL_ITEMS.add(feFalchion);
 			}
 		}
-
-//kh
+		//kh
 		if (HAConfig.includeSeries.kh) {
-			if (HAConfig.modifiedItems.khmodified.Keyblade.enabled) {
+			if (HAConfig.modifiedItems.khModified.Keyblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.khmodified.Keyblade.damage);
-					put("durability", HAConfig.modifiedItems.khmodified.Keyblade.durability);
-					put("speed", HAConfig.modifiedItems.khmodified.Keyblade.speed);
-					put("enchantability", HAConfig.modifiedItems.khmodified.Keyblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.khmodified.Keyblade.rarity);
+					put("attack", HAConfig.modifiedItems.khModified.Keyblade.damage);
+					put("durability", HAConfig.modifiedItems.khModified.Keyblade.durability);
+					put("speed", HAConfig.modifiedItems.khModified.Keyblade.speed);
+					put("enchantability", HAConfig.modifiedItems.khModified.Keyblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.khModified.Keyblade.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					khKeyblade = new HASword("khKeyblade", dummyMaterial, properties);
-					ALL_ITEMS.add(khKeyblade);
+					khKeyblade = new HAWeapon("khKeyblade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(khKeyblade);
 				}else {
 					khKeyblade = new ItemCustomKeybladeHW("khKeyblade", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.THROWABLE, WeaponProperties.SWEEP_DAMAGE_HALF, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), WeaponProperties.QUICK_STRIKE);
 					SpartanWeaponryAPI.addItemModelToRegistry(khKeyblade, HeroicArmory.MOD_ID, "khKeyblade");
-					event.getRegistry().register(khKeyblade);
 				}
+				ALL_ITEMS.add(khKeyblade);
 			}
 		}
-
-//bleach
+		//bleach
 		if (HAConfig.includeSeries.bleach) {
-			if (HAConfig.modifiedItems.bleachmodified.Zabimaru.enabled) {
+			if (HAConfig.modifiedItems.bleachModified.Zabimaru.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.bleachmodified.Zabimaru.damage);
-					put("durability", HAConfig.modifiedItems.bleachmodified.Zabimaru.durability);
-					put("speed", HAConfig.modifiedItems.bleachmodified.Zabimaru.speed);
-					put("enchantability", HAConfig.modifiedItems.bleachmodified.Zabimaru.enchantability);
-					put("rarity", HAConfig.modifiedItems.bleachmodified.Zabimaru.rarity);
+					put("attack", HAConfig.modifiedItems.bleachModified.Zabimaru.damage);
+					put("durability", HAConfig.modifiedItems.bleachModified.Zabimaru.durability);
+					put("speed", HAConfig.modifiedItems.bleachModified.Zabimaru.speed);
+					put("enchantability", HAConfig.modifiedItems.bleachModified.Zabimaru.enchantability);
+					put("rarity", HAConfig.modifiedItems.bleachModified.Zabimaru.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					bleachZabimaru = new HASword("bleachZabimaru", dummyMaterial, properties);
-					ALL_ITEMS.add(bleachZabimaru);
+					bleachZabimaru = new HAWeapon("bleachZabimaru", dummyMaterial, properties);
+					HEROIC_ITEMS.add(bleachZabimaru);
 				}else {
 					bleachZabimaru = new ItemGreatswordHW("bleachZabimaru", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(bleachZabimaru, HeroicArmory.MOD_ID, "bleachZabimaru");
-					event.getRegistry().register(bleachZabimaru);
 				}
+				ALL_ITEMS.add(bleachZabimaru);
 			}
-			if (HAConfig.modifiedItems.bleachmodified.Zangetsu.enabled) {
+			if (HAConfig.modifiedItems.bleachModified.Zangetsu.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.bleachmodified.Zangetsu.damage);
-					put("durability", HAConfig.modifiedItems.bleachmodified.Zangetsu.durability);
-					put("speed", HAConfig.modifiedItems.bleachmodified.Zangetsu.speed);
-					put("enchantability", HAConfig.modifiedItems.bleachmodified.Zangetsu.enchantability);
-					put("rarity", HAConfig.modifiedItems.bleachmodified.Zangetsu.rarity);
+					put("attack", HAConfig.modifiedItems.bleachModified.Zangetsu.damage);
+					put("durability", HAConfig.modifiedItems.bleachModified.Zangetsu.durability);
+					put("speed", HAConfig.modifiedItems.bleachModified.Zangetsu.speed);
+					put("enchantability", HAConfig.modifiedItems.bleachModified.Zangetsu.enchantability);
+					put("rarity", HAConfig.modifiedItems.bleachModified.Zangetsu.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					bleachZangetsu = new HASword("bleachZangetsu", dummyMaterial, properties);
-					ALL_ITEMS.add(bleachZangetsu);
+					bleachZangetsu = new HAWeapon("bleachZangetsu", dummyMaterial, properties);
+					HEROIC_ITEMS.add(bleachZangetsu);
 				}else {
 					bleachZangetsu = new ItemGreatswordHW("bleachZangetsu", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(bleachZangetsu, HeroicArmory.MOD_ID, "bleachZangetsu");
-					event.getRegistry().register(bleachZangetsu);
 				}
+				ALL_ITEMS.add(bleachZangetsu);
 			}
 		}
-
-//ds
+		//ds
 		if (HAConfig.includeSeries.ds) {
-			if (HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.enabled) {
+			if (HAConfig.modifiedItems.dsModified.GreatswordofArtorias.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.damage);
-					put("durability", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.durability);
-					put("speed", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.speed);
-					put("enchantability", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.enchantability);
-					put("rarity", HAConfig.modifiedItems.dsmodified.GreatswordofArtorias.rarity);
+					put("attack", HAConfig.modifiedItems.dsModified.GreatswordofArtorias.damage);
+					put("durability", HAConfig.modifiedItems.dsModified.GreatswordofArtorias.durability);
+					put("speed", HAConfig.modifiedItems.dsModified.GreatswordofArtorias.speed);
+					put("enchantability", HAConfig.modifiedItems.dsModified.GreatswordofArtorias.enchantability);
+					put("rarity", HAConfig.modifiedItems.dsModified.GreatswordofArtorias.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dsGreatswordofArtorias = new HASword("dsGreatswordofArtorias", dummyMaterial, properties);
-					ALL_ITEMS.add(dsGreatswordofArtorias);
+					dsGreatswordofArtorias = new HAWeapon("dsGreatswordofArtorias", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dsGreatswordofArtorias);
 				}else {
 					dsGreatswordofArtorias = new ItemGreatswordHW("dsGreatswordofArtorias", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(dsGreatswordofArtorias, HeroicArmory.MOD_ID, "dsGreatswordofArtorias");
-					event.getRegistry().register(dsGreatswordofArtorias);
 				}
+				ALL_ITEMS.add(dsGreatswordofArtorias);
 			}
-			if (HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.enabled) {
+			if (HAConfig.modifiedItems.dsModified.GreatLordGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.damage);
-					put("durability", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.durability);
-					put("speed", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.speed);
-					put("enchantability", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.dsmodified.GreatLordGreatsword.rarity);
+					put("attack", HAConfig.modifiedItems.dsModified.GreatLordGreatsword.damage);
+					put("durability", HAConfig.modifiedItems.dsModified.GreatLordGreatsword.durability);
+					put("speed", HAConfig.modifiedItems.dsModified.GreatLordGreatsword.speed);
+					put("enchantability", HAConfig.modifiedItems.dsModified.GreatLordGreatsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.dsModified.GreatLordGreatsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dsGreatLordGreatsword = new HASword("dsGreatLordGreatsword", dummyMaterial, properties);
-					ALL_ITEMS.add(dsGreatLordGreatsword);
+					dsGreatLordGreatsword = new HAWeapon("dsGreatLordGreatsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dsGreatLordGreatsword);
 				}else {
 					dsGreatLordGreatsword = new ItemGreatswordHW("dsGreatLordGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(dsGreatLordGreatsword, HeroicArmory.MOD_ID, "dsGreatLordGreatsword");
-					event.getRegistry().register(dsGreatLordGreatsword);
 				}
+				ALL_ITEMS.add(dsGreatLordGreatsword);
 			}
-			if (HAConfig.modifiedItems.dsmodified.AstoraGreatsword.enabled) {
+			if (HAConfig.modifiedItems.dsModified.AstoraGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.damage);
-					put("durability", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.durability);
-					put("speed", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.speed);
-					put("enchantability", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.dsmodified.AstoraGreatsword.rarity);
+					put("attack", HAConfig.modifiedItems.dsModified.AstoraGreatsword.damage);
+					put("durability", HAConfig.modifiedItems.dsModified.AstoraGreatsword.durability);
+					put("speed", HAConfig.modifiedItems.dsModified.AstoraGreatsword.speed);
+					put("enchantability", HAConfig.modifiedItems.dsModified.AstoraGreatsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.dsModified.AstoraGreatsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dsAstoraGreatsword = new HASword("dsAstoraGreatsword", dummyMaterial, properties);
-					ALL_ITEMS.add(dsAstoraGreatsword);
+					dsAstoraGreatsword = new HAWeapon("dsAstoraGreatsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dsAstoraGreatsword);
 				}else {
 					dsAstoraGreatsword = new ItemGreatswordHW("dsAstoraGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(dsAstoraGreatsword, HeroicArmory.MOD_ID, "dsAstoraGreatsword");
-					event.getRegistry().register(dsAstoraGreatsword);
 				}
+				ALL_ITEMS.add(dsAstoraGreatsword);
 			}
-			if (HAConfig.modifiedItems.dsmodified.Zweihander.enabled) {
+			if (HAConfig.modifiedItems.dsModified.Zweihander.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.dsmodified.Zweihander.damage);
-					put("durability", HAConfig.modifiedItems.dsmodified.Zweihander.durability);
-					put("speed", HAConfig.modifiedItems.dsmodified.Zweihander.speed);
-					put("enchantability", HAConfig.modifiedItems.dsmodified.Zweihander.enchantability);
-					put("rarity", HAConfig.modifiedItems.dsmodified.Zweihander.rarity);
+					put("attack", HAConfig.modifiedItems.dsModified.Zweihander.damage);
+					put("durability", HAConfig.modifiedItems.dsModified.Zweihander.durability);
+					put("speed", HAConfig.modifiedItems.dsModified.Zweihander.speed);
+					put("enchantability", HAConfig.modifiedItems.dsModified.Zweihander.enchantability);
+					put("rarity", HAConfig.modifiedItems.dsModified.Zweihander.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					dsZweihander = new HASword("dsZweihander", dummyMaterial, properties);
-					ALL_ITEMS.add(dsZweihander);
+					dsZweihander = new HAWeapon("dsZweihander", dummyMaterial, properties);
+					HEROIC_ITEMS.add(dsZweihander);
 				}else {
 					dsZweihander = new ItemGreatswordHW("dsZweihander", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(dsZweihander, HeroicArmory.MOD_ID, "dsZweihander");
-					event.getRegistry().register(dsZweihander);
 				}
+				ALL_ITEMS.add(dsZweihander);
 			}
 		}
-
-//myth
+		//myth
 		if (HAConfig.includeSeries.myth) {
-			if (HAConfig.modifiedItems.mythmodified.DeathScythe.enabled) {
+			if (HAConfig.modifiedItems.mythModified.DeathScythe.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mythmodified.DeathScythe.damage);
-					put("durability", HAConfig.modifiedItems.mythmodified.DeathScythe.durability);
-					put("speed", HAConfig.modifiedItems.mythmodified.DeathScythe.speed);
-					put("enchantability", HAConfig.modifiedItems.mythmodified.DeathScythe.enchantability);
-					put("rarity", HAConfig.modifiedItems.mythmodified.DeathScythe.rarity);
+					put("attack", HAConfig.modifiedItems.mythModified.DeathScythe.damage);
+					put("durability", HAConfig.modifiedItems.mythModified.DeathScythe.durability);
+					put("speed", HAConfig.modifiedItems.mythModified.DeathScythe.speed);
+					put("enchantability", HAConfig.modifiedItems.mythModified.DeathScythe.enchantability);
+					put("rarity", HAConfig.modifiedItems.mythModified.DeathScythe.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mythDeathScythe = new HASword("mythDeathScythe", dummyMaterial, properties);
-					ALL_ITEMS.add(mythDeathScythe);
+					mythDeathScythe = new HAWeapon("mythDeathScythe", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mythDeathScythe);
 				}else {
 					mythDeathScythe = new ItemHalberdHW("mythDeathScythe", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SHIELD_BREACH);
 					SpartanWeaponryAPI.addItemModelToRegistry(mythDeathScythe, HeroicArmory.MOD_ID, "mythDeathScythe");
-					event.getRegistry().register(mythDeathScythe);
 				}
+				ALL_ITEMS.add(mythDeathScythe);
 			}
-			if (HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.enabled) {
+			if (HAConfig.modifiedItems.mythModified.TheDevilPitchfork.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.damage);
-					put("durability", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.durability);
-					put("speed", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.speed);
-					put("enchantability", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.enchantability);
-					put("rarity", HAConfig.modifiedItems.mythmodified.TheDevilPitchfork.rarity);
+					put("attack", HAConfig.modifiedItems.mythModified.TheDevilPitchfork.damage);
+					put("durability", HAConfig.modifiedItems.mythModified.TheDevilPitchfork.durability);
+					put("speed", HAConfig.modifiedItems.mythModified.TheDevilPitchfork.speed);
+					put("enchantability", HAConfig.modifiedItems.mythModified.TheDevilPitchfork.enchantability);
+					put("rarity", HAConfig.modifiedItems.mythModified.TheDevilPitchfork.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mythTheDevilPitchfork = new HASword("mythTheDevilPitchfork", dummyMaterial, properties);
-					ALL_ITEMS.add(mythTheDevilPitchfork);
+					mythTheDevilPitchfork = new HAWeapon("mythTheDevilPitchfork", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mythTheDevilPitchfork);
 				}else {
 					mythTheDevilPitchfork = new ItemSpearHW("mythTheDevilPitchfork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mythTheDevilPitchfork, HeroicArmory.MOD_ID, "mythTheDevilPitchfork");
-					event.getRegistry().register(mythTheDevilPitchfork);
 				}
+				ALL_ITEMS.add(mythTheDevilPitchfork);
 			}
 		}
-
-//bayonetta
+		//bayonetta
 		if (HAConfig.includeSeries.bayonetta) {
-			if (HAConfig.modifiedItems.bayonettamodified.Shuraba.enabled) {
+			if (HAConfig.modifiedItems.bayonettaModified.Shuraba.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.bayonettamodified.Shuraba.damage);
-					put("durability", HAConfig.modifiedItems.bayonettamodified.Shuraba.durability);
-					put("speed", HAConfig.modifiedItems.bayonettamodified.Shuraba.speed);
-					put("enchantability", HAConfig.modifiedItems.bayonettamodified.Shuraba.enchantability);
-					put("rarity", HAConfig.modifiedItems.bayonettamodified.Shuraba.rarity);
+					put("attack", HAConfig.modifiedItems.bayonettaModified.Shuraba.damage);
+					put("durability", HAConfig.modifiedItems.bayonettaModified.Shuraba.durability);
+					put("speed", HAConfig.modifiedItems.bayonettaModified.Shuraba.speed);
+					put("enchantability", HAConfig.modifiedItems.bayonettaModified.Shuraba.enchantability);
+					put("rarity", HAConfig.modifiedItems.bayonettaModified.Shuraba.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					bayonettaShuraba = new HASword("bayonettaShuraba", dummyMaterial, properties);
-					ALL_ITEMS.add(bayonettaShuraba);
+					bayonettaShuraba = new HAWeapon("bayonettaShuraba", dummyMaterial, properties);
+					HEROIC_ITEMS.add(bayonettaShuraba);
 				}else {
 					bayonettaShuraba = new ItemKatanaHW("bayonettaShuraba", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(bayonettaShuraba, HeroicArmory.MOD_ID, "bayonettaShuraba");
-					event.getRegistry().register(bayonettaShuraba);
 				}
+				ALL_ITEMS.add(bayonettaShuraba);
 			}
-			if (HAConfig.modifiedItems.bayonettamodified.AngelSlayer.enabled) {
+			if (HAConfig.modifiedItems.bayonettaModified.AngelSlayer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.damage);
-					put("durability", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.durability);
-					put("speed", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.speed);
-					put("enchantability", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.enchantability);
-					put("rarity", HAConfig.modifiedItems.bayonettamodified.AngelSlayer.rarity);
+					put("attack", HAConfig.modifiedItems.bayonettaModified.AngelSlayer.damage);
+					put("durability", HAConfig.modifiedItems.bayonettaModified.AngelSlayer.durability);
+					put("speed", HAConfig.modifiedItems.bayonettaModified.AngelSlayer.speed);
+					put("enchantability", HAConfig.modifiedItems.bayonettaModified.AngelSlayer.enchantability);
+					put("rarity", HAConfig.modifiedItems.bayonettaModified.AngelSlayer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					bayonettaAngelSlayer = new HASword("bayonettaAngelSlayer", dummyMaterial, properties);
-					ALL_ITEMS.add(bayonettaAngelSlayer);
+					bayonettaAngelSlayer = new HAWeapon("bayonettaAngelSlayer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(bayonettaAngelSlayer);
 				}else {
 					bayonettaAngelSlayer = new ItemSaberHW("bayonettaAngelSlayer", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(bayonettaAngelSlayer, HeroicArmory.MOD_ID, "bayonettaAngelSlayer");
-					event.getRegistry().register(bayonettaAngelSlayer);
 				}
+				ALL_ITEMS.add(bayonettaAngelSlayer);
 			}
 		}
-
-//gow
+		//gow
 		if (HAConfig.includeSeries.gow) {
-			if (HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.enabled) {
+			if (HAConfig.modifiedItems.gowModified.LeviathanUpgraded.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.damage);
-					put("durability", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.durability);
-					put("speed", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.speed);
-					put("enchantability", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.enchantability);
-					put("rarity", HAConfig.modifiedItems.gowmodified.LeviathanUpgraded.rarity);
+					put("attack", HAConfig.modifiedItems.gowModified.LeviathanUpgraded.damage);
+					put("durability", HAConfig.modifiedItems.gowModified.LeviathanUpgraded.durability);
+					put("speed", HAConfig.modifiedItems.gowModified.LeviathanUpgraded.speed);
+					put("enchantability", HAConfig.modifiedItems.gowModified.LeviathanUpgraded.enchantability);
+					put("rarity", HAConfig.modifiedItems.gowModified.LeviathanUpgraded.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					gowLeviathanUpgraded = new HASword("gowLeviathanUpgraded", dummyMaterial, properties);
-					ALL_ITEMS.add(gowLeviathanUpgraded);
+					gowLeviathanUpgraded = new HAWeapon("gowLeviathanUpgraded", dummyMaterial, properties);
+					HEROIC_ITEMS.add(gowLeviathanUpgraded);
 				}else {
 					gowLeviathanUpgraded = new ItemBattleaxeHW("gowLeviathanUpgraded", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.SHIELD_BREACH, new WeaponPropertyFreeze(8));
 					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathanUpgraded, HeroicArmory.MOD_ID, "gowLeviathanUpgraded");
-					event.getRegistry().register(gowLeviathanUpgraded);
 				}
+				ALL_ITEMS.add(gowLeviathanUpgraded);
 			}
-			if (HAConfig.modifiedItems.gowmodified.Leviathan.enabled) {
+			if (HAConfig.modifiedItems.gowModified.Leviathan.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.gowmodified.Leviathan.damage);
-					put("durability", HAConfig.modifiedItems.gowmodified.Leviathan.durability);
-					put("speed", HAConfig.modifiedItems.gowmodified.Leviathan.speed);
-					put("enchantability", HAConfig.modifiedItems.gowmodified.Leviathan.enchantability);
-					put("rarity", HAConfig.modifiedItems.gowmodified.Leviathan.rarity);
+					put("attack", HAConfig.modifiedItems.gowModified.Leviathan.damage);
+					put("durability", HAConfig.modifiedItems.gowModified.Leviathan.durability);
+					put("speed", HAConfig.modifiedItems.gowModified.Leviathan.speed);
+					put("enchantability", HAConfig.modifiedItems.gowModified.Leviathan.enchantability);
+					put("rarity", HAConfig.modifiedItems.gowModified.Leviathan.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					gowLeviathan = new HASword("gowLeviathan", dummyMaterial, properties);
-					ALL_ITEMS.add(gowLeviathan);
+					gowLeviathan = new HAWeapon("gowLeviathan", dummyMaterial, properties);
+					HEROIC_ITEMS.add(gowLeviathan);
 				}else {
 					gowLeviathan = new ItemBattleaxeHW("gowLeviathan", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.VERSATILE, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_2_THROWN, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(gowLeviathan, HeroicArmory.MOD_ID, "gowLeviathan");
-					event.getRegistry().register(gowLeviathan);
 				}
+				ALL_ITEMS.add(gowLeviathan);
 			}
-			if (HAConfig.modifiedItems.gowmodified.BladeofOlympus.enabled) {
+			if (HAConfig.modifiedItems.gowModified.BladeofOlympus.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.gowmodified.BladeofOlympus.damage);
-					put("durability", HAConfig.modifiedItems.gowmodified.BladeofOlympus.durability);
-					put("speed", HAConfig.modifiedItems.gowmodified.BladeofOlympus.speed);
-					put("enchantability", HAConfig.modifiedItems.gowmodified.BladeofOlympus.enchantability);
-					put("rarity", HAConfig.modifiedItems.gowmodified.BladeofOlympus.rarity);
+					put("attack", HAConfig.modifiedItems.gowModified.BladeofOlympus.damage);
+					put("durability", HAConfig.modifiedItems.gowModified.BladeofOlympus.durability);
+					put("speed", HAConfig.modifiedItems.gowModified.BladeofOlympus.speed);
+					put("enchantability", HAConfig.modifiedItems.gowModified.BladeofOlympus.enchantability);
+					put("rarity", HAConfig.modifiedItems.gowModified.BladeofOlympus.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					gowBladeofOlympus = new HASword("gowBladeofOlympus", dummyMaterial, properties);
-					ALL_ITEMS.add(gowBladeofOlympus);
+					gowBladeofOlympus = new HAWeapon("gowBladeofOlympus", dummyMaterial, properties);
+					HEROIC_ITEMS.add(gowBladeofOlympus);
 				}else {
 					gowBladeofOlympus = new ItemGreatswordHW("gowBladeofOlympus", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(gowBladeofOlympus, HeroicArmory.MOD_ID, "gowBladeofOlympus");
-					event.getRegistry().register(gowBladeofOlympus);
 				}
+				ALL_ITEMS.add(gowBladeofOlympus);
 			}
-			if (HAConfig.modifiedItems.gowmodified.BladeofChaos.enabled) {
+			if (HAConfig.modifiedItems.gowModified.BladeofChaos.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.gowmodified.BladeofChaos.damage);
-					put("durability", HAConfig.modifiedItems.gowmodified.BladeofChaos.durability);
-					put("speed", HAConfig.modifiedItems.gowmodified.BladeofChaos.speed);
-					put("enchantability", HAConfig.modifiedItems.gowmodified.BladeofChaos.enchantability);
-					put("rarity", HAConfig.modifiedItems.gowmodified.BladeofChaos.rarity);
+					put("attack", HAConfig.modifiedItems.gowModified.BladeofChaos.damage);
+					put("durability", HAConfig.modifiedItems.gowModified.BladeofChaos.durability);
+					put("speed", HAConfig.modifiedItems.gowModified.BladeofChaos.speed);
+					put("enchantability", HAConfig.modifiedItems.gowModified.BladeofChaos.enchantability);
+					put("rarity", HAConfig.modifiedItems.gowModified.BladeofChaos.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					gowBladeofChaos = new HASword("gowBladeofChaos", dummyMaterial, properties);
-					ALL_ITEMS.add(gowBladeofChaos);
+					gowBladeofChaos = new HAWeapon("gowBladeofChaos", dummyMaterial, properties);
+					HEROIC_ITEMS.add(gowBladeofChaos);
 				}else {
 					gowBladeofChaos = new ItemCustomBoomerangHW("gowBladeofChaos", dummyMaterialEx, properties, 2, WeaponProperties.THROWABLE);
 					SpartanWeaponryAPI.addItemModelToRegistry(gowBladeofChaos, HeroicArmory.MOD_ID, "gowBladeofChaos");
-					event.getRegistry().register(gowBladeofChaos);
 				}
+				ALL_ITEMS.add(gowBladeofChaos);
 			}
 		}
-
-//skyrim
+		//skyrim
 		if (HAConfig.includeSeries.skyrim) {
-			if (HAConfig.modifiedItems.skyrimmodified.IronSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.IronSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.IronSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.IronSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.IronSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.IronSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.IronSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.IronSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.IronSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.IronSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.IronSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.IronSword.rarity);
 				}};
-				skyrimIronSword = new HASword("skyrimIronSword", dummyMaterial, properties);
+				skyrimIronSword = new HAWeapon("skyrimIronSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimIronSword);
 				ALL_ITEMS.add(skyrimIronSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.IronWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.IronWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.IronWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.IronWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.IronWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.IronWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.IronWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.IronWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimIronWarhammer = new HASword("skyrimIronWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimIronWarhammer);
+					skyrimIronWarhammer = new HAWeapon("skyrimIronWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimIronWarhammer);
 				}else {
 					skyrimIronWarhammer = new ItemWarhammerHW("skyrimIronWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimIronWarhammer, HeroicArmory.MOD_ID, "skyrimIronWarhammer");
-					event.getRegistry().register(skyrimIronWarhammer);
 				}
+				ALL_ITEMS.add(skyrimIronWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.SteelSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.SteelSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.SteelSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.SteelSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.SteelSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.SteelSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.SteelSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.SteelSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.SteelSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.SteelSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.SteelSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.SteelSword.rarity);
 				}};
-				skyrimSteelSword = new HASword("skyrimSteelSword", dummyMaterial, properties);
+				skyrimSteelSword = new HAWeapon("skyrimSteelSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimSteelSword);
 				ALL_ITEMS.add(skyrimSteelSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.SteelWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.SteelWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.SteelWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.SteelWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.SteelWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.SteelWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.SteelWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimSteelWarhammer = new HASword("skyrimSteelWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimSteelWarhammer);
+					skyrimSteelWarhammer = new HAWeapon("skyrimSteelWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimSteelWarhammer);
 				}else {
 					skyrimSteelWarhammer = new ItemWarhammerHW("skyrimSteelWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimSteelWarhammer, HeroicArmory.MOD_ID, "skyrimSteelWarhammer");
-					event.getRegistry().register(skyrimSteelWarhammer);
 				}
+				ALL_ITEMS.add(skyrimSteelWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.OrcishSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.OrcishSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.OrcishSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.OrcishSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.OrcishSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.OrcishSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.OrcishSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.OrcishSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.OrcishSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.OrcishSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.OrcishSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.OrcishSword.rarity);
 				}};
-				skyrimOrcishSword = new HASword("skyrimOrcishSword", dummyMaterial, properties);
+				skyrimOrcishSword = new HAWeapon("skyrimOrcishSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimOrcishSword);
 				ALL_ITEMS.add(skyrimOrcishSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.OrcishWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.OrcishWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimOrcishWarhammer = new HASword("skyrimOrcishWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimOrcishWarhammer);
+					skyrimOrcishWarhammer = new HAWeapon("skyrimOrcishWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimOrcishWarhammer);
 				}else {
 					skyrimOrcishWarhammer = new ItemWarhammerHW("skyrimOrcishWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimOrcishWarhammer, HeroicArmory.MOD_ID, "skyrimOrcishWarhammer");
-					event.getRegistry().register(skyrimOrcishWarhammer);
 				}
+				ALL_ITEMS.add(skyrimOrcishWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DwarvenSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DwarvenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DwarvenSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DwarvenSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DwarvenSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DwarvenSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DwarvenSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DwarvenSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DwarvenSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DwarvenSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DwarvenSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DwarvenSword.rarity);
 				}};
-				skyrimDwarvenSword = new HASword("skyrimDwarvenSword", dummyMaterial, properties);
+				skyrimDwarvenSword = new HAWeapon("skyrimDwarvenSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimDwarvenSword);
 				ALL_ITEMS.add(skyrimDwarvenSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DwarvenWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DwarvenWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimDwarvenWarhammer = new HASword("skyrimDwarvenWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimDwarvenWarhammer);
+					skyrimDwarvenWarhammer = new HAWeapon("skyrimDwarvenWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimDwarvenWarhammer);
 				}else {
 					skyrimDwarvenWarhammer = new ItemWarhammerHW("skyrimDwarvenWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDwarvenWarhammer, HeroicArmory.MOD_ID, "skyrimDwarvenWarhammer");
-					event.getRegistry().register(skyrimDwarvenWarhammer);
 				}
+				ALL_ITEMS.add(skyrimDwarvenWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.ElvenSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.ElvenSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.ElvenSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.ElvenSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.ElvenSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.ElvenSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.ElvenSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.ElvenSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.ElvenSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.ElvenSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.ElvenSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.ElvenSword.rarity);
 				}};
-				skyrimElvenSword = new HASword("skyrimElvenSword", dummyMaterial, properties);
+				skyrimElvenSword = new HAWeapon("skyrimElvenSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimElvenSword);
 				ALL_ITEMS.add(skyrimElvenSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.ElvenWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.ElvenWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimElvenWarhammer = new HASword("skyrimElvenWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimElvenWarhammer);
+					skyrimElvenWarhammer = new HAWeapon("skyrimElvenWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimElvenWarhammer);
 				}else {
 					skyrimElvenWarhammer = new ItemWarhammerHW("skyrimElvenWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimElvenWarhammer, HeroicArmory.MOD_ID, "skyrimElvenWarhammer");
-					event.getRegistry().register(skyrimElvenWarhammer);
 				}
+				ALL_ITEMS.add(skyrimElvenWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.GlassSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.GlassSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.GlassSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.GlassSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.GlassSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.GlassSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.GlassSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.GlassSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.GlassSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.GlassSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.GlassSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.GlassSword.rarity);
 				}};
-				skyrimGlassSword = new HASword("skyrimGlassSword", dummyMaterial, properties);
+				skyrimGlassSword = new HAWeapon("skyrimGlassSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimGlassSword);
 				ALL_ITEMS.add(skyrimGlassSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.GlassWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.GlassWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.GlassWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.GlassWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.GlassWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.GlassWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.GlassWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimGlassWarhammer = new HASword("skyrimGlassWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimGlassWarhammer);
+					skyrimGlassWarhammer = new HAWeapon("skyrimGlassWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimGlassWarhammer);
 				}else {
 					skyrimGlassWarhammer = new ItemWarhammerHW("skyrimGlassWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimGlassWarhammer, HeroicArmory.MOD_ID, "skyrimGlassWarhammer");
-					event.getRegistry().register(skyrimGlassWarhammer);
 				}
+				ALL_ITEMS.add(skyrimGlassWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.EbonySword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.EbonySword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.EbonySword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.EbonySword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.EbonySword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.EbonySword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.EbonySword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.EbonySword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.EbonySword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.EbonySword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.EbonySword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.EbonySword.rarity);
 				}};
-				skyrimEbonySword = new HASword("skyrimEbonySword", dummyMaterial, properties);
+				skyrimEbonySword = new HAWeapon("skyrimEbonySword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimEbonySword);
 				ALL_ITEMS.add(skyrimEbonySword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.EbonyWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.EbonyWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimEbonyWarhammer = new HASword("skyrimEbonyWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimEbonyWarhammer);
+					skyrimEbonyWarhammer = new HAWeapon("skyrimEbonyWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimEbonyWarhammer);
 				}else {
 					skyrimEbonyWarhammer = new ItemWarhammerHW("skyrimEbonyWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimEbonyWarhammer, HeroicArmory.MOD_ID, "skyrimEbonyWarhammer");
-					event.getRegistry().register(skyrimEbonyWarhammer);
 				}
+				ALL_ITEMS.add(skyrimEbonyWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DaedricSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DaedricSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DaedricSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DaedricSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DaedricSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DaedricSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DaedricSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DaedricSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DaedricSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DaedricSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DaedricSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DaedricSword.rarity);
 				}};
-				skyrimDaedricSword = new HASword("skyrimDaedricSword", dummyMaterial, properties);
+				skyrimDaedricSword = new HAWeapon("skyrimDaedricSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimDaedricSword);
 				ALL_ITEMS.add(skyrimDaedricSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DaedricWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DaedricWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimDaedricWarhammer = new HASword("skyrimDaedricWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimDaedricWarhammer);
+					skyrimDaedricWarhammer = new HAWeapon("skyrimDaedricWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimDaedricWarhammer);
 				}else {
 					skyrimDaedricWarhammer = new ItemWarhammerHW("skyrimDaedricWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDaedricWarhammer, HeroicArmory.MOD_ID, "skyrimDaedricWarhammer");
-					event.getRegistry().register(skyrimDaedricWarhammer);
 				}
+				ALL_ITEMS.add(skyrimDaedricWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DragonboneSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DragonboneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DragonboneSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DragonboneSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DragonboneSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DragonboneSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DragonboneSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DragonboneSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DragonboneSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DragonboneSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DragonboneSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DragonboneSword.rarity);
 				}};
-				skyrimDragonboneSword = new HASword("skyrimDragonboneSword", dummyMaterial, properties);
+				skyrimDragonboneSword = new HAWeapon("skyrimDragonboneSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimDragonboneSword);
 				ALL_ITEMS.add(skyrimDragonboneSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.DragonboneWarhammer.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.DragonboneWarhammer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimDragonboneWarhammer = new HASword("skyrimDragonboneWarhammer", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimDragonboneWarhammer);
+					skyrimDragonboneWarhammer = new HAWeapon("skyrimDragonboneWarhammer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimDragonboneWarhammer);
 				}else {
 					skyrimDragonboneWarhammer = new ItemWarhammerHW("skyrimDragonboneWarhammer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.ARMOUR_PIERCING_50);
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDragonboneWarhammer, HeroicArmory.MOD_ID, "skyrimDragonboneWarhammer");
-					event.getRegistry().register(skyrimDragonboneWarhammer);
 				}
+				ALL_ITEMS.add(skyrimDragonboneWarhammer);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.ImperialSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.ImperialSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.ImperialSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.ImperialSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.ImperialSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.ImperialSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.ImperialSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.ImperialSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.ImperialSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.ImperialSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.ImperialSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.ImperialSword.rarity);
 				}};
-				skyrimImperialSword = new HASword("skyrimImperialSword", dummyMaterial, properties);
+				skyrimImperialSword = new HAWeapon("skyrimImperialSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimImperialSword);
 				ALL_ITEMS.add(skyrimImperialSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.Dawnbreaker.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.Dawnbreaker.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.Dawnbreaker.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.Dawnbreaker.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.Dawnbreaker.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.Dawnbreaker.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.Dawnbreaker.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimDawnbreaker = new HASword("skyrimDawnbreaker", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimDawnbreaker);
+					skyrimDawnbreaker = new HAWeapon("skyrimDawnbreaker", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimDawnbreaker);
 				}else {
 					skyrimDawnbreaker = new ItemLongswordHW("skyrimDawnbreaker", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 2.00F), new WeaponPropertyDetonateDead());
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimDawnbreaker, HeroicArmory.MOD_ID, "skyrimDawnbreaker");
-					event.getRegistry().register(skyrimDawnbreaker);
 				}
+				ALL_ITEMS.add(skyrimDawnbreaker);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.AncientNordSword.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.AncientNordSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.AncientNordSword.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.AncientNordSword.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.AncientNordSword.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.AncientNordSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.AncientNordSword.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.AncientNordSword.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.AncientNordSword.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.AncientNordSword.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.AncientNordSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.AncientNordSword.rarity);
 				}};
-				skyrimAncientNordSword = new HASword("skyrimAncientNordSword", dummyMaterial, properties);
+				skyrimAncientNordSword = new HAWeapon("skyrimAncientNordSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(skyrimAncientNordSword);
 				ALL_ITEMS.add(skyrimAncientNordSword);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.Chillrend.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.Chillrend.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.Chillrend.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.Chillrend.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.Chillrend.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.Chillrend.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.Chillrend.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.Chillrend.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.Chillrend.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.Chillrend.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.Chillrend.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.Chillrend.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimChillrend = new HASword("skyrimChillrend", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimChillrend);
+					skyrimChillrend = new HAWeapon("skyrimChillrend", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimChillrend);
 				}else {
 					skyrimChillrend = new ItemLongswordHW("skyrimChillrend", dummyMaterialEx, properties, new WeaponPropertyFreeze(4));
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimChillrend, HeroicArmory.MOD_ID, "skyrimChillrend");
-					event.getRegistry().register(skyrimChillrend);
 				}
+				ALL_ITEMS.add(skyrimChillrend);
 			}
-			if (HAConfig.modifiedItems.skyrimmodified.EbonyBlade.enabled) {
+			if (HAConfig.modifiedItems.skyrimModified.EbonyBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.damage);
-					put("durability", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.durability);
-					put("speed", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.skyrimmodified.EbonyBlade.rarity);
+					put("attack", HAConfig.modifiedItems.skyrimModified.EbonyBlade.damage);
+					put("durability", HAConfig.modifiedItems.skyrimModified.EbonyBlade.durability);
+					put("speed", HAConfig.modifiedItems.skyrimModified.EbonyBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.skyrimModified.EbonyBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.skyrimModified.EbonyBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					skyrimEbonyBlade = new HASword("skyrimEbonyBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(skyrimEbonyBlade);
+					skyrimEbonyBlade = new HAWeapon("skyrimEbonyBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(skyrimEbonyBlade);
 				}else {
 					skyrimEbonyBlade = new ItemLongswordHW("skyrimEbonyBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST, new WeaponPropertyLifeFlat(2));
 					SpartanWeaponryAPI.addItemModelToRegistry(skyrimEbonyBlade, HeroicArmory.MOD_ID, "skyrimEbonyBlade");
-					event.getRegistry().register(skyrimEbonyBlade);
 				}
+				ALL_ITEMS.add(skyrimEbonyBlade);
 			}
 		}
-
-//mh
+		//mh
 		if (HAConfig.includeSeries.mh) {
-			if (HAConfig.modifiedItems.mhmodified.ChickenDecapitator.enabled) {
+			if (HAConfig.modifiedItems.mhModified.ChickenDecapitator.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.ChickenDecapitator.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.ChickenDecapitator.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.ChickenDecapitator.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.ChickenDecapitator.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.ChickenDecapitator.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.ChickenDecapitator.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhChickenDecapitator = new HASword("mhChickenDecapitator", dummyMaterial, properties);
-					ALL_ITEMS.add(mhChickenDecapitator);
+					mhChickenDecapitator = new HAWeapon("mhChickenDecapitator", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhChickenDecapitator);
 				}else {
 					mhChickenDecapitator = new ItemGreatswordHW("mhChickenDecapitator", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(4));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhChickenDecapitator, HeroicArmory.MOD_ID, "mhChickenDecapitator");
-					event.getRegistry().register(mhChickenDecapitator);
 				}
+				ALL_ITEMS.add(mhChickenDecapitator);
 			}
-			if (HAConfig.modifiedItems.mhmodified.GolemBlade.enabled) {
+			if (HAConfig.modifiedItems.mhModified.GolemBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.GolemBlade.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.GolemBlade.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.GolemBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.GolemBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.GolemBlade.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.GolemBlade.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.GolemBlade.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.GolemBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.GolemBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.GolemBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhGolemBlade = new HASword("mhGolemBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(mhGolemBlade);
+					mhGolemBlade = new HAWeapon("mhGolemBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhGolemBlade);
 				}else {
 					mhGolemBlade = new ItemGreatswordHW("mhGolemBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhGolemBlade, HeroicArmory.MOD_ID, "mhGolemBlade");
-					event.getRegistry().register(mhGolemBlade);
 				}
+				ALL_ITEMS.add(mhGolemBlade);
 			}
-			if (HAConfig.modifiedItems.mhmodified.Defender.enabled) {
+			if (HAConfig.modifiedItems.mhModified.Defender.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.Defender.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.Defender.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.Defender.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.Defender.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.Defender.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.Defender.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.Defender.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.Defender.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.Defender.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.Defender.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhDefender = new HASword("mhDefender", dummyMaterial, properties);
-					ALL_ITEMS.add(mhDefender);
+					mhDefender = new HAWeapon("mhDefender", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhDefender);
 				}else {
 					mhDefender = new ItemParryingDaggerHW("mhDefender", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_HALF);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhDefender, HeroicArmory.MOD_ID, "mhDefender");
-					event.getRegistry().register(mhDefender);
 				}
+				ALL_ITEMS.add(mhDefender);
 			}
-			if (HAConfig.modifiedItems.mhmodified.BlackBeltBlade.enabled) {
+			if (HAConfig.modifiedItems.mhModified.BlackBeltBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.BlackBeltBlade.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.BlackBeltBlade.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.BlackBeltBlade.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.BlackBeltBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.BlackBeltBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.BlackBeltBlade.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhBlackBeltBlade = new HASword("mhBlackBeltBlade", dummyMaterial, properties);
-					ALL_ITEMS.add(mhBlackBeltBlade);
+					mhBlackBeltBlade = new HAWeapon("mhBlackBeltBlade", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhBlackBeltBlade);
 				}else {
 					mhBlackBeltBlade = new ItemGreatswordHW("mhBlackBeltBlade", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhBlackBeltBlade, HeroicArmory.MOD_ID, "mhBlackBeltBlade");
-					event.getRegistry().register(mhBlackBeltBlade);
 				}
+				ALL_ITEMS.add(mhBlackBeltBlade);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WailingCleaver.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WailingCleaver.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WailingCleaver.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WailingCleaver.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WailingCleaver.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WailingCleaver.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WailingCleaver.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WailingCleaver.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WailingCleaver.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WailingCleaver.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WailingCleaver.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WailingCleaver.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWailingCleaver = new HASword("mhWailingCleaver", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWailingCleaver);
+					mhWailingCleaver = new HAWeapon("mhWailingCleaver", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWailingCleaver);
 				}else {
 					mhWailingCleaver = new ItemLongswordHW("mhWailingCleaver", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWailingCleaver, HeroicArmory.MOD_ID, "mhWailingCleaver");
-					event.getRegistry().register(mhWailingCleaver);
 				}
+				ALL_ITEMS.add(mhWailingCleaver);
 			}
-			if (HAConfig.modifiedItems.mhmodified.GaelicFlame.enabled) {
+			if (HAConfig.modifiedItems.mhModified.GaelicFlame.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.GaelicFlame.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.GaelicFlame.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.GaelicFlame.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.GaelicFlame.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.GaelicFlame.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.GaelicFlame.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.GaelicFlame.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.GaelicFlame.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.GaelicFlame.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.GaelicFlame.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhGaelicFlame = new HASword("mhGaelicFlame", dummyMaterial, properties);
-					ALL_ITEMS.add(mhGaelicFlame);
+					mhGaelicFlame = new HAWeapon("mhGaelicFlame", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhGaelicFlame);
 				}else {
 					mhGaelicFlame = new ItemLongswordHW("mhGaelicFlame", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhGaelicFlame, HeroicArmory.MOD_ID, "mhGaelicFlame");
-					event.getRegistry().register(mhGaelicFlame);
 				}
+				ALL_ITEMS.add(mhGaelicFlame);
 			}
-			if (HAConfig.modifiedItems.mhmodified.BoneKatana.enabled) {
+			if (HAConfig.modifiedItems.mhModified.BoneKatana.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.BoneKatana.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.BoneKatana.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.BoneKatana.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.BoneKatana.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.BoneKatana.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.BoneKatana.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.BoneKatana.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.BoneKatana.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.BoneKatana.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.BoneKatana.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhBoneKatana = new HASword("mhBoneKatana", dummyMaterial, properties);
-					ALL_ITEMS.add(mhBoneKatana);
+					mhBoneKatana = new HAWeapon("mhBoneKatana", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhBoneKatana);
 				}else {
 					mhBoneKatana = new ItemLongswordHW("mhBoneKatana", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhBoneKatana, HeroicArmory.MOD_ID, "mhBoneKatana");
-					event.getRegistry().register(mhBoneKatana);
 				}
+				ALL_ITEMS.add(mhBoneKatana);
 			}
-			if (HAConfig.modifiedItems.mhmodified.HellishSlasher.enabled) {
+			if (HAConfig.modifiedItems.mhModified.HellishSlasher.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.HellishSlasher.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.HellishSlasher.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.HellishSlasher.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.HellishSlasher.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.HellishSlasher.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.HellishSlasher.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.HellishSlasher.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.HellishSlasher.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.HellishSlasher.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.HellishSlasher.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhHellishSlasher = new HASword("mhHellishSlasher", dummyMaterial, properties);
-					ALL_ITEMS.add(mhHellishSlasher);
+					mhHellishSlasher = new HAWeapon("mhHellishSlasher", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhHellishSlasher);
 				}else {
 					mhHellishSlasher = new ItemLongswordHW("mhHellishSlasher", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, new WeaponPropertyBonusDragon());
 					SpartanWeaponryAPI.addItemModelToRegistry(mhHellishSlasher, HeroicArmory.MOD_ID, "mhHellishSlasher");
-					event.getRegistry().register(mhHellishSlasher);
 				}
+				ALL_ITEMS.add(mhHellishSlasher);
 			}
-			if (HAConfig.modifiedItems.mhmodified.CentenarianDagger.enabled) {
+			if (HAConfig.modifiedItems.mhModified.CentenarianDagger.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.CentenarianDagger.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.CentenarianDagger.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.CentenarianDagger.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.CentenarianDagger.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.CentenarianDagger.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.CentenarianDagger.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.CentenarianDagger.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.CentenarianDagger.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.CentenarianDagger.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.CentenarianDagger.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhCentenarianDagger = new HASword("mhCentenarianDagger", dummyMaterial, properties);
-					ALL_ITEMS.add(mhCentenarianDagger);
+					mhCentenarianDagger = new HAWeapon("mhCentenarianDagger", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhCentenarianDagger);
 				}else {
 					mhCentenarianDagger = new ItemLongswordHW("mhCentenarianDagger", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(mhCentenarianDagger, HeroicArmory.MOD_ID, "mhCentenarianDagger");
-					event.getRegistry().register(mhCentenarianDagger);
 				}
+				ALL_ITEMS.add(mhCentenarianDagger);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeLeaf.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WyvernBladeLeaf.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeLeaf = new HASword("mhWyvernBladeLeaf", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeLeaf);
+					mhWyvernBladeLeaf = new HAWeapon("mhWyvernBladeLeaf", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWyvernBladeLeaf);
 				}else {
 					mhWyvernBladeLeaf = new ItemLongswordHW("mhWyvernBladeLeaf", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 3, 0));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeLeaf, HeroicArmory.MOD_ID, "mhWyvernBladeLeaf");
-					event.getRegistry().register(mhWyvernBladeLeaf);
 				}
+				ALL_ITEMS.add(mhWyvernBladeLeaf);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WyvernBladeHolly.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeHolly.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WyvernBladeHolly.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WyvernBladeHolly.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WyvernBladeHolly.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WyvernBladeHolly.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WyvernBladeHolly.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeHolly = new HASword("mhWyvernBladeHolly", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeHolly);
+					mhWyvernBladeHolly = new HAWeapon("mhWyvernBladeHolly", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWyvernBladeHolly);
 				}else {
 					mhWyvernBladeHolly = new ItemLongswordHW("mhWyvernBladeHolly", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyPotion(MobEffects.POISON.getName(), MobEffects.POISON, 8, 3));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeHolly, HeroicArmory.MOD_ID, "mhWyvernBladeHolly");
-					event.getRegistry().register(mhWyvernBladeHolly);
 				}
+				ALL_ITEMS.add(mhWyvernBladeHolly);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WyvernBladeBlood.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeBlood.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WyvernBladeBlood.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WyvernBladeBlood.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WyvernBladeBlood.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WyvernBladeBlood.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WyvernBladeBlood.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeBlood = new HASword("mhWyvernBladeBlood", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeBlood);
+					mhWyvernBladeBlood = new HAWeapon("mhWyvernBladeBlood", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWyvernBladeBlood);
 				}else {
 					mhWyvernBladeBlood = new ItemLongswordHW("mhWyvernBladeBlood", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(6));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeBlood, HeroicArmory.MOD_ID, "mhWyvernBladeBlood");
-					event.getRegistry().register(mhWyvernBladeBlood);
 				}
+				ALL_ITEMS.add(mhWyvernBladeBlood);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WyvernBladeAzure.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladeAzure.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WyvernBladeAzure.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WyvernBladeAzure.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WyvernBladeAzure.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WyvernBladeAzure.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WyvernBladeAzure.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladeAzure = new HASword("mhWyvernBladeAzure", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladeAzure);
+					mhWyvernBladeAzure = new HAWeapon("mhWyvernBladeAzure", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWyvernBladeAzure);
 				}else {
 					mhWyvernBladeAzure = new ItemLongswordHW("mhWyvernBladeAzure", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(8));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladeAzure, HeroicArmory.MOD_ID, "mhWyvernBladeAzure");
-					event.getRegistry().register(mhWyvernBladeAzure);
 				}
+				ALL_ITEMS.add(mhWyvernBladeAzure);
 			}
-			if (HAConfig.modifiedItems.mhmodified.WyvernBladePale.enabled) {
+			if (HAConfig.modifiedItems.mhModified.WyvernBladePale.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.WyvernBladePale.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.WyvernBladePale.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.WyvernBladePale.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.WyvernBladePale.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.WyvernBladePale.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.WyvernBladePale.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.WyvernBladePale.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.WyvernBladePale.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.WyvernBladePale.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhWyvernBladePale = new HASword("mhWyvernBladePale", dummyMaterial, properties);
-					ALL_ITEMS.add(mhWyvernBladePale);
+					mhWyvernBladePale = new HAWeapon("mhWyvernBladePale", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhWyvernBladePale);
 				}else {
 					mhWyvernBladePale = new ItemLongswordHW("mhWyvernBladePale", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.REACH_2, WeaponProperties.SWEEP_DAMAGE_FULL, WeaponProperties.ARMOUR_PIERCING_50, new WeaponPropertyIgnite(10));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhWyvernBladePale, HeroicArmory.MOD_ID, "mhWyvernBladePale");
-					event.getRegistry().register(mhWyvernBladePale);
 				}
+				ALL_ITEMS.add(mhWyvernBladePale);
 			}
-			if (HAConfig.modifiedItems.mhmodified.RathalosFlamesword.enabled) {
+			if (HAConfig.modifiedItems.mhModified.RathalosFlamesword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.damage);
-					put("durability", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.durability);
-					put("speed", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.speed);
-					put("enchantability", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.enchantability);
-					put("rarity", HAConfig.modifiedItems.mhmodified.RathalosFlamesword.rarity);
+					put("attack", HAConfig.modifiedItems.mhModified.RathalosFlamesword.damage);
+					put("durability", HAConfig.modifiedItems.mhModified.RathalosFlamesword.durability);
+					put("speed", HAConfig.modifiedItems.mhModified.RathalosFlamesword.speed);
+					put("enchantability", HAConfig.modifiedItems.mhModified.RathalosFlamesword.enchantability);
+					put("rarity", HAConfig.modifiedItems.mhModified.RathalosFlamesword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					mhRathalosFlamesword = new HASword("mhRathalosFlamesword", dummyMaterial, properties);
-					ALL_ITEMS.add(mhRathalosFlamesword);
+					mhRathalosFlamesword = new HAWeapon("mhRathalosFlamesword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(mhRathalosFlamesword);
 				}else {
 					mhRathalosFlamesword = new ItemGreatswordHW("mhRathalosFlamesword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(14));
 					SpartanWeaponryAPI.addItemModelToRegistry(mhRathalosFlamesword, HeroicArmory.MOD_ID, "mhRathalosFlamesword");
-					event.getRegistry().register(mhRathalosFlamesword);
 				}
+				ALL_ITEMS.add(mhRathalosFlamesword);
 			}
 		}
-
-//terraria
+		//terraria
 		if (HAConfig.includeSeries.terraria) {
-			if (HAConfig.modifiedItems.terrariamodified.PalmWoodSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.PalmWoodSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.PalmWoodSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.PalmWoodSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.PalmWoodSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.PalmWoodSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.PalmWoodSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.PalmWoodSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.PalmWoodSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.PalmWoodSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.PalmWoodSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.PalmWoodSword.rarity);
 				}};
-				terrariaPalmWoodSword = new HASword("terrariaPalmWoodSword", dummyMaterial, properties);
+				terrariaPalmWoodSword = new HAWeapon("terrariaPalmWoodSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaPalmWoodSword);
 				ALL_ITEMS.add(terrariaPalmWoodSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BorealWoodSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BorealWoodSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BorealWoodSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BorealWoodSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BorealWoodSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BorealWoodSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BorealWoodSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BorealWoodSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BorealWoodSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BorealWoodSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BorealWoodSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BorealWoodSword.rarity);
 				}};
-				terrariaBorealWoodSword = new HASword("terrariaBorealWoodSword", dummyMaterial, properties);
+				terrariaBorealWoodSword = new HAWeapon("terrariaBorealWoodSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaBorealWoodSword);
 				ALL_ITEMS.add(terrariaBorealWoodSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.ShadewoodSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.ShadewoodSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.ShadewoodSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.ShadewoodSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.ShadewoodSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.ShadewoodSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.ShadewoodSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.ShadewoodSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.ShadewoodSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.ShadewoodSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.ShadewoodSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.ShadewoodSword.rarity);
 				}};
-				terrariaShadewoodSword = new HASword("terrariaShadewoodSword", dummyMaterial, properties);
+				terrariaShadewoodSword = new HAWeapon("terrariaShadewoodSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaShadewoodSword);
 				ALL_ITEMS.add(terrariaShadewoodSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.EbonwoodSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.EbonwoodSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.EbonwoodSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.EbonwoodSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.EbonwoodSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.EbonwoodSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.EbonwoodSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.EbonwoodSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.EbonwoodSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.EbonwoodSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.EbonwoodSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.EbonwoodSword.rarity);
 				}};
-				terrariaEbonwoodSword = new HASword("terrariaEbonwoodSword", dummyMaterial, properties);
+				terrariaEbonwoodSword = new HAWeapon("terrariaEbonwoodSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaEbonwoodSword);
 				ALL_ITEMS.add(terrariaEbonwoodSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.CopperShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.CopperShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.CopperShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.CopperShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.CopperShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.CopperShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.CopperShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.CopperShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.CopperShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.CopperShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.CopperShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.CopperShortsword.rarity);
 				}};
-				terrariaCopperShortsword = new HASword("terrariaCopperShortsword", dummyMaterial, properties);
+				terrariaCopperShortsword = new HAWeapon("terrariaCopperShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaCopperShortsword);
 				ALL_ITEMS.add(terrariaCopperShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.CopperBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.CopperBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.CopperBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.CopperBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.CopperBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.CopperBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.CopperBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.CopperBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaCopperBroadsword = new HASword("terrariaCopperBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaCopperBroadsword);
+					terrariaCopperBroadsword = new HAWeapon("terrariaCopperBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaCopperBroadsword);
 				}else {
 					terrariaCopperBroadsword = new ItemGreatswordHW("terrariaCopperBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaCopperBroadsword, HeroicArmory.MOD_ID, "terrariaCopperBroadsword");
-					event.getRegistry().register(terrariaCopperBroadsword);
 				}
+				ALL_ITEMS.add(terrariaCopperBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.TinShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.TinShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.TinShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.TinShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.TinShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.TinShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.TinShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.TinShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.TinShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.TinShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.TinShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.TinShortsword.rarity);
 				}};
-				terrariaTinShortsword = new HASword("terrariaTinShortsword", dummyMaterial, properties);
+				terrariaTinShortsword = new HAWeapon("terrariaTinShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaTinShortsword);
 				ALL_ITEMS.add(terrariaTinShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.TinBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.TinBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.TinBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.TinBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.TinBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.TinBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.TinBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.TinBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.TinBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.TinBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.TinBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.TinBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaTinBroadsword = new HASword("terrariaTinBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaTinBroadsword);
+					terrariaTinBroadsword = new HAWeapon("terrariaTinBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaTinBroadsword);
 				}else {
 					terrariaTinBroadsword = new ItemGreatswordHW("terrariaTinBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTinBroadsword, HeroicArmory.MOD_ID, "terrariaTinBroadsword");
-					event.getRegistry().register(terrariaTinBroadsword);
 				}
+				ALL_ITEMS.add(terrariaTinBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.LeadShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.LeadShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.LeadShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.LeadShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.LeadShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.LeadShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.LeadShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.LeadShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.LeadShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.LeadShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.LeadShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.LeadShortsword.rarity);
 				}};
-				terrariaLeadShortsword = new HASword("terrariaLeadShortsword", dummyMaterial, properties);
+				terrariaLeadShortsword = new HAWeapon("terrariaLeadShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaLeadShortsword);
 				ALL_ITEMS.add(terrariaLeadShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.LeadBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.LeadBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.LeadBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.LeadBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.LeadBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.LeadBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.LeadBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.LeadBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaLeadBroadsword = new HASword("terrariaLeadBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaLeadBroadsword);
+					terrariaLeadBroadsword = new HAWeapon("terrariaLeadBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaLeadBroadsword);
 				}else {
 					terrariaLeadBroadsword = new ItemGreatswordHW("terrariaLeadBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaLeadBroadsword, HeroicArmory.MOD_ID, "terrariaLeadBroadsword");
-					event.getRegistry().register(terrariaLeadBroadsword);
 				}
+				ALL_ITEMS.add(terrariaLeadBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Spear.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Spear.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Spear.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Spear.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Spear.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Spear.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Spear.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Spear.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Spear.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Spear.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Spear.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Spear.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaSpear = new HASword("terrariaSpear", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaSpear);
+					terrariaSpear = new HAWeapon("terrariaSpear", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaSpear);
 				}else {
 					terrariaSpear = new ItemSpearHW("terrariaSpear", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSpear, HeroicArmory.MOD_ID, "terrariaSpear");
-					event.getRegistry().register(terrariaSpear);
 				}
+				ALL_ITEMS.add(terrariaSpear);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.IronShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.IronShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.IronShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.IronShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.IronShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.IronShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.IronShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.IronShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.IronShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.IronShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.IronShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.IronShortsword.rarity);
 				}};
-				terrariaIronShortsword = new HASword("terrariaIronShortsword", dummyMaterial, properties);
+				terrariaIronShortsword = new HAWeapon("terrariaIronShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaIronShortsword);
 				ALL_ITEMS.add(terrariaIronShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.IronBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.IronBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.IronBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.IronBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.IronBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.IronBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.IronBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.IronBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.IronBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.IronBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.IronBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.IronBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaIronBroadsword = new HASword("terrariaIronBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaIronBroadsword);
+					terrariaIronBroadsword = new HAWeapon("terrariaIronBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaIronBroadsword);
 				}else {
 					terrariaIronBroadsword = new ItemGreatswordHW("terrariaIronBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaIronBroadsword, HeroicArmory.MOD_ID, "terrariaIronBroadsword");
-					event.getRegistry().register(terrariaIronBroadsword);
 				}
+				ALL_ITEMS.add(terrariaIronBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.SilverBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.SilverBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.SilverBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.SilverBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.SilverBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.SilverBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.SilverBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.SilverBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaSilverBroadsword = new HASword("terrariaSilverBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaSilverBroadsword);
+					terrariaSilverBroadsword = new HAWeapon("terrariaSilverBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaSilverBroadsword);
 				}else {
 					terrariaSilverBroadsword = new ItemGreatswordHW("terrariaSilverBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSilverBroadsword, HeroicArmory.MOD_ID, "terrariaSilverBroadsword");
-					event.getRegistry().register(terrariaSilverBroadsword);
 				}
+				ALL_ITEMS.add(terrariaSilverBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.SilverShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.SilverShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.SilverShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.SilverShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.SilverShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.SilverShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.SilverShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.SilverShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.SilverShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.SilverShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.SilverShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.SilverShortsword.rarity);
 				}};
-				terrariaSilverShortsword = new HASword("terrariaSilverShortsword", dummyMaterial, properties);
+				terrariaSilverShortsword = new HAWeapon("terrariaSilverShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaSilverShortsword);
 				ALL_ITEMS.add(terrariaSilverShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.GoldShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.GoldShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.GoldShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.GoldShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.GoldShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.GoldShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.GoldShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.GoldShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.GoldShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.GoldShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.GoldShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.GoldShortsword.rarity);
 				}};
-				terrariaGoldShortsword = new HASword("terrariaGoldShortsword", dummyMaterial, properties);
+				terrariaGoldShortsword = new HAWeapon("terrariaGoldShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaGoldShortsword);
 				ALL_ITEMS.add(terrariaGoldShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.GoldBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.GoldBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.GoldBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.GoldBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.GoldBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.GoldBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.GoldBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.GoldBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaGoldBroadsword = new HASword("terrariaGoldBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaGoldBroadsword);
+					terrariaGoldBroadsword = new HAWeapon("terrariaGoldBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaGoldBroadsword);
 				}else {
 					terrariaGoldBroadsword = new ItemGreatswordHW("terrariaGoldBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaGoldBroadsword, HeroicArmory.MOD_ID, "terrariaGoldBroadsword");
-					event.getRegistry().register(terrariaGoldBroadsword);
 				}
+				ALL_ITEMS.add(terrariaGoldBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.TungstenBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.TungstenBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaTungstenBroadsword = new HASword("terrariaTungstenBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaTungstenBroadsword);
+					terrariaTungstenBroadsword = new HAWeapon("terrariaTungstenBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaTungstenBroadsword);
 				}else {
 					terrariaTungstenBroadsword = new ItemGreatswordHW("terrariaTungstenBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTungstenBroadsword, HeroicArmory.MOD_ID, "terrariaTungstenBroadsword");
-					event.getRegistry().register(terrariaTungstenBroadsword);
 				}
+				ALL_ITEMS.add(terrariaTungstenBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.TungstenShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.TungstenShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.TungstenShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.TungstenShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.TungstenShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.TungstenShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.TungstenShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.TungstenShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.TungstenShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.TungstenShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.TungstenShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.TungstenShortsword.rarity);
 				}};
-				terrariaTungstenShortsword = new HASword("terrariaTungstenShortsword", dummyMaterial, properties);
+				terrariaTungstenShortsword = new HAWeapon("terrariaTungstenShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaTungstenShortsword);
 				ALL_ITEMS.add(terrariaTungstenShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.PlatinumShortsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.PlatinumShortsword.rarity);
 				}};
-				terrariaPlatinumShortsword = new HASword("terrariaPlatinumShortsword", dummyMaterial, properties);
+				terrariaPlatinumShortsword = new HAWeapon("terrariaPlatinumShortsword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaPlatinumShortsword);
 				ALL_ITEMS.add(terrariaPlatinumShortsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.PlatinumBroadsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.PlatinumBroadsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaPlatinumBroadsword = new HASword("terrariaPlatinumBroadsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaPlatinumBroadsword);
+					terrariaPlatinumBroadsword = new HAWeapon("terrariaPlatinumBroadsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaPlatinumBroadsword);
 				}else {
 					terrariaPlatinumBroadsword = new ItemGreatswordHW("terrariaPlatinumBroadsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaPlatinumBroadsword, HeroicArmory.MOD_ID, "terrariaPlatinumBroadsword");
-					event.getRegistry().register(terrariaPlatinumBroadsword);
 				}
+				ALL_ITEMS.add(terrariaPlatinumBroadsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.MandibleBlade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.MandibleBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.MandibleBlade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.MandibleBlade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.MandibleBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.MandibleBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.MandibleBlade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.MandibleBlade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.MandibleBlade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.MandibleBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.MandibleBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.MandibleBlade.rarity);
 				}};
-				terrariaMandibleBlade = new HASword("terrariaMandibleBlade", dummyMaterial, properties);
+				terrariaMandibleBlade = new HAWeapon("terrariaMandibleBlade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaMandibleBlade);
 				ALL_ITEMS.add(terrariaMandibleBlade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Katana.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Katana.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Katana.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Katana.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Katana.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Katana.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Katana.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Katana.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Katana.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Katana.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Katana.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Katana.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaKatana = new HASword("terrariaKatana", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaKatana);
+					terrariaKatana = new HAWeapon("terrariaKatana", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaKatana);
 				}else {
 					terrariaKatana = new ItemKatanaHW("terrariaKatana", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaKatana, HeroicArmory.MOD_ID, "terrariaKatana");
-					event.getRegistry().register(terrariaKatana);
 				}
+				ALL_ITEMS.add(terrariaKatana);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.ExoticScimitar.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.ExoticScimitar.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.ExoticScimitar.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.ExoticScimitar.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.ExoticScimitar.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.ExoticScimitar.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.ExoticScimitar.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.ExoticScimitar.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaExoticScimitar = new HASword("terrariaExoticScimitar", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaExoticScimitar);
+					terrariaExoticScimitar = new HAWeapon("terrariaExoticScimitar", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaExoticScimitar);
 				}else {
 					terrariaExoticScimitar = new ItemSaberHW("terrariaExoticScimitar", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaExoticScimitar, HeroicArmory.MOD_ID, "terrariaExoticScimitar");
-					event.getRegistry().register(terrariaExoticScimitar);
 				}
+				ALL_ITEMS.add(terrariaExoticScimitar);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Muramasa.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Muramasa.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Muramasa.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Muramasa.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Muramasa.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Muramasa.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Muramasa.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Muramasa.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Muramasa.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Muramasa.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Muramasa.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Muramasa.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaMuramasa = new HASword("terrariaMuramasa", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaMuramasa);
+					terrariaMuramasa = new HAWeapon("terrariaMuramasa", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaMuramasa);
 				}else {
 					terrariaMuramasa = new ItemKatanaHW("terrariaMuramasa", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaMuramasa, HeroicArmory.MOD_ID, "terrariaMuramasa");
-					event.getRegistry().register(terrariaMuramasa);
 				}
+				ALL_ITEMS.add(terrariaMuramasa);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.FalconBlade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.FalconBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.FalconBlade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.FalconBlade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.FalconBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.FalconBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.FalconBlade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.FalconBlade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.FalconBlade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.FalconBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.FalconBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.FalconBlade.rarity);
 				}};
-				terrariaFalconBlade = new HASword("terrariaFalconBlade", dummyMaterial, properties);
+				terrariaFalconBlade = new HAWeapon("terrariaFalconBlade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaFalconBlade);
 				ALL_ITEMS.add(terrariaFalconBlade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BladeofGrass.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BladeofGrass.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BladeofGrass.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BladeofGrass.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BladeofGrass.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BladeofGrass.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BladeofGrass.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BladeofGrass.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BladeofGrass.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BladeofGrass.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BladeofGrass.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BladeofGrass.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaBladeofGrass = new HASword("terrariaBladeofGrass", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaBladeofGrass);
+					terrariaBladeofGrass = new HAWeapon("terrariaBladeofGrass", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaBladeofGrass);
 				}else {
 					terrariaBladeofGrass = new ItemLongswordHW("terrariaBladeofGrass", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBladeofGrass, HeroicArmory.MOD_ID, "terrariaBladeofGrass");
-					event.getRegistry().register(terrariaBladeofGrass);
 				}
+				ALL_ITEMS.add(terrariaBladeofGrass);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.FieryGreatsword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.FieryGreatsword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.FieryGreatsword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.FieryGreatsword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.FieryGreatsword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.FieryGreatsword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.FieryGreatsword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.FieryGreatsword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaFieryGreatsword = new HASword("terrariaFieryGreatsword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaFieryGreatsword);
+					terrariaFieryGreatsword = new HAWeapon("terrariaFieryGreatsword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaFieryGreatsword);
 				}else {
 					terrariaFieryGreatsword = new ItemGreatswordHW("terrariaFieryGreatsword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyIgnite(8));
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaFieryGreatsword, HeroicArmory.MOD_ID, "terrariaFieryGreatsword");
-					event.getRegistry().register(terrariaFieryGreatsword);
 				}
+				ALL_ITEMS.add(terrariaFieryGreatsword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BoneSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BoneSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BoneSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BoneSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BoneSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BoneSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BoneSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BoneSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BoneSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BoneSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BoneSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BoneSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaBoneSword = new HASword("terrariaBoneSword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaBoneSword);
+					terrariaBoneSword = new HAWeapon("terrariaBoneSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaBoneSword);
 				}else {
 					terrariaBoneSword = new ItemLongswordHW("terrariaBoneSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBoneSword, HeroicArmory.MOD_ID, "terrariaBoneSword");
-					event.getRegistry().register(terrariaBoneSword);
 				}
+				ALL_ITEMS.add(terrariaBoneSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BloodButcherer.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BloodButcherer.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BloodButcherer.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BloodButcherer.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BloodButcherer.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BloodButcherer.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BloodButcherer.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BloodButcherer.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BloodButcherer.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BloodButcherer.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BloodButcherer.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BloodButcherer.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaBloodButcherer = new HASword("terrariaBloodButcherer", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaBloodButcherer);
+					terrariaBloodButcherer = new HAWeapon("terrariaBloodButcherer", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaBloodButcherer);
 				}else {
 					terrariaBloodButcherer = new ItemGreatswordHW("terrariaBloodButcherer", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaBloodButcherer, HeroicArmory.MOD_ID, "terrariaBloodButcherer");
-					event.getRegistry().register(terrariaBloodButcherer);
 				}
+				ALL_ITEMS.add(terrariaBloodButcherer);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.EnchantedSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.EnchantedSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.EnchantedSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.EnchantedSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.EnchantedSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.EnchantedSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.EnchantedSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.EnchantedSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.EnchantedSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.EnchantedSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.EnchantedSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.EnchantedSword.rarity);
 				}};
-				terrariaEnchantedSword = new HASword("terrariaEnchantedSword", dummyMaterial, properties);
+				terrariaEnchantedSword = new HAWeapon("terrariaEnchantedSword", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaEnchantedSword);
 				ALL_ITEMS.add(terrariaEnchantedSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Starfury.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Starfury.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Starfury.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Starfury.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Starfury.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Starfury.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Starfury.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Starfury.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Starfury.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Starfury.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Starfury.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Starfury.rarity);
 				}};
-				terrariaStarfury = new HASword("terrariaStarfury", dummyMaterial, properties);
+				terrariaStarfury = new HAWeapon("terrariaStarfury", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaStarfury);
 				ALL_ITEMS.add(terrariaStarfury);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BeeKeeper.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BeeKeeper.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BeeKeeper.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BeeKeeper.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BeeKeeper.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BeeKeeper.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BeeKeeper.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BeeKeeper.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BeeKeeper.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BeeKeeper.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BeeKeeper.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BeeKeeper.rarity);
 				}};
-				terrariaBeeKeeper = new HASword("terrariaBeeKeeper", dummyMaterial, properties);
+				terrariaBeeKeeper = new HAWeapon("terrariaBeeKeeper", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaBeeKeeper);
 				ALL_ITEMS.add(terrariaBeeKeeper);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.IceBlade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.IceBlade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.IceBlade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.IceBlade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.IceBlade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.IceBlade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.IceBlade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.IceBlade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.IceBlade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.IceBlade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.IceBlade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.IceBlade.rarity);
 				}};
-				terrariaIceBlade = new HASword("terrariaIceBlade", dummyMaterial, properties);
+				terrariaIceBlade = new HAWeapon("terrariaIceBlade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaIceBlade);
 				ALL_ITEMS.add(terrariaIceBlade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.NightEdge.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.NightEdge.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.NightEdge.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.NightEdge.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.NightEdge.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.NightEdge.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.NightEdge.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.NightEdge.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.NightEdge.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.NightEdge.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.NightEdge.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.NightEdge.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaNightEdge = new HASword("terrariaNightEdge", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaNightEdge);
+					terrariaNightEdge = new HAWeapon("terrariaNightEdge", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaNightEdge);
 				}else {
 					terrariaNightEdge = new ItemGreatswordHW("terrariaNightEdge", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaNightEdge, HeroicArmory.MOD_ID, "terrariaNightEdge");
-					event.getRegistry().register(terrariaNightEdge);
 				}
+				ALL_ITEMS.add(terrariaNightEdge);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Arkhalis.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Arkhalis.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Arkhalis.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Arkhalis.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Arkhalis.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Arkhalis.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Arkhalis.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Arkhalis.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Arkhalis.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Arkhalis.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Arkhalis.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Arkhalis.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaArkhalis = new HASword("terrariaArkhalis", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaArkhalis);
+					terrariaArkhalis = new HAWeapon("terrariaArkhalis", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaArkhalis);
 				}else {
 					terrariaArkhalis = new ItemParryingDaggerHW("terrariaArkhalis", dummyMaterialEx, properties, WeaponProperties.BLOCK_MELEE, WeaponProperties.QUICK_STRIKE, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaArkhalis, HeroicArmory.MOD_ID, "terrariaArkhalis");
-					event.getRegistry().register(terrariaArkhalis);
 				}
+				ALL_ITEMS.add(terrariaArkhalis);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Trident.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Trident.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Trident.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Trident.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Trident.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Trident.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Trident.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Trident.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Trident.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Trident.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Trident.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Trident.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaTrident = new HASword("terrariaTrident", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaTrident);
+					terrariaTrident = new HAWeapon("terrariaTrident", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaTrident);
 				}else {
 					terrariaTrident = new ItemSpearHW("terrariaTrident", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTrident, HeroicArmory.MOD_ID, "terrariaTrident");
-					event.getRegistry().register(terrariaTrident);
 				}
+				ALL_ITEMS.add(terrariaTrident);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.TheRottedFork.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.TheRottedFork.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.TheRottedFork.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.TheRottedFork.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.TheRottedFork.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.TheRottedFork.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.TheRottedFork.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.TheRottedFork.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.TheRottedFork.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.TheRottedFork.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.TheRottedFork.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.TheRottedFork.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaTheRottedFork = new HASword("terrariaTheRottedFork", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaTheRottedFork);
+					terrariaTheRottedFork = new HAWeapon("terrariaTheRottedFork", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaTheRottedFork);
 				}else {
 					terrariaTheRottedFork = new ItemSpearHW("terrariaTheRottedFork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaTheRottedFork, HeroicArmory.MOD_ID, "terrariaTheRottedFork");
-					event.getRegistry().register(terrariaTheRottedFork);
 				}
+				ALL_ITEMS.add(terrariaTheRottedFork);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.WhitePhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.WhitePhaseblade.rarity);
 				}};
-				terrariaWhitePhaseblade = new HASword("terrariaWhitePhaseblade", dummyMaterial, properties);
+				terrariaWhitePhaseblade = new HAWeapon("terrariaWhitePhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaWhitePhaseblade);
 				ALL_ITEMS.add(terrariaWhitePhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.YellowPhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.YellowPhaseblade.rarity);
 				}};
-				terrariaYellowPhaseblade = new HASword("terrariaYellowPhaseblade", dummyMaterial, properties);
+				terrariaYellowPhaseblade = new HAWeapon("terrariaYellowPhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaYellowPhaseblade);
 				ALL_ITEMS.add(terrariaYellowPhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.PurplePhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.PurplePhaseblade.rarity);
 				}};
-				terrariaPurplePhaseblade = new HASword("terrariaPurplePhaseblade", dummyMaterial, properties);
+				terrariaPurplePhaseblade = new HAWeapon("terrariaPurplePhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaPurplePhaseblade);
 				ALL_ITEMS.add(terrariaPurplePhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.GreenPhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.GreenPhaseblade.rarity);
 				}};
-				terrariaGreenPhaseblade = new HASword("terrariaGreenPhaseblade", dummyMaterial, properties);
+				terrariaGreenPhaseblade = new HAWeapon("terrariaGreenPhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaGreenPhaseblade);
 				ALL_ITEMS.add(terrariaGreenPhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.RedPhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.RedPhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.RedPhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.RedPhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.RedPhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.RedPhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.RedPhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.RedPhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.RedPhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.RedPhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.RedPhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.RedPhaseblade.rarity);
 				}};
-				terrariaRedPhaseblade = new HASword("terrariaRedPhaseblade", dummyMaterial, properties);
+				terrariaRedPhaseblade = new HAWeapon("terrariaRedPhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaRedPhaseblade);
 				ALL_ITEMS.add(terrariaRedPhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.BluePhaseblade.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.BluePhaseblade.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.BluePhaseblade.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.BluePhaseblade.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.BluePhaseblade.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.BluePhaseblade.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.BluePhaseblade.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.BluePhaseblade.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.BluePhaseblade.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.BluePhaseblade.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.BluePhaseblade.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.BluePhaseblade.rarity);
 				}};
-				terrariaBluePhaseblade = new HASword("terrariaBluePhaseblade", dummyMaterial, properties);
+				terrariaBluePhaseblade = new HAWeapon("terrariaBluePhaseblade", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaBluePhaseblade);
 				ALL_ITEMS.add(terrariaBluePhaseblade);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.LightBane.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.LightBane.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.LightBane.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.LightBane.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.LightBane.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.LightBane.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.LightBane.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.LightBane.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.LightBane.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.LightBane.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.LightBane.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.LightBane.rarity);
 				}};
-				terrariaLightBane = new HASword("terrariaLightBane", dummyMaterial, properties);
+				terrariaLightBane = new HAWeapon("terrariaLightBane", dummyMaterial, properties);
+				HEROIC_ITEMS.add(terrariaLightBane);
 				ALL_ITEMS.add(terrariaLightBane);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.DarkLance.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.DarkLance.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.DarkLance.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.DarkLance.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.DarkLance.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.DarkLance.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.DarkLance.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.DarkLance.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.DarkLance.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.DarkLance.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.DarkLance.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.DarkLance.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaDarkLance = new HASword("terrariaDarkLance", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaDarkLance);
+					terrariaDarkLance = new HAWeapon("terrariaDarkLance", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaDarkLance);
 				}else {
 					terrariaDarkLance = new ItemSpearHW("terrariaDarkLance", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaDarkLance, HeroicArmory.MOD_ID, "terrariaDarkLance");
-					event.getRegistry().register(terrariaDarkLance);
 				}
+				ALL_ITEMS.add(terrariaDarkLance);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.PurpleClubberfish.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.PurpleClubberfish.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaPurpleClubberfish = new HASword("terrariaPurpleClubberfish", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaPurpleClubberfish);
+					terrariaPurpleClubberfish = new HAWeapon("terrariaPurpleClubberfish", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaPurpleClubberfish);
 				}else {
 					terrariaPurpleClubberfish = new ItemClubHW("terrariaPurpleClubberfish", dummyMaterialEx, properties, WeaponProperties.NAUSEA);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaPurpleClubberfish, HeroicArmory.MOD_ID, "terrariaPurpleClubberfish");
-					event.getRegistry().register(terrariaPurpleClubberfish);
 				}
+				ALL_ITEMS.add(terrariaPurpleClubberfish);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.CactusSword.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.CactusSword.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.CactusSword.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.CactusSword.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.CactusSword.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.CactusSword.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.CactusSword.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.CactusSword.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.CactusSword.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.CactusSword.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.CactusSword.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.CactusSword.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaCactusSword = new HASword("terrariaCactusSword", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaCactusSword);
+					terrariaCactusSword = new HAWeapon("terrariaCactusSword", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaCactusSword);
 				}else {
 					terrariaCactusSword = new ItemGreatswordHW("terrariaCactusSword", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaCactusSword, HeroicArmory.MOD_ID, "terrariaCactusSword");
-					event.getRegistry().register(terrariaCactusSword);
 				}
+				ALL_ITEMS.add(terrariaCactusSword);
 			}
-			if (HAConfig.modifiedItems.terrariamodified.Swordfish.enabled) {
+			if (HAConfig.modifiedItems.terrariaModified.Swordfish.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.terrariamodified.Swordfish.damage);
-					put("durability", HAConfig.modifiedItems.terrariamodified.Swordfish.durability);
-					put("speed", HAConfig.modifiedItems.terrariamodified.Swordfish.speed);
-					put("enchantability", HAConfig.modifiedItems.terrariamodified.Swordfish.enchantability);
-					put("rarity", HAConfig.modifiedItems.terrariamodified.Swordfish.rarity);
+					put("attack", HAConfig.modifiedItems.terrariaModified.Swordfish.damage);
+					put("durability", HAConfig.modifiedItems.terrariaModified.Swordfish.durability);
+					put("speed", HAConfig.modifiedItems.terrariaModified.Swordfish.speed);
+					put("enchantability", HAConfig.modifiedItems.terrariaModified.Swordfish.enchantability);
+					put("rarity", HAConfig.modifiedItems.terrariaModified.Swordfish.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					terrariaSwordfish = new HASword("terrariaSwordfish", dummyMaterial, properties);
-					ALL_ITEMS.add(terrariaSwordfish);
+					terrariaSwordfish = new HAWeapon("terrariaSwordfish", dummyMaterial, properties);
+					HEROIC_ITEMS.add(terrariaSwordfish);
 				}else {
 					terrariaSwordfish = new ItemSpearHW("terrariaSwordfish", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(terrariaSwordfish, HeroicArmory.MOD_ID, "terrariaSwordfish");
-					event.getRegistry().register(terrariaSwordfish);
 				}
+				ALL_ITEMS.add(terrariaSwordfish);
 			}
 		}
-
-//sw
+		//sw
 		if (HAConfig.includeSeries.sw) {
-			if (HAConfig.modifiedItems.swmodified.YellowLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.YellowLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.YellowLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.YellowLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.YellowLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.YellowLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.YellowLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.YellowLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.YellowLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.YellowLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.YellowLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.YellowLightsaber.rarity);
 				}};
-				swYellowLightsaber = new HASword("swYellowLightsaber", dummyMaterial, properties);
+				swYellowLightsaber = new HAWeapon("swYellowLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swYellowLightsaber);
 				ALL_ITEMS.add(swYellowLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.GreenLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.GreenLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.GreenLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.GreenLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.GreenLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.GreenLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.GreenLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.GreenLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.GreenLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.GreenLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.GreenLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.GreenLightsaber.rarity);
 				}};
-				swGreenLightsaber = new HASword("swGreenLightsaber", dummyMaterial, properties);
+				swGreenLightsaber = new HAWeapon("swGreenLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swGreenLightsaber);
 				ALL_ITEMS.add(swGreenLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.BlueLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.BlueLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.BlueLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.BlueLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.BlueLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.BlueLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.BlueLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.BlueLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.BlueLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.BlueLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.BlueLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.BlueLightsaber.rarity);
 				}};
-				swBlueLightsaber = new HASword("swBlueLightsaber", dummyMaterial, properties);
+				swBlueLightsaber = new HAWeapon("swBlueLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swBlueLightsaber);
 				ALL_ITEMS.add(swBlueLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.RedLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.RedLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.RedLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.RedLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.RedLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.RedLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.RedLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.RedLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.RedLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.RedLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.RedLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.RedLightsaber.rarity);
 				}};
-				swRedLightsaber = new HASword("swRedLightsaber", dummyMaterial, properties);
+				swRedLightsaber = new HAWeapon("swRedLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swRedLightsaber);
 				ALL_ITEMS.add(swRedLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.MaceWinduLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.MaceWinduLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.MaceWinduLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.MaceWinduLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.MaceWinduLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.MaceWinduLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.MaceWinduLightsaber.rarity);
 				}};
-				swMaceWinduLightsaber = new HASword("swMaceWinduLightsaber", dummyMaterial, properties);
+				swMaceWinduLightsaber = new HAWeapon("swMaceWinduLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swMaceWinduLightsaber);
 				ALL_ITEMS.add(swMaceWinduLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.TheInquisitorLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.TheInquisitorLightsaber.rarity);
 				}};
-				swTheInquisitorLightsaber = new HASword("swTheInquisitorLightsaber", dummyMaterial, properties);
+				swTheInquisitorLightsaber = new HAWeapon("swTheInquisitorLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swTheInquisitorLightsaber);
 				ALL_ITEMS.add(swTheInquisitorLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.DarthMaulLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.DarthMaulLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.DarthMaulLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.DarthMaulLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.DarthMaulLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.DarthMaulLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.DarthMaulLightsaber.rarity);
 				}};
-				swDarthMaulLightsaber = new HASword("swDarthMaulLightsaber", dummyMaterial, properties);
+				swDarthMaulLightsaber = new HAWeapon("swDarthMaulLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swDarthMaulLightsaber);
 				ALL_ITEMS.add(swDarthMaulLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.QuiGonJinnLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.QuiGonJinnLightsaber.rarity);
 				}};
-				swQuiGonJinnLightsaber = new HASword("swQuiGonJinnLightsaber", dummyMaterial, properties);
+				swQuiGonJinnLightsaber = new HAWeapon("swQuiGonJinnLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swQuiGonJinnLightsaber);
 				ALL_ITEMS.add(swQuiGonJinnLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.KyloRenLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.KyloRenLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.KyloRenLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.KyloRenLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.KyloRenLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.KyloRenLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.KyloRenLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.KyloRenLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.KyloRenLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.KyloRenLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.KyloRenLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.KyloRenLightsaber.rarity);
 				}};
-				swKyloRenLightsaber = new HASword("swKyloRenLightsaber", dummyMaterial, properties);
+				swKyloRenLightsaber = new HAWeapon("swKyloRenLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swKyloRenLightsaber);
 				ALL_ITEMS.add(swKyloRenLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.CountDookuLightsaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.CountDookuLightsaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.CountDookuLightsaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.CountDookuLightsaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.CountDookuLightsaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.CountDookuLightsaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.CountDookuLightsaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.CountDookuLightsaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.CountDookuLightsaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.CountDookuLightsaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.CountDookuLightsaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.CountDookuLightsaber.rarity);
 				}};
-				swCountDookuLightsaber = new HASword("swCountDookuLightsaber", dummyMaterial, properties);
+				swCountDookuLightsaber = new HAWeapon("swCountDookuLightsaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swCountDookuLightsaber);
 				ALL_ITEMS.add(swCountDookuLightsaber);
 			}
-			if (HAConfig.modifiedItems.swmodified.Darksaber.enabled) {
+			if (HAConfig.modifiedItems.swModified.Darksaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.swmodified.Darksaber.damage);
-					put("durability", HAConfig.modifiedItems.swmodified.Darksaber.durability);
-					put("speed", HAConfig.modifiedItems.swmodified.Darksaber.speed);
-					put("enchantability", HAConfig.modifiedItems.swmodified.Darksaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.swmodified.Darksaber.rarity);
+					put("attack", HAConfig.modifiedItems.swModified.Darksaber.damage);
+					put("durability", HAConfig.modifiedItems.swModified.Darksaber.durability);
+					put("speed", HAConfig.modifiedItems.swModified.Darksaber.speed);
+					put("enchantability", HAConfig.modifiedItems.swModified.Darksaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.swModified.Darksaber.rarity);
 				}};
-				swDarksaber = new HASword("swDarksaber", dummyMaterial, properties);
+				swDarksaber = new HAWeapon("swDarksaber", dummyMaterial, properties);
+				HEROIC_ITEMS.add(swDarksaber);
 				ALL_ITEMS.add(swDarksaber);
 			}
 		}
-
-//internet
+		//internet
 		if (HAConfig.includeSeries.internet) {
-			if (HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.enabled) {
+			if (HAConfig.modifiedItems.internetModified.DemonoidPitchfork.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.damage);
-					put("durability", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.durability);
-					put("speed", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.speed);
-					put("enchantability", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.enchantability);
-					put("rarity", HAConfig.modifiedItems.internetmodified.DemonoidPitchfork.rarity);
+					put("attack", HAConfig.modifiedItems.internetModified.DemonoidPitchfork.damage);
+					put("durability", HAConfig.modifiedItems.internetModified.DemonoidPitchfork.durability);
+					put("speed", HAConfig.modifiedItems.internetModified.DemonoidPitchfork.speed);
+					put("enchantability", HAConfig.modifiedItems.internetModified.DemonoidPitchfork.enchantability);
+					put("rarity", HAConfig.modifiedItems.internetModified.DemonoidPitchfork.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					internetDemonoidPitchfork = new HASword("internetDemonoidPitchfork", dummyMaterial, properties);
-					ALL_ITEMS.add(internetDemonoidPitchfork);
+					internetDemonoidPitchfork = new HAWeapon("internetDemonoidPitchfork", dummyMaterial, properties);
+					HEROIC_ITEMS.add(internetDemonoidPitchfork);
 				}else {
 					internetDemonoidPitchfork = new ItemSpearHW("internetDemonoidPitchfork", dummyMaterialEx, properties, WeaponProperties.REACH_1);
 					SpartanWeaponryAPI.addItemModelToRegistry(internetDemonoidPitchfork, HeroicArmory.MOD_ID, "internetDemonoidPitchfork");
-					event.getRegistry().register(internetDemonoidPitchfork);
 				}
+				ALL_ITEMS.add(internetDemonoidPitchfork);
 			}
 		}
-
-//nh
+		//nh
 		if (HAConfig.includeSeries.nh) {
-			if (HAConfig.modifiedItems.nhmodified.Magicbane.enabled) {
+			if (HAConfig.modifiedItems.nhModified.Magicbane.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.nhmodified.Magicbane.damage);
-					put("durability", HAConfig.modifiedItems.nhmodified.Magicbane.durability);
-					put("speed", HAConfig.modifiedItems.nhmodified.Magicbane.speed);
-					put("enchantability", HAConfig.modifiedItems.nhmodified.Magicbane.enchantability);
-					put("rarity", HAConfig.modifiedItems.nhmodified.Magicbane.rarity);
+					put("attack", HAConfig.modifiedItems.nhModified.Magicbane.damage);
+					put("durability", HAConfig.modifiedItems.nhModified.Magicbane.durability);
+					put("speed", HAConfig.modifiedItems.nhModified.Magicbane.speed);
+					put("enchantability", HAConfig.modifiedItems.nhModified.Magicbane.enchantability);
+					put("rarity", HAConfig.modifiedItems.nhModified.Magicbane.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					nhMagicbane = new HASword("nhMagicbane", dummyMaterial, properties);
-					ALL_ITEMS.add(nhMagicbane);
+					nhMagicbane = new HAWeapon("nhMagicbane", dummyMaterial, properties);
+					HEROIC_ITEMS.add(nhMagicbane);
 				}else {
 					nhMagicbane = new ItemDaggerHW("nhMagicbane", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(nhMagicbane, HeroicArmory.MOD_ID, "nhMagicbane");
-					event.getRegistry().register(nhMagicbane);
 				}
+				ALL_ITEMS.add(nhMagicbane);
 			}
-			if (HAConfig.modifiedItems.nhmodified.Athame.enabled) {
+			if (HAConfig.modifiedItems.nhModified.Athame.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.nhmodified.Athame.damage);
-					put("durability", HAConfig.modifiedItems.nhmodified.Athame.durability);
-					put("speed", HAConfig.modifiedItems.nhmodified.Athame.speed);
-					put("enchantability", HAConfig.modifiedItems.nhmodified.Athame.enchantability);
-					put("rarity", HAConfig.modifiedItems.nhmodified.Athame.rarity);
+					put("attack", HAConfig.modifiedItems.nhModified.Athame.damage);
+					put("durability", HAConfig.modifiedItems.nhModified.Athame.durability);
+					put("speed", HAConfig.modifiedItems.nhModified.Athame.speed);
+					put("enchantability", HAConfig.modifiedItems.nhModified.Athame.enchantability);
+					put("rarity", HAConfig.modifiedItems.nhModified.Athame.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					nhAthame = new HASword("nhAthame", dummyMaterial, properties);
-					ALL_ITEMS.add(nhAthame);
+					nhAthame = new HAWeapon("nhAthame", dummyMaterial, properties);
+					HEROIC_ITEMS.add(nhAthame);
 				}else {
 					nhAthame = new ItemDaggerHW("nhAthame", dummyMaterialEx, properties, WeaponProperties.THROWABLE, WeaponProperties.EXTRA_DAMAGE_BACKSTAB);
 					SpartanWeaponryAPI.addItemModelToRegistry(nhAthame, HeroicArmory.MOD_ID, "nhAthame");
-					event.getRegistry().register(nhAthame);
 				}
+				ALL_ITEMS.add(nhAthame);
 			}
-			if (HAConfig.modifiedItems.nhmodified.Grayswandir.enabled) {
+			if (HAConfig.modifiedItems.nhModified.Grayswandir.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.nhmodified.Grayswandir.damage);
-					put("durability", HAConfig.modifiedItems.nhmodified.Grayswandir.durability);
-					put("speed", HAConfig.modifiedItems.nhmodified.Grayswandir.speed);
-					put("enchantability", HAConfig.modifiedItems.nhmodified.Grayswandir.enchantability);
-					put("rarity", HAConfig.modifiedItems.nhmodified.Grayswandir.rarity);
+					put("attack", HAConfig.modifiedItems.nhModified.Grayswandir.damage);
+					put("durability", HAConfig.modifiedItems.nhModified.Grayswandir.durability);
+					put("speed", HAConfig.modifiedItems.nhModified.Grayswandir.speed);
+					put("enchantability", HAConfig.modifiedItems.nhModified.Grayswandir.enchantability);
+					put("rarity", HAConfig.modifiedItems.nhModified.Grayswandir.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					nhGrayswandir = new HASword("nhGrayswandir", dummyMaterial, properties);
-					ALL_ITEMS.add(nhGrayswandir);
+					nhGrayswandir = new HAWeapon("nhGrayswandir", dummyMaterial, properties);
+					HEROIC_ITEMS.add(nhGrayswandir);
 				}else {
 					nhGrayswandir = new ItemSaberHW("nhGrayswandir", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST, WeaponProperties.EXTRA_DAMAGE_50P_UNDEAD);
 					SpartanWeaponryAPI.addItemModelToRegistry(nhGrayswandir, HeroicArmory.MOD_ID, "nhGrayswandir");
-					event.getRegistry().register(nhGrayswandir);
 				}
+				ALL_ITEMS.add(nhGrayswandir);
 			}
-			if (HAConfig.modifiedItems.nhmodified.SilverSaber.enabled) {
+			if (HAConfig.modifiedItems.nhModified.SilverSaber.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.nhmodified.SilverSaber.damage);
-					put("durability", HAConfig.modifiedItems.nhmodified.SilverSaber.durability);
-					put("speed", HAConfig.modifiedItems.nhmodified.SilverSaber.speed);
-					put("enchantability", HAConfig.modifiedItems.nhmodified.SilverSaber.enchantability);
-					put("rarity", HAConfig.modifiedItems.nhmodified.SilverSaber.rarity);
+					put("attack", HAConfig.modifiedItems.nhModified.SilverSaber.damage);
+					put("durability", HAConfig.modifiedItems.nhModified.SilverSaber.durability);
+					put("speed", HAConfig.modifiedItems.nhModified.SilverSaber.speed);
+					put("enchantability", HAConfig.modifiedItems.nhModified.SilverSaber.enchantability);
+					put("rarity", HAConfig.modifiedItems.nhModified.SilverSaber.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					nhSilverSaber = new HASword("nhSilverSaber", dummyMaterial, properties);
-					ALL_ITEMS.add(nhSilverSaber);
+					nhSilverSaber = new HAWeapon("nhSilverSaber", dummyMaterial, properties);
+					HEROIC_ITEMS.add(nhSilverSaber);
 				}else {
 					nhSilverSaber = new ItemSaberHW("nhSilverSaber", dummyMaterialEx, properties, WeaponProperties.DAMAGE_ABSORB_25, WeaponProperties.EXTRA_DAMAGE_2_CHEST);
 					SpartanWeaponryAPI.addItemModelToRegistry(nhSilverSaber, HeroicArmory.MOD_ID, "nhSilverSaber");
-					event.getRegistry().register(nhSilverSaber);
 				}
+				ALL_ITEMS.add(nhSilverSaber);
 			}
 		}
-
-//abcm
+		//abcm
 		if (HAConfig.includeSeries.abcm) {
-			if (HAConfig.modifiedItems.abcmmodified.Excalibur.enabled) {
+			if (HAConfig.modifiedItems.abcmModified.Excalibur.enabled) {
 				HashMap<String, Object> properties = new HashMap<String, Object>() {{
-					put("attack", HAConfig.modifiedItems.abcmmodified.Excalibur.damage);
-					put("durability", HAConfig.modifiedItems.abcmmodified.Excalibur.durability);
-					put("speed", HAConfig.modifiedItems.abcmmodified.Excalibur.speed);
-					put("enchantability", HAConfig.modifiedItems.abcmmodified.Excalibur.enchantability);
-					put("rarity", HAConfig.modifiedItems.abcmmodified.Excalibur.rarity);
+					put("attack", HAConfig.modifiedItems.abcmModified.Excalibur.damage);
+					put("durability", HAConfig.modifiedItems.abcmModified.Excalibur.durability);
+					put("speed", HAConfig.modifiedItems.abcmModified.Excalibur.speed);
+					put("enchantability", HAConfig.modifiedItems.abcmModified.Excalibur.enchantability);
+					put("rarity", HAConfig.modifiedItems.abcmModified.Excalibur.rarity);
 				}};
 				if (!SupportSpartanWeaponry){
-					abcmExcalibur = new HASword("abcmExcalibur", dummyMaterial, properties);
-					ALL_ITEMS.add(abcmExcalibur);
+					abcmExcalibur = new HAWeapon("abcmExcalibur", dummyMaterial, properties);
+					HEROIC_ITEMS.add(abcmExcalibur);
 				}else {
 					abcmExcalibur = new ItemGreatswordHW("abcmExcalibur", dummyMaterialEx, properties, WeaponProperties.TWO_HANDED_2, WeaponProperties.REACH_1, WeaponProperties.SWEEP_DAMAGE_FULL, new WeaponPropertyExtraDamage("extra_damage_undead", "spartanweaponry", 1.75F), new WeaponPropertyRepairUndead());
 					SpartanWeaponryAPI.addItemModelToRegistry(abcmExcalibur, HeroicArmory.MOD_ID, "abcmExcalibur");
-					event.getRegistry().register(abcmExcalibur);
 				}
+				ALL_ITEMS.add(abcmExcalibur);
 			}
 		}
 
@@ -4522,6 +4592,7 @@ public class HAItemRegistry {
 			Item item;
 			while (itemList.hasNext()) {
 				item = itemList.next();
+				System.out.println(item.getRegistryName());
 				event.getRegistry().register(item);
 			}
 		}
@@ -4533,8 +4604,8 @@ public class HAItemRegistry {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		if (ALL_ITEMS != null){
-			Iterator<Item> itemList = ALL_ITEMS.listIterator();
+		if (HEROIC_ITEMS != null){
+			Iterator<Item> itemList = HEROIC_ITEMS.listIterator();
 			Item item;
 			while (itemList.hasNext()) {
 				item = itemList.next();
